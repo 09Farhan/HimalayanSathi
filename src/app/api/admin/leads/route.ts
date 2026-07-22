@@ -6,7 +6,7 @@ export async function PATCH(request: NextRequest) {
     const { id, status } = await request.json();
     if (!id || !status) return NextResponse.json({ error: 'Missing id or status' }, { status: 400 });
     
-    const success = db.updateLeadStatus(id, status);
+    const success = await db.updateLeadStatus(id, status);
     if (success) return NextResponse.json({ success: true });
     return NextResponse.json({ error: 'Lead not found' }, { status: 404 });
   } catch (e) {
@@ -19,7 +19,7 @@ export async function DELETE(request: NextRequest) {
     const { id } = await request.json();
     if (!id) return NextResponse.json({ error: 'Missing id' }, { status: 400 });
     
-    const success = db.deleteLead(id);
+    const success = await db.deleteLead(id);
     if (success) return NextResponse.json({ success: true });
     return NextResponse.json({ error: 'Lead not found' }, { status: 404 });
   } catch (e) {

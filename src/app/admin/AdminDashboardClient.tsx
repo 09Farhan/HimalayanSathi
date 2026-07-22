@@ -118,7 +118,7 @@ export default function AdminDashboardClient({ initialLeads }: { initialLeads: L
                       <td className="p-4">
                         <select 
                           value={lead.status}
-                          onChange={(e) => handleStatusChange(lead.id, e.target.value as 'new' | 'contacted')}
+                          onChange={(e) => handleStatusChange(lead.id!, e.target.value as 'new' | 'contacted')}
                           className={`text-xs font-medium px-3 py-1.5 rounded-full border-0 cursor-pointer focus:ring-2 focus:ring-primary ${
                             lead.status === 'new' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'
                           }`}
@@ -129,7 +129,7 @@ export default function AdminDashboardClient({ initialLeads }: { initialLeads: L
                       </td>
                       <td className="p-4">
                         <button 
-                          onClick={() => handleDelete(lead.id)}
+                          onClick={() => handleDelete(lead.id!)}
                           className="text-red-500 hover:text-red-700 text-sm font-medium"
                         >
                           Delete

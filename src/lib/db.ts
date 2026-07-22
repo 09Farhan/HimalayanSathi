@@ -1,17 +1,9 @@
-import path from 'path';
-import fs from 'fs';
-
-// Ensure the data directory exists
-const dataDir = path.join(process.cwd(), 'data');
-if (!fs.existsSync(dataDir)) {
-  fs.mkdirSync(dataDir, { recursive: true });
-}
-
-// JSON file path
-const dbPath = path.join(dataDir, 'leads.json');
+import clientPromise from './mongodb';
+import { ObjectId } from 'mongodb';
 
 export interface Lead {
-  id: string;
+  _id?: ObjectId | string;
+  id?: string;
   name: string;
   email: string;
   phone: string;
@@ -24,54 +16,70 @@ export interface Lead {
   createdAt: string;
 }
 
-// Initialize JSON database
-if (!fs.existsSync(dbPath)) {
-  fs.writeFileSync(dbPath, JSON.stringify([]), 'utf-8');
-}
-
 export const db = {
-  getLeads: (): Lead[] => {
+  getLeads: async (): Promise<Lead[]> => {
     try {
-      const data = fs.readFileSync(dbPath, 'utf-8');
-      return JSON.parse(data);
+      const client = await clientPromise;
+      const collection = client.db().collection<Lead>('leads');
+      const leads = await collection.find({}).sort({ createdAt: -1 }).toArray();
+      
+      return leads.map(lead => ({
+        ...lead,
+        id: lead._id?.toString(),
+        _id: lead._id?.toString() // Convert ObjectId to string for client-side serialization
+      }));
     } catch (e) {
+      console.error('Failed to get leads from MongoDB', e);
       return [];
     }
   },
   
-  insertLead: (lead: Omit<Lead, 'id' | 'createdAt' | 'status'>) => {
-    const leads = db.getLeads();
-    const newLead: Lead = {
-      ...lead,
-      id: Date.now().toString(),
-      status: 'new',
-      createdAt: new Date().toISOString()
-    };
-    leads.push(newLead);
-    fs.writeFileSync(dbPath, JSON.stringify(leads, null, 2), 'utf-8');
-    return newLead;
+  insertLead: async (lead: Omit<Lead, '_id' | 'id' | 'createdAt' | 'status'>) => {
+    try {
+      const client = await clientPromise;
+      const collection = client.db().collection('leads');
+      
+      const newLead = {
+        ...lead,
+        status: 'new',
+        createdAt: new Date().toISOString()
+      };
+      
+      const result = await collection.insertOne(newLead);
+      return { ...newLead, id: result.insertedId.toString() };
+    } catch (e) {
+      console.error('Failed to insert lead into MongoDB', e);
+      throw e;
+    }
   },
 
-  updateLeadStatus: (id: string, status: 'new' | 'contacted') => {
-    const leads = db.getLeads();
-    const index = leads.findIndex(l => l.id === id);
-    if (index !== -1) {
-      leads[index].status = status;
-      fs.writeFileSync(dbPath, JSON.stringify(leads, null, 2), 'utf-8');
-      return true;
+  updateLeadStatus: async (id: string, status: 'new' | 'contacted') => {
+    try {
+      const client = await clientPromise;
+      const collection = client.db().collection('leads');
+      
+      const result = await collection.updateOne(
+        { _id: new ObjectId(id) },
+        { $set: { status } }
+      );
+      
+      return result.modifiedCount > 0;
+    } catch (e) {
+      console.error('Failed to update lead in MongoDB', e);
+      return false;
     }
-    return false;
   },
 
-  deleteLead: (id: string) => {
-    let leads = db.getLeads();
-    const initialLength = leads.length;
-    leads = leads.filter(l => l.id !== id);
-    
-    if (leads.length !== initialLength) {
-      fs.writeFileSync(dbPath, JSON.stringify(leads, null, 2), 'utf-8');
-      return true;
+  deleteLead: async (id: string) => {
+    try {
+      const client = await clientPromise;
+      const collection = client.db().collection('leads');
+      
+      const result = await collection.deleteOne({ _id: new ObjectId(id) });
+      return result.deletedCount > 0;
+    } catch (e) {
+      console.error('Failed to delete lead from MongoDB', e);
+      return false;
     }
-    return false;
   }
 };

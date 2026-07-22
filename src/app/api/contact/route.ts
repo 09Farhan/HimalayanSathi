@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
     }
     
     // Insert lead into database
-    db.insertLead({
+    await db.insertLead({
       name,
       email,
       phone,
