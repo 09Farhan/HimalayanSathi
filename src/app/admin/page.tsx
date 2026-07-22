@@ -3,6 +3,8 @@ import AdminDashboardClient from './AdminDashboardClient';
 
 // Ensure this page is dynamically rendered so it always fetches fresh data
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+export const fetchCache = 'force-no-store';
 
 export default async function AdminPage() {
   // Fetch leads on the server

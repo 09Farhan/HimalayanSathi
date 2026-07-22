@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Lead } from '@/lib/db';
 import Button from '@/components/ui/Button';
@@ -8,6 +8,11 @@ import Button from '@/components/ui/Button';
 export default function AdminDashboardClient({ initialLeads }: { initialLeads: Lead[] }) {
   const [leads, setLeads] = useState<Lead[]>(initialLeads);
   const router = useRouter();
+
+  // Sync state if server sends fresh data
+  useEffect(() => {
+    setLeads(initialLeads);
+  }, [initialLeads]);
 
   const handleLogout = async () => {
     await fetch('/api/auth/logout', { method: 'POST' });
