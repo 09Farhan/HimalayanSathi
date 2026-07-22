@@ -27,10 +27,13 @@ export default function ContactForm() {
     setStatus('loading');
     
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, source: 'Contact Form' })
+      });
       
-      // In a real app, you would fetch('/api/contact', { method: 'POST', body: JSON.stringify(formData) })
+      if (!res.ok) throw new Error('API Error');
       
       setStatus('success');
       setFormData({

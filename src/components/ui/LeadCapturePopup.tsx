@@ -39,17 +39,39 @@ export function LeadCapturePopup() {
     localStorage.setItem('hs_popup_dismissed', expiry.toString());
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus('loading');
     
-    // Simulate API
-    setTimeout(() => {
+    try {
+      const formData = new FormData(e.currentTarget);
+      const name = formData.get('popup-name') as string;
+      const phone = formData.get('popup-phone') as string;
+      const email = formData.get('popup-email') as string;
+      const destination = formData.get('popup-dest') as string;
+
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          name, 
+          phone, 
+          email, 
+          destination, 
+          source: 'Lead Capture Popup' 
+        })
+      });
+      
+      if (!res.ok) throw new Error('API Error');
+
       setStatus('success');
       setTimeout(() => {
         closePopup();
       }, 2000);
-    }, 1500);
+    } catch (error) {
+      // Revert to idle on error for retry
+      setStatus('idle');
+    }
   };
 
   if (!isOpen) return null;
@@ -100,7 +122,8 @@ export function LeadCapturePopup() {
                 <label htmlFor="popup-name" className="sr-only">Full Name</label>
                 <input 
                   type="text" 
-                  id="popup-name" 
+                  id="popup-name"
+                  name="popup-name"
                   required 
                   className="w-full px-4 py-3 rounded-xl border border-surface-muted bg-surface focus:border-primary-light focus-ring transition-colors"
                   placeholder="Your Name"
@@ -111,7 +134,8 @@ export function LeadCapturePopup() {
                 <label htmlFor="popup-phone" className="sr-only">Phone Number</label>
                 <input 
                   type="tel" 
-                  id="popup-phone" 
+                  id="popup-phone"
+                  name="popup-phone"
                   required 
                   className="w-full px-4 py-3 rounded-xl border border-surface-muted bg-surface focus:border-primary-light focus-ring transition-colors"
                   placeholder="Phone Number"
@@ -122,7 +146,8 @@ export function LeadCapturePopup() {
                 <label htmlFor="popup-email" className="sr-only">Email Address</label>
                 <input 
                   type="email" 
-                  id="popup-email" 
+                  id="popup-email"
+                  name="popup-email"
                   required 
                   className="w-full px-4 py-3 rounded-xl border border-surface-muted bg-surface focus:border-primary-light focus-ring transition-colors"
                   placeholder="Email Address"
@@ -132,7 +157,8 @@ export function LeadCapturePopup() {
               <div>
                 <label htmlFor="popup-dest" className="sr-only">Preferred Destination</label>
                 <select 
-                  id="popup-dest" 
+                  id="popup-dest"
+                  name="popup-dest"
                   required
                   className="w-full px-4 py-3 rounded-xl border border-surface-muted bg-surface focus:border-primary-light focus-ring transition-colors text-text-primary"
                 >
