@@ -1,32 +1,8 @@
-<<<<<<< HEAD
-import type { Metadata } from 'next';
-import HeroSection from '@/components/home/HeroSection';
-import FeaturedPackages from '@/components/home/FeaturedPackages';
-import WhyChooseUs from '@/components/home/WhyChooseUs';
-import TestimonialsSection from '@/components/home/TestimonialsSection';
-import TravellerGallery from '@/components/home/TravellerGallery';
-import ContactStrip from '@/components/home/ContactStrip';
-
-export const metadata: Metadata = {
-  title: 'Himalayan Sathi Tours & Travels | Explore Darjeeling, Sikkim & Bhutan',
-  description: 'Your trusted travel partner for unforgettable tours to Darjeeling, Sikkim, Bhutan, and Northeast India. Based in Siliguri with 20+ years of expertise.',
-};
-
-export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col">
-      <HeroSection />
-      <FeaturedPackages />
-      <WhyChooseUs />
-      <TravellerGallery />
-      <TestimonialsSection />
-      <ContactStrip />
-    </main>
-=======
 import type { Metadata } from "next";
 import HeroSection from "@/components/home/HeroSection";
 import FeaturedPackages from "@/components/home/FeaturedPackages";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
+import TravellerGallery from "@/components/home/TravellerGallery";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import ContactStrip from "@/components/home/ContactStrip";
 
@@ -47,7 +23,7 @@ export const metadata: Metadata = {
 
 /**
  * Home page – The main landing page for Himalayan Sathi Tours & Travels.
- * Composes hero, featured packages, why-choose-us, testimonials, and contact strip.
+ * Composes hero, featured packages, why-choose-us, gallery, testimonials, and contact strip.
  */
 export default function HomePage() {
   return (
@@ -55,9 +31,9 @@ export default function HomePage() {
       <HeroSection />
       <FeaturedPackages />
       <WhyChooseUs />
+      <TravellerGallery />
       <TestimonialsSection />
       <ContactStrip />
     </>
->>>>>>> c01344e331452a7d60e8be2138b2d7c89474120e
   );
 }

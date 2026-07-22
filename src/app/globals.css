@@ -4,16 +4,6 @@
    Himalayan Sathi – Global Design System
    ============================================================ */
 
-<<<<<<< HEAD
-@theme inline {
-  --color-primary: #1a365d;
-  --color-primary-light: #2b6cb0;
-  --color-primary-dark: #0f2240;
-  --color-secondary: #22543d;
-  --color-secondary-light: #38a169;
-  --color-accent: #d69e2e;
-  --color-accent-light: #ecc94b;
-=======
 /* --- Custom theme tokens for Tailwind v4 --- */
 @theme inline {
   /* Primary palette – deep mountain blue */
@@ -30,44 +20,31 @@
   --color-accent-light: #ecc94b;
 
   /* Neutrals */
->>>>>>> c01344e331452a7d60e8be2138b2d7c89474120e
   --color-surface: #f7fafc;
   --color-surface-dark: #0f172a;
   --color-surface-card: #ffffff;
   --color-surface-muted: #edf2f7;
-<<<<<<< HEAD
-=======
 
->>>>>>> c01344e331452a7d60e8be2138b2d7c89474120e
   --color-text-primary: #1a202c;
   --color-text-secondary: #4a5568;
   --color-text-muted: #718096;
   --color-text-light: #a0aec0;
   --color-text-inverse: #f7fafc;
-<<<<<<< HEAD
-  --font-heading: "Playfair Display", Georgia, serif;
-  --font-body: "Inter", system-ui, sans-serif;
-=======
 
   /* Fonts */
   --font-heading: "Playfair Display", Georgia, serif;
   --font-body: "Inter", system-ui, sans-serif;
 
   /* Shadows */
->>>>>>> c01344e331452a7d60e8be2138b2d7c89474120e
   --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.08);
   --shadow-card-hover: 0 12px 40px rgba(0, 0, 0, 0.15);
   --shadow-nav: 0 2px 16px rgba(0, 0, 0, 0.06);
 }
 
-<<<<<<< HEAD
-html { scroll-behavior: smooth; }
-=======
 /* --- Base styles --- */
 html {
   scroll-behavior: smooth;
 }
->>>>>>> c01344e331452a7d60e8be2138b2d7c89474120e
 
 body {
   font-family: var(--font-body);
@@ -83,16 +60,6 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
 }
 
-<<<<<<< HEAD
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes scaleIn {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
-=======
 /* --- Scroll-triggered animations --- */
 @keyframes fadeInUp {
   from {
@@ -136,7 +103,6 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 1;
     transform: scale(1);
   }
->>>>>>> c01344e331452a7d60e8be2138b2d7c89474120e
 }
 
 @keyframes shimmer {
@@ -149,19 +115,6 @@ h1, h2, h3, h4, h5, h6 {
   50% { transform: translateY(-10px); }
 }
 
-<<<<<<< HEAD
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(100%); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-fade-in-up { animation: fadeInUp 0.7s ease-out forwards; }
-.animate-scale-in { animation: scaleIn 0.5s ease-out forwards; }
-.animate-float { animation: float 3s ease-in-out infinite; }
-.animate-slide-up { animation: slideUp 0.4s ease-out forwards; }
-
-.stagger-children > * { opacity: 0; animation: fadeInUp 0.6s ease-out forwards; }
-=======
 @keyframes pulse-glow {
   0%, 100% { box-shadow: 0 0 5px rgba(214, 158, 46, 0.3); }
   50% { box-shadow: 0 0 20px rgba(214, 158, 46, 0.6); }
@@ -192,7 +145,6 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0;
   animation: fadeInUp 0.6s ease-out forwards;
 }
->>>>>>> c01344e331452a7d60e8be2138b2d7c89474120e
 .stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
 .stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
 .stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
@@ -200,10 +152,7 @@ h1, h2, h3, h4, h5, h6 {
 .stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
 .stagger-children > *:nth-child(6) { animation-delay: 0.6s; }
 
-<<<<<<< HEAD
-=======
 /* --- Skeleton loader --- */
->>>>>>> c01344e331452a7d60e8be2138b2d7c89474120e
 .skeleton {
   background: linear-gradient(90deg, #e2e8f0 25%, #edf2f7 50%, #e2e8f0 75%);
   background-size: 200% 100%;
@@ -211,10 +160,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 8px;
 }
 
-<<<<<<< HEAD
-=======
 /* --- Glass morphism utility --- */
->>>>>>> c01344e331452a7d60e8be2138b2d7c89474120e
 .glass {
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(12px);
@@ -229,10 +175,6 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-<<<<<<< HEAD
-.gradient-hero {
-  background: linear-gradient(135deg, rgba(15, 34, 64, 0.85) 0%, rgba(26, 54, 93, 0.6) 40%, rgba(43, 108, 176, 0.3) 100%);
-=======
 /* --- Gradient overlays --- */
 .gradient-hero {
   background: linear-gradient(
@@ -241,7 +183,6 @@ h1, h2, h3, h4, h5, h6 {
     rgba(26, 54, 93, 0.6) 40%,
     rgba(43, 108, 176, 0.3) 100%
   );
->>>>>>> c01344e331452a7d60e8be2138b2d7c89474120e
 }
 
 .gradient-primary {
@@ -252,13 +193,6 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(135deg, #d69e2e 0%, #ecc94b 100%);
 }
 
-<<<<<<< HEAD
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--color-surface-muted); }
-::-webkit-scrollbar-thumb { background: var(--color-primary-light); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
-
-=======
 /* --- Custom scrollbar --- */
 ::-webkit-scrollbar {
   width: 8px;
@@ -275,7 +209,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* --- Focus ring utility --- */
->>>>>>> c01344e331452a7d60e8be2138b2d7c89474120e
 .focus-ring:focus-visible {
   outline: 2px solid var(--color-primary-light);
   outline-offset: 2px;

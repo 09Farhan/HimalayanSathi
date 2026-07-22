@@ -1,16 +1,26 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Button } from './Button';
+import Button from './Button';
 
 export function LeadCapturePopup() {
   const [isOpen, setIsOpen] = useState(false);
   const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle');
 
   useEffect(() => {
-    const isDismissed = localStorage.getItem('hs_popup_dismissed');
+    const dismissedUntil = localStorage.getItem('hs_popup_dismissed');
+    let shouldShow = true;
+
+    if (dismissedUntil) {
+      const expiryTime = parseInt(dismissedUntil, 10);
+      if (new Date().getTime() < expiryTime) {
+        shouldShow = false;
+      } else {
+        localStorage.removeItem('hs_popup_dismissed');
+      }
+    }
     
-    if (!isDismissed) {
+    if (shouldShow) {
       const timer = setTimeout(() => {
         setIsOpen(true);
         document.body.style.overflow = 'hidden'; // Lock scroll
