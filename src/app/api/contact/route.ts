@@ -1,26 +1,29 @@
 import { NextResponse, NextRequest } from 'next/server';
+import { db } from '@/lib/db';
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, phone, message } = body;
+    const { name, email, phone, message, destination, travelDates, travellers, source } = body;
     
-    if (!name || !email || !phone || !message) {
+    if (!name || !email || !phone) {
       return NextResponse.json(
-        { error: 'Missing required fields (name, email, phone, message)' },
+        { error: 'Missing required fields (name, email, phone)' },
         { status: 400 }
       );
     }
     
-    // Log the enquiry to console
-    console.log('--- New Contact Enquiry ---');
-    console.log(`Name: ${name}`);
-    console.log(`Email: ${email}`);
-    console.log(`Phone: ${phone}`);
-    console.log(`Message: ${message}`);
-    console.log('---------------------------');
-    
-    // In production, integrate with email service or database here
+    // Insert lead into database
+    db.insertLead({
+      name,
+      email,
+      phone,
+      message: message || '',
+      destination: destination || '',
+      travelDates: travelDates || '',
+      travellers: travellers || '',
+      source: source || 'Contact Form'
+    });
     
     return NextResponse.json(
       { success: true, message: 'Enquiry received successfully' },
