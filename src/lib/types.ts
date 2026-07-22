@@ -104,6 +104,7 @@ export interface TeamMember {
   description: string;
   image: string;
 }
+<<<<<<< HEAD
 
 /** Gallery photo from travellers */
 export interface GalleryPhoto {
@@ -115,3 +116,5 @@ export interface GalleryPhoto {
   location: string;
   date: string;
 }
+=======
+>>>>>>> c01344e331452a7d60e8be2138b2d7c89474120e
