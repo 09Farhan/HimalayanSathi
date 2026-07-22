@@ -1,16 +1,15 @@
 import { MongoClient } from 'mongodb';
 
 let client: MongoClient;
-let clientPromise: Promise<MongoClient>;
+let clientPromise: Promise<MongoClient> | null = null;
 
-// Use a getter function to instantiate the client lazily
-// This prevents Next.js from crashing during the build phase if the env var isn't loaded yet
-const getClientPromise = () => {
+export const getDbClient = (): Promise<MongoClient> => {
+  if (clientPromise) return clientPromise;
+
   const uri = process.env.MONGODB_URI;
   
   if (!uri) {
     console.warn('MONGODB_URI is missing. Database connections will fail at runtime.');
-    // Return a dummy promise that rejects if someone tries to await it without a URI
     return Promise.reject(new Error('MONGODB_URI is not defined'));
   }
 
@@ -23,13 +22,11 @@ const getClientPromise = () => {
       client = new MongoClient(uri, {});
       globalWithMongo._mongoClientPromise = client.connect();
     }
-    return globalWithMongo._mongoClientPromise;
+    clientPromise = globalWithMongo._mongoClientPromise;
   } else {
     client = new MongoClient(uri, {});
-    return client.connect();
+    clientPromise = client.connect();
   }
+
+  return clientPromise;
 };
-
-clientPromise = getClientPromise();
-
-export default clientPromise;

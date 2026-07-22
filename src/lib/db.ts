@@ -1,4 +1,4 @@
-import clientPromise from './mongodb';
+import { getDbClient } from './mongodb';
 import { ObjectId } from 'mongodb';
 
 export interface Lead {
@@ -19,7 +19,7 @@ export interface Lead {
 export const db = {
   getLeads: async (): Promise<Lead[]> => {
     try {
-      const client = await clientPromise;
+      const client = await getDbClient();
       const collection = client.db().collection<Lead>('leads');
       const leads = await collection.find({}).sort({ createdAt: -1 }).toArray();
       
@@ -36,7 +36,7 @@ export const db = {
   
   insertLead: async (lead: Omit<Lead, '_id' | 'id' | 'createdAt' | 'status'>) => {
     try {
-      const client = await clientPromise;
+      const client = await getDbClient();
       const collection = client.db().collection('leads');
       
       const newLead = {
@@ -55,7 +55,7 @@ export const db = {
 
   updateLeadStatus: async (id: string, status: 'new' | 'contacted') => {
     try {
-      const client = await clientPromise;
+      const client = await getDbClient();
       const collection = client.db().collection('leads');
       
       const result = await collection.updateOne(
@@ -72,7 +72,7 @@ export const db = {
 
   deleteLead: async (id: string) => {
     try {
-      const client = await clientPromise;
+      const client = await getDbClient();
       const collection = client.db().collection('leads');
       
       const result = await collection.deleteOne({ _id: new ObjectId(id) });
