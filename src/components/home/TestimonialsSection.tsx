@@ -2,7 +2,7 @@ import TestimonialCarousel from "./TestimonialCarousel";
 import type { Testimonial } from "@/lib/types";
 import { testimonials as staticTestimonials } from "@/data/testimonials";
 import { db } from "@/lib/db";
-import Image from "next/image";
+import { CheckCircle } from "lucide-react";
 
 export default async function TestimonialsSection() {
   // Fetch approved reviews from our MongoDB CMS
@@ -32,12 +32,7 @@ export default async function TestimonialsSection() {
         {/* Section header */}
         <div className="text-center mb-12">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 text-accent font-semibold text-sm mb-4">
-            <Image 
-              src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" 
-              alt="Google" 
-              width={16} 
-              height={16} 
-            />
+            <CheckCircle className="w-4 h-4" />
             Verified Traveller Reviews
           </span>
           <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-text-primary mb-4">
