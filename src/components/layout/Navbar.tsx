@@ -73,8 +73,8 @@ export default function Navbar() {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
-            <Link href="/" className="z-50 group flex-shrink-0 relative h-16 md:h-20 w-32 md:w-44">
-              <div className="absolute -top-4 md:-top-6 left-0 w-36 md:w-48 h-32 md:h-40 bg-[#faf8f5] rounded-b-3xl p-2 shadow-lg transition-transform duration-300 group-hover:shadow-xl flex items-center justify-center">
+            <Link href="/" className="z-50 group flex-shrink-0 relative h-16 md:h-20 w-24 md:w-44">
+              <div className="absolute -top-2 md:-top-6 left-0 w-28 md:w-48 h-24 md:h-40 bg-[#faf8f5] rounded-b-2xl md:rounded-b-3xl p-1 md:p-2 shadow-lg transition-transform duration-300 group-hover:shadow-xl flex items-center justify-center">
                 <Image
                   src="/images/logo.png"
                   alt="Himalayan Sathi Logo"
