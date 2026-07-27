@@ -48,18 +48,15 @@ export default function Footer() {
           
           {/* Column 1: Brand Info */}
           <div className="flex flex-col gap-4">
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="relative w-12 h-12 bg-white rounded-lg p-1 shadow-sm transition-transform duration-300 group-hover:scale-105">
+            <Link href="/" className="group inline-block w-fit">
+              <div className="relative w-48 h-32 md:w-56 md:h-36 bg-[#faf8f5] rounded-2xl p-2 shadow-sm transition-transform duration-300 group-hover:scale-105">
                 <Image
                   src="/images/logo.png"
                   alt="Himalayan Sathi Logo"
                   fill
-                  className="object-contain"
+                  className="object-contain p-2"
                 />
               </div>
-              <span className="font-heading text-xl md:text-2xl font-bold tracking-wide">
-                {SITE_INFO.name}
-              </span>
             </Link>
             <h4 className="font-medium text-accent">Your Trusted Himalayan Travel Companion</h4>
             <p className="text-white/70 text-sm leading-relaxed mt-2">

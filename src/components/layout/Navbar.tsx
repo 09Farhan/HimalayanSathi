@@ -73,19 +73,16 @@ export default function Navbar() {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 z-50 group">
-              <div className="relative w-12 h-12 bg-white rounded-lg p-1 shadow-sm transition-transform duration-300 group-hover:scale-105">
+            <Link href="/" className="z-50 group flex-shrink-0 relative h-16 md:h-20 w-32 md:w-44">
+              <div className="absolute -top-4 md:-top-6 left-0 w-32 h-40 md:w-44 md:h-52 bg-[#faf8f5] rounded-b-3xl p-3 md:p-4 shadow-lg transition-transform duration-300 group-hover:shadow-xl flex items-center justify-center">
                 <Image
                   src="/images/logo.png"
                   alt="Himalayan Sathi Logo"
                   fill
-                  className="object-contain"
+                  className="object-contain p-2 md:p-4"
                   priority
                 />
               </div>
-              <span className="font-heading text-xl md:text-2xl font-bold text-white tracking-wide">
-                Himalayan Sathi
-              </span>
             </Link>
 
             {/* Desktop Navigation */}
