@@ -45,7 +45,7 @@ export default function TestimonialCarousel({ testimonials }: { testimonials: Te
             key={testimonial.id}
             className="min-w-[300px] md:min-w-[380px] snap-center bg-white rounded-3xl p-8 shadow-card flex flex-col hover:shadow-card-hover transition-shadow duration-300 border border-gray-50"
             style={{
-              animation: `fade-in-up 0.6s ease-out forwards`,
+              animation: `fadeInUp 0.6s ease-out forwards`,
               animationDelay: `${i * 0.15}s`,
               opacity: 0,
             }}
