@@ -55,30 +55,25 @@ export default function Navbar() {
         {/* Top Bar for Contact Info */}
         <div
           className={`hidden md:block w-full border-b border-white/10 transition-all duration-300 ${
-            isScrolled ? 'h-0 opacity-0 overflow-hidden border-transparent py-0' : 'opacity-100 py-1.5'
+            isScrolled ? 'h-0 opacity-0 overflow-hidden border-transparent' : 'h-8 opacity-100'
           }`}
         >
-          <div className="container mx-auto px-4 flex justify-end">
-            <div className="flex flex-col items-end">
-              <span className="text-[10px] uppercase tracking-wider text-white/70 font-semibold mb-0.5">
-                Contact Us
-              </span>
-              <div className="flex items-center gap-4 text-xs text-white/90">
-                <a
-                  href="tel:+917679948664"
-                  className="flex items-center gap-1.5 hover:text-accent transition-colors"
-                >
-                  <Phone size={12} />
-                  <span>+91 76799 48664</span>
-                </a>
-                <a
-                  href="tel:+918766807543"
-                  className="flex items-center gap-1.5 hover:text-accent transition-colors"
-                >
-                  <Phone size={12} />
-                  <span>+91 87668 07543</span>
-                </a>
-              </div>
+          <div className="container mx-auto px-4 h-full flex items-center justify-end">
+            <div className="flex items-center gap-4 text-xs text-white/90">
+              <a
+                href="tel:+917679948664"
+                className="flex items-center gap-1.5 hover:text-accent transition-colors"
+              >
+                <Phone size={12} />
+                <span>+91 76799 48664</span>
+              </a>
+              <a
+                href="tel:+918766807543"
+                className="flex items-center gap-1.5 hover:text-accent transition-colors"
+              >
+                <Phone size={12} />
+                <span>+91 87668 07543</span>
+              </a>
             </div>
           </div>
         </div>
