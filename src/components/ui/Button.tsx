@@ -8,6 +8,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'sm' | 'md' | 'lg';
   href?: string;
   icon?: React.ReactNode;
+  fullWidth?: boolean;
 }
 
 export default function Button({
@@ -18,6 +19,7 @@ export default function Button({
   href,
   icon,
   disabled,
+  fullWidth = false,
   type = 'button',
   ...props
 }: ButtonProps) {
@@ -36,7 +38,8 @@ export default function Button({
     lg: 'px-8 py-4 text-lg'
   };
 
-  const classes = `${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`;
+  const widthClass = fullWidth ? 'w-full' : '';
+  const classes = `${baseStyles} ${variants[variant]} ${sizes[size]} ${widthClass} ${className}`;
 
   if (href) {
     return (

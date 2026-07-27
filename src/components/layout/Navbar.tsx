@@ -126,34 +126,37 @@ export default function Navbar() {
           mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <nav className="flex flex-col items-center gap-6 w-full px-6">
+        <nav className="flex flex-col w-full px-8 mt-12">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className={`text-2xl font-heading font-bold transition-colors ${
+              className={`block w-full py-5 text-center text-xl font-heading font-bold border-b border-white/10 transition-colors active:bg-white/5 ${
                 pathname === link.href
-                  ? 'text-accent'
+                  ? 'text-accent border-accent/30'
                   : 'text-white hover:text-accent'
               }`}
+              onClick={() => setMobileMenuOpen(false)}
             >
               {link.name}
             </Link>
           ))}
-          <div className="w-full max-w-xs h-px bg-white/20 my-4" />
-          <Link
-            href="/contact"
-            className="w-full max-w-xs text-center py-3 text-lg font-bold text-primary bg-accent rounded-full hover:bg-accent-light transition-colors"
-          >
-            Book Now
-          </Link>
-          <a
-            href="tel:+917679948664"
-            className="flex items-center gap-2 mt-4 text-white/80"
-          >
-            <Phone size={18} className="text-accent" />
-            <span>+91 76799 48664</span>
-          </a>
+          <div className="flex flex-col items-center w-full mt-6">
+            <Link
+              href="/contact"
+              className="w-full text-center py-4 text-lg font-bold text-primary bg-accent rounded-xl hover:bg-accent-light transition-colors shadow-lg active:scale-95"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Book Now
+            </Link>
+            <a
+              href="tel:+917679948664"
+              className="flex items-center gap-2 mt-8 text-white/80 active:text-accent"
+            >
+              <Phone size={18} className="text-accent" />
+              <span>+91 76799 48664</span>
+            </a>
+          </div>
         </nav>
       </div>
     </header>

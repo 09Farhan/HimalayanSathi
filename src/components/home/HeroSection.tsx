@@ -62,7 +62,7 @@ export default function HeroSection() {
 
         {/* Main heading */}
         <h1
-          className={`font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight transition-all duration-700 delay-200 ${
+          className={`font-heading text-fluid-h1 font-bold text-white mb-6 leading-tight transition-all duration-700 delay-200 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
@@ -86,20 +86,20 @@ export default function HeroSection() {
 
         {/* CTA Buttons */}
         <div
-          className={`flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 transition-all duration-700 delay-500 ${
+          className={`flex flex-col sm:flex-row justify-center items-center gap-4 mt-8 w-full px-4 sm:px-0 transition-all duration-700 delay-500 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
           <Link
             href="/packages"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-accent hover:bg-accent-light text-primary-dark font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-accent hover:bg-accent-light text-primary-dark font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
           >
             <Calendar className="w-5 h-5" />
             View Packages
           </Link>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl border-2 border-white/40 text-white font-semibold text-lg hover:bg-white/10 transition-all duration-300 hover:scale-105"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border-2 border-white/40 text-white font-semibold text-lg hover:bg-white/10 transition-all duration-300 hover:scale-105"
           >
             <Users className="w-5 h-5" />
             Plan Your Trip
