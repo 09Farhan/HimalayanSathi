@@ -11,15 +11,16 @@ const TravellerGallery = dynamic(() => import("@/components/home/TravellerGaller
 });
 
 export const metadata: Metadata = {
-  title: "Himalayan Sathi Tours & Travels | Sikkim, Darjeeling & Bhutan Tours",
+  title: "Sikkim Darjeeling Bhutan Tour Package | Himalayan Sathi",
   description:
-    "Explore Sikkim, Darjeeling, Bhutan & Northeast India with Himalayan Sathi — your trusted Siliguri-based travel companion. 20+ years of crafting unforgettable Himalayan journeys. Book tour packages, cab services, and custom itineraries.",
+    "Book the best Sikkim Darjeeling Bhutan tour package with Himalayan Sathi. Your trusted Sikkim tour operator for Gangtok, Darjeeling, and North Sikkim tour packages.",
   keywords: [
-    "Himalayan tours",
-    "Sikkim tour packages",
-    "Darjeeling tours",
-    "Bhutan tour packages",
-    "Northeast India travel",
+    "Sikkim Darjeeling Bhutan tour package",
+    "Sikkim tour operator",
+    "Darjeeling tour operator",
+    "Sikkim tour package",
+    "Darjeeling tour package",
+    "Bhutan tour package from India",
     "Siliguri travel agency",
     "Himalayan Sathi",
   ],

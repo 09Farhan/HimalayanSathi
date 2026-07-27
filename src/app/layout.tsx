@@ -26,12 +26,12 @@ const DOMAIN = "https://himalayan-sathi.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(DOMAIN),
-  title: "Top Himalayan Travel Agency | Sikkim, Darjeeling & Bhutan Tours",
-  description: "Book customized tour packages for Sikkim, Darjeeling, Bhutan, and North East India with Himalayan Sathi. Experience expert local guides and affordable pricing.",
-  keywords: ["Sikkim tour packages", "Darjeeling tours", "Bhutan travel agency", "Himalayan travel", "North East India tourism"],
+  title: "Himalayan Sathi | Sikkim & Darjeeling Tour Operator",
+  description: "Book customized Sikkim Darjeeling Bhutan tour packages with Himalayan Sathi, a trusted Sikkim tour operator. Affordable Gangtok and North Sikkim tour packages.",
+  keywords: ["Sikkim tour operator", "Darjeeling tour operator", "Sikkim Darjeeling Bhutan tour package", "Gangtok tour package", "North Sikkim tour package", "Sikkim family tour package", "Dooars tour package"],
   openGraph: {
-    title: "Himalayan Sathi Tours & Travels",
-    description: "Discover the breathtaking beauty of the Himalayas. Expertly crafted tours to Sikkim, Darjeeling, Bhutan, and Northeast India.",
+    title: "Himalayan Sathi | Sikkim & Darjeeling Tour Operator",
+    description: "Book customized Sikkim Darjeeling Bhutan tour packages with Himalayan Sathi, a trusted Sikkim tour operator.",
     url: DOMAIN,
     siteName: "Himalayan Sathi",
     locale: "en_IN",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Himalayan Sathi Tours & Travels",
+    title: "Himalayan Sathi | Sikkim & Darjeeling Tour Operator",
     description: "Expertly crafted tours to Sikkim, Darjeeling, Bhutan, and Northeast India.",
   },
   robots: {
@@ -53,6 +53,22 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+};
+
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Sikkim Darjeeling Bhutan Tour Package",
+  "description": "Comprehensive tour covering the best of Sikkim, Darjeeling, and Bhutan.",
+  "touristType": [
+    "Family",
+    "Honeymoon",
+    "Adventure"
+  ],
+  "provider": {
+    "@type": "TravelAgency",
+    "name": "Himalayan Sathi Tours & Travels"
+  }
 };
 
 const travelAgencySchema = {
@@ -82,6 +98,10 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.variable} ${playfair.variable} font-body antialiased bg-surface text-text-primary`}>
         <SchemaInjector schemaData={travelAgencySchema} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(touristTripSchema) }}
+        />
         <Navbar />
         <main className="min-h-screen">
           {children}

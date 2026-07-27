@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Destinations | Himalayan Sathi Tours & Travels',
-  description: 'Explore our breathtaking destinations across Darjeeling, Sikkim, Bhutan, and Northeast India. Find your perfect Himalayan getaway.',
+  title: 'Himalayan Destinations | Sikkim Darjeeling Bhutan Tour Package',
+  description: 'Explore the best destinations across Darjeeling, Sikkim, Bhutan, and the Dooars. Book your Dooars tour package or Gangtok tour package today.',
 };
 
 export default function DestinationsLayout({

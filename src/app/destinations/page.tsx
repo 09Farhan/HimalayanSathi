@@ -51,15 +51,15 @@ export default function DestinationsPage() {
 
   return (
     <main className="min-h-screen bg-surface">
-      {/* Hero Section */}
-      <section className="relative w-full h-[400px] flex items-center justify-center gradient-hero">
-        <div className="absolute inset-0 bg-primary/20 mix-blend-multiply" />
-        <div className="relative z-10 text-center px-4 animate-fade-in-up">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl text-white mb-4 font-heading font-bold shadow-sm">
-            Explore Our Destinations
+      {/* Hero Banner */}
+      <section className="bg-gradient-to-r from-primary to-primary-light py-20 mt-16 px-4 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-10"></div>
+        <div className="container mx-auto max-w-6xl relative z-10 text-center">
+          <h1 className="text-4xl md:text-5xl font-heading font-bold text-white mb-6">
+            Explore Himalayan Destinations
           </h1>
-          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto font-medium">
-            Discover the majestic beauty and hidden gems of the Eastern Himalayas.
+          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto">
+            Discover the magic of Sikkim, Darjeeling, Bhutan, and the Dooars. Choose your perfect mountain getaway.
           </p>
         </div>
       </section>

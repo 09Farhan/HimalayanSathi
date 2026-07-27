@@ -6,16 +6,16 @@ import SectionContainer from '@/components/ui/SectionContainer';
 import PageBanner from '@/components/sections/PageBanner';
 
 export const metadata = {
-  title: 'About Us | Himalayan Sathi Tours & Travels',
-  description: 'Learn about Himalayan Sathi Tours & Travels, your trusted travel companion for the Eastern Himalayas. Over 20 years of experience in creating unforgettable journeys.',
+  title: 'About Himalayan Sathi | Best Sikkim & Darjeeling Tour Operator',
+  description: 'Learn about Himalayan Sathi, a trusted Sikkim and Darjeeling tour operator. Over 20 years of experience crafting Sikkim Darjeeling Bhutan tour packages.',
 };
 
 export default function AboutPage() {
   return (
     <main className="min-h-screen">
       <PageBanner 
-        title="About Himalayan Sathi" 
-        subtitle="Your most trusted travel companion for the Eastern Himalayas." 
+        title="About Your Sikkim Tour Operator" 
+        subtitle="Himalayan Sathi: Your trusted travel companion for the Eastern Himalayas." 
       />
 
       {/* Story Section */}
@@ -47,7 +47,7 @@ export default function AboutPage() {
           <div className="relative h-[400px] lg:h-[500px] w-full animate-fade-in-right rounded-2xl overflow-hidden shadow-card">
             <Image
               src="/images/hero-banner.jpg"
-              alt="Himalayan Sathi Story"
+              alt="Himalayan Sathi - Sikkim and Darjeeling Tour Operator"
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"

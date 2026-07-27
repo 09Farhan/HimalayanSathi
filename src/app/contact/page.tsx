@@ -3,7 +3,8 @@ import ContactForm from '@/components/ui/ContactForm';
 import { Phone, Mail, MapPin, MessageCircle, Clock } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Contact Us | Himalayan Sathi Tours & Travels',
+  title: 'Contact Himalayan Sathi | Sikkim Tour Operator',
+  description: 'Contact Himalayan Sathi to book your Sikkim Darjeeling Bhutan tour package today. We are a trusted Siliguri travel agency and Sikkim tour operator.',
 };
 
 export default function ContactPage() {
@@ -11,7 +12,7 @@ export default function ContactPage() {
     <main className="min-h-screen pb-20">
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-primary to-primary-light text-white py-24 px-4 text-center">
-        <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">Get In Touch</h1>
+        <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">Contact Your Sikkim Tour Operator</h1>
         <p className="text-lg md:text-xl max-w-2xl mx-auto opacity-90">
           We'd love to hear from you. Whether you have a question about our packages, pricing, or anything else, our team is ready to answer all your questions.
         </p>

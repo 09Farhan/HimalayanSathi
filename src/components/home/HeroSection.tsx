@@ -22,7 +22,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/hero-banner.jpg"
-          alt="Breathtaking Himalayan mountains at golden hour"
+          alt="Sikkim Darjeeling Bhutan tour packages by Himalayan Sathi"
           fill
           priority
           className="object-cover"
@@ -66,11 +66,10 @@ export default function HeroSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          Explore the{" "}
-          <span className="text-accent">Himalayas</span> &{" "}
-          <span className="text-accent">Bhutan</span>
+          Best <span className="text-accent">Sikkim</span>,{" "}
+          <span className="text-accent">Darjeeling</span>, &{" "}
           <br className="hidden sm:block" />
-          <span className="text-white/90"> Beyond Ordinary</span>
+          <span className="text-accent">Bhutan</span> Tour Packages
         </h1>
 
         {/* Subtitle */}
@@ -95,7 +94,7 @@ export default function HeroSection() {
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-accent hover:bg-accent-light text-primary-dark font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
           >
             <Calendar className="w-5 h-5" />
-            View Packages
+            View Sikkim Tour Packages
           </Link>
           <Link
             href="/contact"

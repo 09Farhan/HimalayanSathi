@@ -16,7 +16,11 @@ export default function PackagesPage() {
   });
 
   useEffect(() => {
-    document.title = 'Tour Packages | Himalayan Sathi';
+    document.title = 'Sikkim Darjeeling Tour Packages | Himalayan Sathi';
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Explore affordable Sikkim tour package cost, Darjeeling honeymoon package, and Sikkim family tour package. Best time to visit Sikkim is now!');
+    }
   }, []);
 
   useEffect(() => {
@@ -57,7 +61,7 @@ export default function PackagesPage() {
         <div className="absolute inset-0 opacity-40 mix-blend-overlay bg-[url('/images/hero-banner.jpg')] bg-cover bg-center"></div>
         <div className="relative z-20 text-center px-4">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-4">
-            Our Tour Packages
+            Sikkim & Darjeeling Tour Packages
           </h1>
           <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto">
             Discover the perfect itinerary for your Himalayan adventure.
