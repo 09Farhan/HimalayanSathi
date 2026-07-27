@@ -122,11 +122,11 @@ export default function Navbar() {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 bg-surface-dark/95 backdrop-blur-md z-40 lg:hidden transition-transform duration-500 ease-in-out flex flex-col items-center justify-center ${
+        className={`fixed inset-0 bg-surface-dark/95 backdrop-blur-md z-40 lg:hidden transition-transform duration-500 ease-in-out flex flex-col items-center justify-start pt-24 pb-8 overflow-y-auto ${
           mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <nav className="flex flex-col w-full px-8 mt-12">
+        <nav className="flex flex-col w-full px-8">
           {navLinks.map((link) => (
             <Link
               key={link.name}
