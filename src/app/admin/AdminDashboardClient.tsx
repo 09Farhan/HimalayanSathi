@@ -108,20 +108,20 @@ export default function AdminDashboardClient({
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-4 border-b border-gray-200 pb-2">
+        <div className="flex gap-2 sm:gap-4 border-b border-gray-200 pb-0 overflow-x-auto hide-scrollbar">
           <button 
             onClick={() => setActiveTab('leads')}
-            className={`px-4 py-2 font-medium text-sm transition-colors relative ${activeTab === 'leads' ? 'text-primary' : 'text-text-secondary hover:text-text-primary'}`}
+            className={`px-4 py-3 font-medium text-base whitespace-nowrap transition-colors relative ${activeTab === 'leads' ? 'text-primary' : 'text-text-secondary hover:text-text-primary'}`}
           >
             Leads
-            {activeTab === 'leads' && <span className="absolute bottom-[-8px] left-0 w-full h-0.5 bg-primary rounded-t-full"></span>}
+            {activeTab === 'leads' && <span className="absolute bottom-0 left-0 w-full h-1 bg-primary rounded-t-full"></span>}
           </button>
           <button 
             onClick={() => setActiveTab('reviews')}
-            className={`px-4 py-2 font-medium text-sm transition-colors relative ${activeTab === 'reviews' ? 'text-primary' : 'text-text-secondary hover:text-text-primary'}`}
+            className={`px-4 py-3 font-medium text-base whitespace-nowrap transition-colors relative ${activeTab === 'reviews' ? 'text-primary' : 'text-text-secondary hover:text-text-primary'}`}
           >
             Reviews CMS
-            {activeTab === 'reviews' && <span className="absolute bottom-[-8px] left-0 w-full h-0.5 bg-primary rounded-t-full"></span>}
+            {activeTab === 'reviews' && <span className="absolute bottom-0 left-0 w-full h-1 bg-primary rounded-t-full"></span>}
           </button>
         </div>
 
@@ -129,30 +129,30 @@ export default function AdminDashboardClient({
         {activeTab === 'leads' && (
           <div className="space-y-6 animate-fade-in-up">
             {/* Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-blue-500">
-                <p className="text-sm text-text-secondary font-medium">Total Leads</p>
-                <p className="text-3xl font-bold text-primary mt-2">{leads.length}</p>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+              <div className="bg-white p-4 sm:p-6 rounded-2xl shadow-sm border-l-4 border-blue-500">
+                <p className="text-xs sm:text-sm text-text-secondary font-medium">Total Leads</p>
+                <p className="text-2xl sm:text-3xl font-bold text-primary mt-1 sm:mt-2">{leads.length}</p>
               </div>
-              <div className="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-green-500">
-                <p className="text-sm text-text-secondary font-medium">New Enquiries</p>
-                <p className="text-3xl font-bold text-primary mt-2">{leads.filter(l => l.status === 'new').length}</p>
+              <div className="bg-white p-4 sm:p-6 rounded-2xl shadow-sm border-l-4 border-green-500">
+                <p className="text-xs sm:text-sm text-text-secondary font-medium">New Enquiries</p>
+                <p className="text-2xl sm:text-3xl font-bold text-primary mt-1 sm:mt-2">{leads.filter(l => l.status === 'new').length}</p>
               </div>
             </div>
 
             {/* Leads Table */}
-            <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
+            <div className="bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-100">
               <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse">
+                <table className="w-full text-left border-collapse min-w-[800px]">
                   <thead>
                     <tr className="bg-surface border-b border-gray-100">
-                      <th className="p-4 font-semibold text-text-secondary text-sm">Date</th>
-                      <th className="p-4 font-semibold text-text-secondary text-sm">Customer</th>
-                      <th className="p-4 font-semibold text-text-secondary text-sm">Destination</th>
-                      <th className="p-4 font-semibold text-text-secondary text-sm">Message</th>
-                      <th className="p-4 font-semibold text-text-secondary text-sm">Source</th>
-                      <th className="p-4 font-semibold text-text-secondary text-sm">Status</th>
-                      <th className="p-4 font-semibold text-text-secondary text-sm">Actions</th>
+                      <th className="p-4 font-semibold text-text-secondary text-sm whitespace-nowrap">Date</th>
+                      <th className="p-4 font-semibold text-text-secondary text-sm whitespace-nowrap">Customer</th>
+                      <th className="p-4 font-semibold text-text-secondary text-sm whitespace-nowrap">Destination</th>
+                      <th className="p-4 font-semibold text-text-secondary text-sm min-w-[200px]">Message</th>
+                      <th className="p-4 font-semibold text-text-secondary text-sm whitespace-nowrap">Source</th>
+                      <th className="p-4 font-semibold text-text-secondary text-sm whitespace-nowrap">Status</th>
+                      <th className="p-4 font-semibold text-text-secondary text-sm whitespace-nowrap">Actions</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-100">
@@ -219,16 +219,16 @@ export default function AdminDashboardClient({
         {/* Tab Content: REVIEWS */}
         {activeTab === 'reviews' && (
           <div className="space-y-6 animate-fade-in-up">
-            <div className="flex justify-between items-center">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
               <h2 className="text-lg font-bold text-primary">Website Testimonials</h2>
-              <Button onClick={() => setIsAddingReview(!isAddingReview)} size="sm">
+              <Button onClick={() => setIsAddingReview(!isAddingReview)} size="sm" className="w-full sm:w-auto">
                 {isAddingReview ? 'Cancel' : '+ Add New Review'}
               </Button>
             </div>
 
             {/* Add Review Form */}
             {isAddingReview && (
-              <form onSubmit={handleAddReview} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 animate-fade-in-up">
+              <form onSubmit={handleAddReview} className="bg-white p-4 sm:p-6 rounded-2xl shadow-sm border border-gray-100 animate-fade-in-up">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Reviewer Name</label>
@@ -264,21 +264,21 @@ export default function AdminDashboardClient({
                     />
                   </div>
                 </div>
-                <Button type="submit">Save & Publish Review</Button>
+                <Button type="submit" className="w-full md:w-auto">Save & Publish Review</Button>
               </form>
             )}
 
             {/* Reviews Table */}
-            <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
+            <div className="bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-100">
               <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse">
+                <table className="w-full text-left border-collapse min-w-[800px]">
                   <thead>
                     <tr className="bg-surface border-b border-gray-100">
-                      <th className="p-4 font-semibold text-text-secondary text-sm">Date</th>
-                      <th className="p-4 font-semibold text-text-secondary text-sm">Reviewer</th>
-                      <th className="p-4 font-semibold text-text-secondary text-sm w-1/3">Quote</th>
-                      <th className="p-4 font-semibold text-text-secondary text-sm">Visibility</th>
-                      <th className="p-4 font-semibold text-text-secondary text-sm">Actions</th>
+                      <th className="p-4 font-semibold text-text-secondary text-sm whitespace-nowrap">Date</th>
+                      <th className="p-4 font-semibold text-text-secondary text-sm whitespace-nowrap">Reviewer</th>
+                      <th className="p-4 font-semibold text-text-secondary text-sm min-w-[300px]">Quote</th>
+                      <th className="p-4 font-semibold text-text-secondary text-sm whitespace-nowrap">Visibility</th>
+                      <th className="p-4 font-semibold text-text-secondary text-sm whitespace-nowrap">Actions</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-100">
@@ -295,7 +295,7 @@ export default function AdminDashboardClient({
                             {new Date(review.createdAt).toLocaleDateString()}
                           </td>
                           <td className="p-4">
-                            <div className="font-medium text-primary">{review.name}</div>
+                            <div className="font-medium text-primary whitespace-nowrap">{review.name}</div>
                             <div className="flex items-center gap-1 mt-1 text-accent">
                               <Star className="w-3 h-3 fill-current" />
                               <span className="text-xs font-bold">{review.rating}/5</span>
@@ -308,7 +308,7 @@ export default function AdminDashboardClient({
                             <select 
                               value={review.status}
                               onChange={(e) => handleReviewStatusChange(review.id!, e.target.value as 'approved' | 'hidden' | 'pending')}
-                              className={`text-xs font-medium px-3 py-1.5 rounded-full border-0 cursor-pointer focus:ring-2 focus:ring-primary ${
+                              className={`text-xs font-medium px-3 py-1.5 rounded-full border-0 cursor-pointer focus:ring-2 focus:ring-primary w-[140px] ${
                                 review.status === 'approved' ? 'bg-green-100 text-green-700' : 
                                 review.status === 'hidden' ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-700'
                               }`}
