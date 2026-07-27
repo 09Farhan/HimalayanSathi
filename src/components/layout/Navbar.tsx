@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Mountain, Menu, X, Phone } from 'lucide-react';
 
@@ -72,9 +73,15 @@ export default function Navbar() {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 z-50 group">
-              <div className="bg-accent text-primary p-2 rounded-lg group-hover:bg-white transition-colors duration-300">
-                <Mountain size={24} className="stroke-[2.5px]" />
+            <Link href="/" className="flex items-center gap-3 z-50 group">
+              <div className="relative w-12 h-12 bg-white rounded-lg p-1 shadow-sm transition-transform duration-300 group-hover:scale-105">
+                <Image
+                  src="/images/logo.png"
+                  alt="Himalayan Sathi Logo"
+                  fill
+                  className="object-contain"
+                  priority
+                />
               </div>
               <span className="font-heading text-xl md:text-2xl font-bold text-white tracking-wide">
                 Himalayan Sathi

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Mountain, Phone, Mail, MapPin } from 'lucide-react';
 import { FOOTER_LINKS, SITE_INFO } from '@/data/constants';
 
@@ -47,9 +48,14 @@ export default function Footer() {
           
           {/* Column 1: Brand Info */}
           <div className="flex flex-col gap-4">
-            <Link href="/" className="flex items-center gap-2 group">
-              <div className="bg-accent text-primary p-2 rounded-lg group-hover:bg-white transition-colors duration-300">
-                <Mountain size={24} className="stroke-[2.5px]" />
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="relative w-12 h-12 bg-white rounded-lg p-1 shadow-sm transition-transform duration-300 group-hover:scale-105">
+                <Image
+                  src="/images/logo.png"
+                  alt="Himalayan Sathi Logo"
+                  fill
+                  className="object-contain"
+                />
               </div>
               <span className="font-heading text-xl md:text-2xl font-bold tracking-wide">
                 {SITE_INFO.name}
