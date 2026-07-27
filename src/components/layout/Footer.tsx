@@ -94,6 +94,12 @@ export default function Footer() {
                 </a>
               </li>
               <li>
+                <a href="tel:+918766807543" className="flex items-start gap-3 text-white/70 hover:text-accent transition-colors group">
+                  <Phone size={18} className="mt-0.5 text-accent group-hover:scale-110 transition-transform" />
+                  <span className="text-sm">+91 87668 07543</span>
+                </a>
+              </li>
+              <li>
                 <a href={`mailto:${SITE_INFO.email}`} className="flex items-start gap-3 text-white/70 hover:text-accent transition-colors group">
                   <Mail size={18} className="mt-0.5 text-accent group-hover:scale-110 transition-transform" />
                   <span className="text-sm">{SITE_INFO.email}</span>

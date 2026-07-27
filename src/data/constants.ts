@@ -1,7 +1,7 @@
 export const SITE_INFO = {
   name: 'Himalayan Sathi',
   email: 'info@himalayansathi.com',
-  phone: '+91 98765 43210',
+  phone: '+91 76799 48664',
   address: 'Mall Road, Darjeeling, West Bengal 734101',
 };
 
