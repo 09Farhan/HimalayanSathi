@@ -1,5 +1,6 @@
 import { NextResponse, NextRequest } from 'next/server';
 import { db } from '@/lib/db';
+import { sendLeadNotificationEmail } from '@/lib/email';
 
 export async function POST(request: NextRequest) {
   try {
@@ -13,8 +14,7 @@ export async function POST(request: NextRequest) {
       );
     }
     
-    // Insert lead into database
-    await db.insertLead({
+    const leadData = {
       name,
       email,
       phone,
@@ -23,7 +23,13 @@ export async function POST(request: NextRequest) {
       travelDates: travelDates || '',
       travellers: travellers || '',
       source: source || 'Contact Form'
-    });
+    };
+
+    // Insert lead into database
+    await db.insertLead(leadData);
+
+    // Send email notification (non-blocking, if it fails it won't crash the user response)
+    await sendLeadNotificationEmail(leadData);
     
     return NextResponse.json(
       { success: true, message: 'Enquiry received successfully' },
