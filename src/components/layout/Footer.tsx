@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { Mountain, Phone, Mail, MapPin } from 'lucide-react';
+import Image from 'next/image';
+import { Phone, Mail, MapPin } from 'lucide-react';
 import { FOOTER_LINKS, SITE_INFO } from '@/data/constants';
 
 /** Inline SVG brand icons (lucide-react no longer exports brand icons) */
@@ -47,13 +48,15 @@ export default function Footer() {
           
           {/* Column 1: Brand Info */}
           <div className="flex flex-col gap-4">
-            <Link href="/" className="flex items-center gap-2 group">
-              <div className="bg-accent text-primary p-2 rounded-lg group-hover:bg-white transition-colors duration-300">
-                <Mountain size={24} className="stroke-[2.5px]" />
+            <Link href="/" className="flex items-center">
+              <div className="relative w-[160px] h-[40px] md:w-[200px] md:h-[50px] mb-2 bg-white/10 p-2 rounded-xl backdrop-blur-sm">
+                <Image
+                  src="/images/logo.png"
+                  alt="Himalayan Sathi Logo"
+                  fill
+                  className="object-contain drop-shadow-md"
+                />
               </div>
-              <span className="font-heading text-xl md:text-2xl font-bold tracking-wide">
-                {SITE_INFO.name}
-              </span>
             </Link>
             <h4 className="font-medium text-accent">Your Trusted Himalayan Travel Companion</h4>
             <p className="text-white/70 text-sm leading-relaxed mt-2">
