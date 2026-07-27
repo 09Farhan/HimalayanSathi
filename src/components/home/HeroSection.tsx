@@ -85,7 +85,7 @@ export default function HeroSection() {
 
         {/* CTA Buttons */}
         <div
-          className={`flex flex-col sm:flex-row justify-center items-center gap-4 mt-8 w-full px-4 sm:px-0 transition-all duration-700 delay-500 ${
+          className={`flex flex-col sm:flex-row justify-center items-center gap-4 space-y-4 sm:space-y-0 mt-8 w-full px-4 sm:px-0 transition-all duration-700 delay-500 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
@@ -107,7 +107,7 @@ export default function HeroSection() {
 
         {/* Quick stats */}
         <div
-          className={`grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto transition-all duration-700 delay-700 ${
+          className={`grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mt-12 md:mt-16 transition-all duration-700 delay-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
