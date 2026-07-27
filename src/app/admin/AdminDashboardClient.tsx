@@ -2,17 +2,30 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Lead } from '@/lib/db';
+import { Lead, Review } from '@/lib/db';
 import Button from '@/components/ui/Button';
+import { Star } from 'lucide-react';
 
-export default function AdminDashboardClient({ initialLeads }: { initialLeads: Lead[] }) {
+export default function AdminDashboardClient({ 
+  initialLeads, 
+  initialReviews 
+}: { 
+  initialLeads: Lead[],
+  initialReviews: Review[]
+}) {
   const [leads, setLeads] = useState<Lead[]>(initialLeads);
+  const [reviews, setReviews] = useState<Review[]>(initialReviews || []);
+  const [activeTab, setActiveTab] = useState<'leads' | 'reviews'>('leads');
+  const [isAddingReview, setIsAddingReview] = useState(false);
+  const [newReview, setNewReview] = useState({ name: '', rating: 5, quote: '' });
+  
   const router = useRouter();
 
   // Sync state if server sends fresh data
   useEffect(() => {
     setLeads(initialLeads);
-  }, [initialLeads]);
+    setReviews(initialReviews || []);
+  }, [initialLeads, initialReviews]);
 
   const handleLogout = async () => {
     await fetch('/api/auth/logout', { method: 'POST' });
@@ -20,14 +33,8 @@ export default function AdminDashboardClient({ initialLeads }: { initialLeads: L
     router.refresh();
   };
 
-  const handleStatusChange = async (id: string, newStatus: 'new' | 'contacted') => {
-    // Optimistic update
+  const handleLeadStatusChange = async (id: string, newStatus: 'new' | 'contacted') => {
     setLeads(leads.map(l => l.id === id ? { ...l, status: newStatus } : l));
-    
-    // In a real app, you'd have an API route to update this in the DB:
-    // await fetch(`/api/admin/leads/${id}`, { method: 'PATCH', body: JSON.stringify({ status: newStatus }) });
-    // But since we are directly reading the file via Server Components, we'd need an API route for updates.
-    // For this simple template, we will just call a quick API route to do it.
     await fetch('/api/admin/leads', {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
@@ -35,16 +42,54 @@ export default function AdminDashboardClient({ initialLeads }: { initialLeads: L
     });
   };
 
-  const handleDelete = async (id: string) => {
+  const handleDeleteLead = async (id: string) => {
     if (!confirm('Are you sure you want to delete this lead?')) return;
-    
     setLeads(leads.filter(l => l.id !== id));
-    
     await fetch('/api/admin/leads', {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id })
     });
+  };
+
+  // --- REVIEWS METHODS ---
+  const handleReviewStatusChange = async (id: string, newStatus: 'pending' | 'approved' | 'hidden') => {
+    setReviews(reviews.map(r => r.id === id ? { ...r, status: newStatus } : r));
+    await fetch('/api/admin/reviews', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, status: newStatus })
+    });
+  };
+
+  const handleDeleteReview = async (id: string) => {
+    if (!confirm('Are you sure you want to delete this review?')) return;
+    setReviews(reviews.filter(r => r.id !== id));
+    await fetch('/api/admin/reviews', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id })
+    });
+  };
+
+  const handleAddReview = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newReview.name || !newReview.quote) return alert('Name and Quote are required.');
+
+    const res = await fetch('/api/admin/reviews', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...newReview, status: 'approved' })
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      setReviews([{ ...newReview, id: data.id, status: 'approved', createdAt: new Date().toISOString() } as Review, ...reviews]);
+      setNewReview({ name: '', rating: 5, quote: '' });
+      setIsAddingReview(false);
+    } else {
+      alert('Failed to add review');
+    }
   };
 
   return (
@@ -54,99 +99,242 @@ export default function AdminDashboardClient({ initialLeads }: { initialLeads: L
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-6 rounded-2xl shadow-sm">
           <div>
-            <h1 className="text-2xl font-bold text-primary">Lead Dashboard</h1>
-            <p className="text-text-secondary mt-1">Manage your incoming customer inquiries</p>
+            <h1 className="text-2xl font-bold text-primary">Admin Dashboard</h1>
+            <p className="text-text-secondary mt-1">Manage your business inquiries and reviews</p>
           </div>
           <Button variant="outline" size="sm" onClick={handleLogout}>
             Sign Out
           </Button>
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-blue-500">
-            <p className="text-sm text-text-secondary font-medium">Total Leads</p>
-            <p className="text-3xl font-bold text-primary mt-2">{leads.length}</p>
-          </div>
-          <div className="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-green-500">
-            <p className="text-sm text-text-secondary font-medium">New Enquiries</p>
-            <p className="text-3xl font-bold text-primary mt-2">{leads.filter(l => l.status === 'new').length}</p>
-          </div>
+        {/* Tabs */}
+        <div className="flex gap-4 border-b border-gray-200 pb-2">
+          <button 
+            onClick={() => setActiveTab('leads')}
+            className={`px-4 py-2 font-medium text-sm transition-colors relative ${activeTab === 'leads' ? 'text-primary' : 'text-text-secondary hover:text-text-primary'}`}
+          >
+            Leads
+            {activeTab === 'leads' && <span className="absolute bottom-[-8px] left-0 w-full h-0.5 bg-primary rounded-t-full"></span>}
+          </button>
+          <button 
+            onClick={() => setActiveTab('reviews')}
+            className={`px-4 py-2 font-medium text-sm transition-colors relative ${activeTab === 'reviews' ? 'text-primary' : 'text-text-secondary hover:text-text-primary'}`}
+          >
+            Reviews CMS
+            {activeTab === 'reviews' && <span className="absolute bottom-[-8px] left-0 w-full h-0.5 bg-primary rounded-t-full"></span>}
+          </button>
         </div>
 
-        {/* Leads Table */}
-        <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="bg-surface border-b border-gray-100">
-                  <th className="p-4 font-semibold text-text-secondary text-sm">Date</th>
-                  <th className="p-4 font-semibold text-text-secondary text-sm">Customer</th>
-                  <th className="p-4 font-semibold text-text-secondary text-sm">Destination</th>
-                  <th className="p-4 font-semibold text-text-secondary text-sm">Message</th>
-                  <th className="p-4 font-semibold text-text-secondary text-sm">Source</th>
-                  <th className="p-4 font-semibold text-text-secondary text-sm">Status</th>
-                  <th className="p-4 font-semibold text-text-secondary text-sm">Actions</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100">
-                {leads.length === 0 ? (
-                  <tr>
-                    <td colSpan={7} className="p-8 text-center text-text-muted">
-                      No leads yet. They will appear here when customers submit forms!
-                    </td>
-                  </tr>
-                ) : (
-                  leads.map((lead) => (
-                    <tr key={lead.id} className="hover:bg-surface-muted/50 transition-colors">
-                      <td className="p-4 text-sm text-text-secondary whitespace-nowrap">
-                        {new Date(lead.createdAt).toLocaleDateString()}
-                      </td>
-                      <td className="p-4">
-                        <div className="font-medium text-primary">{lead.name}</div>
-                        <div className="text-sm text-text-secondary">{lead.phone}</div>
-                        <div className="text-sm text-text-secondary">{lead.email}</div>
-                      </td>
-                      <td className="p-4 text-sm">
-                        {lead.destination || <span className="text-gray-400">-</span>}
-                        {lead.travelDates && <div className="text-xs text-text-muted mt-1">{lead.travelDates}</div>}
-                        {lead.travellers && <div className="text-xs text-text-muted">{lead.travellers}</div>}
-                      </td>
-                      <td className="p-4 text-sm max-w-xs">
-                        <p className="truncate" title={lead.message}>{lead.message || '-'}</p>
-                      </td>
-                      <td className="p-4 text-sm">
-                        <span className="px-2 py-1 bg-gray-100 text-gray-600 rounded-md text-xs font-medium">
-                          {lead.source}
-                        </span>
-                      </td>
-                      <td className="p-4">
-                        <select 
-                          value={lead.status}
-                          onChange={(e) => handleStatusChange(lead.id!, e.target.value as 'new' | 'contacted')}
-                          className={`text-xs font-medium px-3 py-1.5 rounded-full border-0 cursor-pointer focus:ring-2 focus:ring-primary ${
-                            lead.status === 'new' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'
-                          }`}
-                        >
-                          <option value="new">New</option>
-                          <option value="contacted">Contacted</option>
-                        </select>
-                      </td>
-                      <td className="p-4">
-                        <button 
-                          onClick={() => handleDelete(lead.id!)}
-                          className="text-red-500 hover:text-red-700 text-sm font-medium"
-                        >
-                          Delete
-                        </button>
-                      </td>
+        {/* Tab Content: LEADS */}
+        {activeTab === 'leads' && (
+          <div className="space-y-6 animate-fade-in-up">
+            {/* Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-blue-500">
+                <p className="text-sm text-text-secondary font-medium">Total Leads</p>
+                <p className="text-3xl font-bold text-primary mt-2">{leads.length}</p>
+              </div>
+              <div className="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-green-500">
+                <p className="text-sm text-text-secondary font-medium">New Enquiries</p>
+                <p className="text-3xl font-bold text-primary mt-2">{leads.filter(l => l.status === 'new').length}</p>
+              </div>
+            </div>
+
+            {/* Leads Table */}
+            <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full text-left border-collapse">
+                  <thead>
+                    <tr className="bg-surface border-b border-gray-100">
+                      <th className="p-4 font-semibold text-text-secondary text-sm">Date</th>
+                      <th className="p-4 font-semibold text-text-secondary text-sm">Customer</th>
+                      <th className="p-4 font-semibold text-text-secondary text-sm">Destination</th>
+                      <th className="p-4 font-semibold text-text-secondary text-sm">Message</th>
+                      <th className="p-4 font-semibold text-text-secondary text-sm">Source</th>
+                      <th className="p-4 font-semibold text-text-secondary text-sm">Status</th>
+                      <th className="p-4 font-semibold text-text-secondary text-sm">Actions</th>
                     </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100">
+                    {leads.length === 0 ? (
+                      <tr>
+                        <td colSpan={7} className="p-8 text-center text-text-muted">
+                          No leads yet.
+                        </td>
+                      </tr>
+                    ) : (
+                      leads.map((lead) => (
+                        <tr key={lead.id} className="hover:bg-surface-muted/50 transition-colors">
+                          <td className="p-4 text-sm text-text-secondary whitespace-nowrap">
+                            {new Date(lead.createdAt).toLocaleDateString()}
+                          </td>
+                          <td className="p-4">
+                            <div className="font-medium text-primary">{lead.name}</div>
+                            <div className="text-sm text-text-secondary">{lead.phone}</div>
+                            <div className="text-sm text-text-secondary">{lead.email}</div>
+                          </td>
+                          <td className="p-4 text-sm">
+                            {lead.destination || <span className="text-gray-400">-</span>}
+                            {lead.travelDates && <div className="text-xs text-text-muted mt-1">{lead.travelDates}</div>}
+                            {lead.travellers && <div className="text-xs text-text-muted">{lead.travellers}</div>}
+                          </td>
+                          <td className="p-4 text-sm max-w-xs">
+                            <p className="truncate" title={lead.message}>{lead.message || '-'}</p>
+                          </td>
+                          <td className="p-4 text-sm">
+                            <span className="px-2 py-1 bg-gray-100 text-gray-600 rounded-md text-xs font-medium">
+                              {lead.source}
+                            </span>
+                          </td>
+                          <td className="p-4">
+                            <select 
+                              value={lead.status}
+                              onChange={(e) => handleLeadStatusChange(lead.id!, e.target.value as 'new' | 'contacted')}
+                              className={`text-xs font-medium px-3 py-1.5 rounded-full border-0 cursor-pointer focus:ring-2 focus:ring-primary ${
+                                lead.status === 'new' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'
+                              }`}
+                            >
+                              <option value="new">New</option>
+                              <option value="contacted">Contacted</option>
+                            </select>
+                          </td>
+                          <td className="p-4">
+                            <button 
+                              onClick={() => handleDeleteLead(lead.id!)}
+                              className="text-red-500 hover:text-red-700 text-sm font-medium"
+                            >
+                              Delete
+                            </button>
+                          </td>
+                        </tr>
+                      ))
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
-        </div>
+        )}
+
+        {/* Tab Content: REVIEWS */}
+        {activeTab === 'reviews' && (
+          <div className="space-y-6 animate-fade-in-up">
+            <div className="flex justify-between items-center">
+              <h2 className="text-lg font-bold text-primary">Website Testimonials</h2>
+              <Button onClick={() => setIsAddingReview(!isAddingReview)} size="sm">
+                {isAddingReview ? 'Cancel' : '+ Add New Review'}
+              </Button>
+            </div>
+
+            {/* Add Review Form */}
+            {isAddingReview && (
+              <form onSubmit={handleAddReview} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 animate-fade-in-up">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Reviewer Name</label>
+                    <input 
+                      type="text" 
+                      required
+                      value={newReview.name} 
+                      onChange={e => setNewReview({...newReview, name: e.target.value})}
+                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-accent outline-none"
+                      placeholder="e.g. Rahul Sharma"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Star Rating (1-5)</label>
+                    <input 
+                      type="number" 
+                      min="1" max="5" 
+                      required
+                      value={newReview.rating} 
+                      onChange={e => setNewReview({...newReview, rating: Number(e.target.value)})}
+                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-accent outline-none"
+                    />
+                  </div>
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Review Text</label>
+                    <textarea 
+                      required
+                      value={newReview.quote} 
+                      onChange={e => setNewReview({...newReview, quote: e.target.value})}
+                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-accent outline-none"
+                      rows={3}
+                      placeholder="An amazing trip to Sikkim..."
+                    />
+                  </div>
+                </div>
+                <Button type="submit">Save & Publish Review</Button>
+              </form>
+            )}
+
+            {/* Reviews Table */}
+            <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full text-left border-collapse">
+                  <thead>
+                    <tr className="bg-surface border-b border-gray-100">
+                      <th className="p-4 font-semibold text-text-secondary text-sm">Date</th>
+                      <th className="p-4 font-semibold text-text-secondary text-sm">Reviewer</th>
+                      <th className="p-4 font-semibold text-text-secondary text-sm w-1/3">Quote</th>
+                      <th className="p-4 font-semibold text-text-secondary text-sm">Visibility</th>
+                      <th className="p-4 font-semibold text-text-secondary text-sm">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100">
+                    {reviews.length === 0 ? (
+                      <tr>
+                        <td colSpan={5} className="p-8 text-center text-text-muted">
+                          No reviews found. Click "Add New Review" to create one.
+                        </td>
+                      </tr>
+                    ) : (
+                      reviews.map((review) => (
+                        <tr key={review.id} className={`hover:bg-surface-muted/50 transition-colors ${review.status === 'hidden' ? 'opacity-60' : ''}`}>
+                          <td className="p-4 text-sm text-text-secondary whitespace-nowrap">
+                            {new Date(review.createdAt).toLocaleDateString()}
+                          </td>
+                          <td className="p-4">
+                            <div className="font-medium text-primary">{review.name}</div>
+                            <div className="flex items-center gap-1 mt-1 text-accent">
+                              <Star className="w-3 h-3 fill-current" />
+                              <span className="text-xs font-bold">{review.rating}/5</span>
+                            </div>
+                          </td>
+                          <td className="p-4 text-sm text-gray-600">
+                            <p className="line-clamp-2 italic">"{review.quote}"</p>
+                          </td>
+                          <td className="p-4">
+                            <select 
+                              value={review.status}
+                              onChange={(e) => handleReviewStatusChange(review.id!, e.target.value as 'approved' | 'hidden' | 'pending')}
+                              className={`text-xs font-medium px-3 py-1.5 rounded-full border-0 cursor-pointer focus:ring-2 focus:ring-primary ${
+                                review.status === 'approved' ? 'bg-green-100 text-green-700' : 
+                                review.status === 'hidden' ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-700'
+                              }`}
+                            >
+                              <option value="approved">Approved (Live)</option>
+                              <option value="hidden">Hidden</option>
+                              <option value="pending">Pending</option>
+                            </select>
+                          </td>
+                          <td className="p-4">
+                            <button 
+                              onClick={() => handleDeleteReview(review.id!)}
+                              className="text-red-500 hover:text-red-700 text-sm font-medium"
+                            >
+                              Delete
+                            </button>
+                          </td>
+                        </tr>
+                      ))
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

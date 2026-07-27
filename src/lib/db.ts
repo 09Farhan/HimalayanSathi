@@ -16,6 +16,18 @@ export interface Lead {
   createdAt: string;
 }
 
+export interface Review {
+  _id?: ObjectId | string;
+  id?: string;
+  name: string;
+  rating: number;
+  quote: string;
+  location?: string;
+  avatar?: string;
+  status: 'pending' | 'approved' | 'hidden';
+  createdAt: string;
+}
+
 export const db = {
   getLeads: async (): Promise<Lead[]> => {
     try {
@@ -46,10 +58,10 @@ export const db = {
       };
       
       const result = await collection.insertOne(newLead);
-      return { ...newLead, id: result.insertedId.toString() };
+      return { success: true, id: result.insertedId.toString() };
     } catch (e) {
-      console.error('Failed to insert lead into MongoDB', e);
-      throw e;
+      console.error('Failed to insert lead', e);
+      return { success: false, error: 'Failed to save lead' };
     }
   },
 
@@ -58,15 +70,14 @@ export const db = {
       const client = await getDbClient();
       const collection = client.db().collection('leads');
       
-      const result = await collection.updateOne(
+      await collection.updateOne(
         { _id: new ObjectId(id) },
         { $set: { status } }
       );
-      
-      return result.modifiedCount > 0;
+      return { success: true };
     } catch (e) {
-      console.error('Failed to update lead in MongoDB', e);
-      return false;
+      console.error('Failed to update lead status', e);
+      return { success: false };
     }
   },
 
@@ -75,11 +86,76 @@ export const db = {
       const client = await getDbClient();
       const collection = client.db().collection('leads');
       
-      const result = await collection.deleteOne({ _id: new ObjectId(id) });
-      return result.deletedCount > 0;
+      await collection.deleteOne({ _id: new ObjectId(id) });
+      return { success: true };
     } catch (e) {
-      console.error('Failed to delete lead from MongoDB', e);
-      return false;
+      console.error('Failed to delete lead', e);
+      return { success: false };
+    }
+  },
+
+  // Review Methods
+  getReviews: async (filter: { status?: 'approved' | 'hidden' | 'pending' } = {}): Promise<Review[]> => {
+    try {
+      const client = await getDbClient();
+      const collection = client.db().collection<Review>('reviews');
+      const reviews = await collection.find(filter).sort({ createdAt: -1 }).toArray();
+      
+      return reviews.map(review => ({
+        ...review,
+        id: review._id?.toString(),
+        _id: review._id?.toString()
+      }));
+    } catch (e) {
+      console.error('Failed to get reviews from MongoDB', e);
+      return [];
+    }
+  },
+  
+  insertReview: async (review: Omit<Review, '_id' | 'id' | 'createdAt'>) => {
+    try {
+      const client = await getDbClient();
+      const collection = client.db().collection('reviews');
+      
+      const newReview = {
+        ...review,
+        createdAt: new Date().toISOString()
+      };
+      
+      const result = await collection.insertOne(newReview);
+      return { success: true, id: result.insertedId.toString() };
+    } catch (e) {
+      console.error('Failed to insert review', e);
+      return { success: false, error: 'Failed to save review' };
+    }
+  },
+
+  updateReviewStatus: async (id: string, status: 'approved' | 'hidden' | 'pending') => {
+    try {
+      const client = await getDbClient();
+      const collection = client.db().collection('reviews');
+      
+      await collection.updateOne(
+        { _id: new ObjectId(id) },
+        { $set: { status } }
+      );
+      return { success: true };
+    } catch (e) {
+      console.error('Failed to update review status', e);
+      return { success: false };
+    }
+  },
+
+  deleteReview: async (id: string) => {
+    try {
+      const client = await getDbClient();
+      const collection = client.db().collection('reviews');
+      
+      await collection.deleteOne({ _id: new ObjectId(id) });
+      return { success: true };
+    } catch (e) {
+      console.error('Failed to delete review', e);
+      return { success: false };
     }
   }
 };
