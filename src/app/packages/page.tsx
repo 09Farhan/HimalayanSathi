@@ -23,13 +23,12 @@ export default function PackagesPage() {
     const fetchPackages = async () => {
       setLoading(true);
       try {
-        const query = new URLSearchParams({
-          destination: filters.destination,
-          duration: filters.duration,
-          type: filters.type
-        }).toString();
+        const queryParams = new URLSearchParams();
+        if (filters.destination !== 'all') queryParams.append('region', filters.destination);
+        if (filters.duration !== 'all') queryParams.append('duration', filters.duration);
+        if (filters.type !== 'all') queryParams.append('type', filters.type);
         
-        const res = await fetch(`/api/packages?${query}`);
+        const res = await fetch(`/api/packages?${queryParams.toString()}`);
         if (!res.ok) throw new Error('Failed to fetch packages');
         const data = await res.json();
         setPackages(data);
