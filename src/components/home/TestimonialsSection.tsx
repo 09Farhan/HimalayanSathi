@@ -1,41 +1,80 @@
-"use client";
-
-import { useEffect, useState, useRef } from "react";
-import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
+import TestimonialCarousel from "./TestimonialCarousel";
 import type { Testimonial } from "@/lib/types";
+import { testimonials as staticTestimonials } from "@/data/testimonials";
+import Image from "next/image";
 
-/**
- * TestimonialsSection – Horizontal scrollable carousel of customer reviews.
- */
-export default function TestimonialsSection() {
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
-  const scrollRef = useRef<HTMLDivElement>(null);
+async function fetchGoogleReviews(): Promise<{ reviews: Testimonial[], url: string } | null> {
+  const apiKey = process.env.GOOGLE_PLACES_API_KEY;
+  const placeId = process.env.GOOGLE_PLACE_ID;
 
-  useEffect(() => {
-    // Import testimonials data directly (static data)
-    import("@/data/testimonials").then((mod) => {
-      setTestimonials(mod.testimonials);
-    });
-  }, []);
+  if (!apiKey || !placeId) {
+    return null; // Fallback to static if credentials missing
+  }
 
-  const scroll = (direction: "left" | "right") => {
-    if (!scrollRef.current) return;
-    const amount = 380;
-    scrollRef.current.scrollBy({
-      left: direction === "left" ? -amount : amount,
-      behavior: "smooth",
-    });
-  };
+  try {
+    // 86400 = 24 hours caching to preserve API quotas and guarantee instant loads
+    const res = await fetch(
+      `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=reviews,url&key=${apiKey}`,
+      { next: { revalidate: 86400 } }
+    );
 
-  if (testimonials.length === 0) return null;
+    if (!res.ok) return null;
+
+    const data = await res.json();
+    if (!data.result || !data.result.reviews) return null;
+
+    const googleUrl = data.result.url || "https://maps.google.com";
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const formattedReviews: Testimonial[] = data.result.reviews.map((rev: any) => ({
+      id: rev.time.toString(),
+      name: rev.author_name,
+      rating: rev.rating,
+      quote: rev.text,
+      avatar: rev.profile_photo_url,
+      time: rev.relative_time_description,
+      authorUrl: rev.author_url,
+    }));
+
+    // Sort by rating (5 stars first), then slice top 5
+    const topReviews = formattedReviews
+      .filter((r) => r.rating >= 4 && r.quote.length > 20)
+      .sort((a, b) => b.rating - a.rating)
+      .slice(0, 5);
+
+    if (topReviews.length === 0) return null;
+
+    return { reviews: topReviews, url: googleUrl };
+  } catch (error) {
+    console.error("Failed to fetch Google Reviews:", error);
+    return null;
+  }
+}
+
+export default async function TestimonialsSection() {
+  const googleData = await fetchGoogleReviews();
+  
+  const reviewsToDisplay = googleData?.reviews || staticTestimonials;
+  const googleUrl = googleData?.url;
+  const isUsingGoogle = !!googleData;
+
+  if (reviewsToDisplay.length === 0) return null;
 
   return (
-    <section id="testimonials" className="py-20 md:py-28 bg-surface-muted">
+    <section id="testimonials" className="py-12 md:py-24 bg-surface-muted overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
-        <div className="text-center mb-16">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent font-semibold text-sm mb-4">
-            Traveller Stories
+        <div className="text-center mb-12">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 text-accent font-semibold text-sm mb-4">
+            {isUsingGoogle && (
+              <Image 
+                src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" 
+                alt="Google" 
+                width={16} 
+                height={16} 
+              />
+            )}
+            Verified Traveller Reviews
           </span>
           <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-text-primary mb-4">
             What Our <span className="text-primary-light">Travellers</span> Say
@@ -46,79 +85,22 @@ export default function TestimonialsSection() {
           <div className="w-20 h-1 bg-accent mx-auto mt-6 rounded-full" />
         </div>
 
-        {/* Carousel controls */}
-        <div className="flex justify-end gap-2 mb-6">
-          <button
-            onClick={() => scroll("left")}
-            className="p-2 rounded-full bg-white border border-surface-muted hover:bg-primary hover:text-white transition-all duration-300"
-            aria-label="Scroll testimonials left"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <button
-            onClick={() => scroll("right")}
-            className="p-2 rounded-full bg-white border border-surface-muted hover:bg-primary hover:text-white transition-all duration-300"
-            aria-label="Scroll testimonials right"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
-        </div>
-
-        {/* Scrollable carousel */}
-        <div
-          ref={scrollRef}
-          className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-        >
-          {testimonials.map((t) => (
-            <div
-              key={t.id}
-              className="flex-none w-[340px] sm:w-[380px] snap-start bg-white rounded-2xl p-6 relative transition-all duration-500 hover:-translate-y-1"
-              style={{ boxShadow: "var(--shadow-card)" }}
+        {/* Client-side carousel */}
+        <TestimonialCarousel testimonials={reviewsToDisplay} />
+        
+        {/* Attribution / CTA */}
+        {isUsingGoogle && googleUrl && (
+          <div className="mt-12 text-center">
+            <a 
+              href={googleUrl} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-primary font-medium hover:text-primary-light transition-colors"
             >
-              {/* Decorative quote */}
-              <Quote className="absolute top-4 right-4 w-10 h-10 text-accent/15" />
-
-              {/* Stars */}
-              <div className="flex gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className={`w-4 h-4 ${
-                      i < t.rating
-                        ? "text-accent fill-accent"
-                        : "text-gray-300"
-                    }`}
-                  />
-                ))}
-              </div>
-
-              {/* Quote */}
-              <p className="text-text-secondary italic text-sm leading-relaxed mb-6 line-clamp-4">
-                &ldquo;{t.quote}&rdquo;
-              </p>
-
-              {/* Author */}
-              <div className="flex items-center gap-3 pt-4 border-t border-surface-muted">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-primary-light flex items-center justify-center text-white font-bold text-sm">
-                  {t.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
-                </div>
-                <div>
-                  <p className="font-semibold text-text-primary text-sm">
-                    {t.name}
-                  </p>
-                  <p className="text-text-muted text-xs">{t.location}</p>
-                </div>
-                <span className="ml-auto px-2 py-1 rounded-full bg-secondary-light/10 text-secondary-light text-xs font-medium">
-                  {t.tripType}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+              View all reviews on Google &rarr;
+            </a>
+          </div>
+        )}
       </div>
     </section>
   );

@@ -54,15 +54,17 @@ export interface BlogPost {
   author: string;
 }
 
-/** A customer testimonial */
+/** A customer testimonial or Google Review */
 export interface Testimonial {
   id: string;
   name: string;
-  location: string;
+  location?: string;
   rating: number;
   quote: string;
   avatar: string;
-  tripType: string;
+  tripType?: string;
+  time?: string;
+  authorUrl?: string;
 }
 
 /** A frequently asked question */
