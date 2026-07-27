@@ -93,7 +93,7 @@ export default function AdminDashboardClient({
   };
 
   return (
-    <div className="min-h-screen bg-surface-muted p-4 md:p-8">
+    <div className="min-h-screen bg-surface-muted p-4 md:p-8 pt-28 md:pt-36">
       <div className="max-w-7xl mx-auto space-y-8">
         
         {/* Header */}
