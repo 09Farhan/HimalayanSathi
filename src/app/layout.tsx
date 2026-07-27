@@ -3,7 +3,11 @@ import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { LeadCapturePopup } from "@/components/ui/LeadCapturePopup";
+import dynamic from 'next/dynamic';
+
+const LeadCapturePopup = dynamic(
+  () => import("@/components/ui/LeadCapturePopup").then(mod => mod.LeadCapturePopup)
+);
 import SchemaInjector from "@/components/seo/SchemaInjector";
 
 const inter = Inter({

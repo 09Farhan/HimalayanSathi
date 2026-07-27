@@ -2,9 +2,13 @@ import type { Metadata } from "next";
 import HeroSection from "@/components/home/HeroSection";
 import FeaturedPackages from "@/components/home/FeaturedPackages";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
-import TravellerGallery from "@/components/home/TravellerGallery";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import ContactStrip from "@/components/home/ContactStrip";
+import dynamic from 'next/dynamic';
+
+const TravellerGallery = dynamic(() => import("@/components/home/TravellerGallery"), {
+  loading: () => <div className="h-[400px] w-full flex items-center justify-center bg-gray-50"><span className="animate-pulse">Loading gallery...</span></div>
+});
 
 export const metadata: Metadata = {
   title: "Himalayan Sathi Tours & Travels | Sikkim, Darjeeling & Bhutan Tours",

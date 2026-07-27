@@ -3,6 +3,8 @@ import Image from 'next/image';
 import { Target, Eye, Heart, Users, UsersRound, Briefcase } from 'lucide-react';
 import SectionContainer from '@/components/ui/SectionContainer';
 
+import PageBanner from '@/components/sections/PageBanner';
+
 export const metadata = {
   title: 'About Us | Himalayan Sathi Tours & Travels',
   description: 'Learn about Himalayan Sathi Tours & Travels, your trusted travel companion for the Eastern Himalayas. Over 20 years of experience in creating unforgettable journeys.',
@@ -11,18 +13,10 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <main className="min-h-screen">
-      {/* Hero Banner Section */}
-      <section className="relative w-full h-[400px] md:h-[500px] flex items-center justify-center gradient-hero">
-        <div className="absolute inset-0 bg-primary/20 mix-blend-multiply" />
-        <div className="relative z-10 text-center px-4 animate-fade-in-up">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl text-white mb-4 font-heading font-bold shadow-sm">
-            About Himalayan Sathi
-          </h1>
-          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto font-medium">
-            Your most trusted travel companion for the Eastern Himalayas.
-          </p>
-        </div>
-      </section>
+      <PageBanner 
+        title="About Himalayan Sathi" 
+        subtitle="Your most trusted travel companion for the Eastern Himalayas." 
+      />
 
       {/* Story Section */}
       <SectionContainer className="py-16 md:py-24">

@@ -1,8 +1,9 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { HelpCircle, PhoneCall, Mail } from 'lucide-react';
-import Accordion from '@/components/ui/Accordion';
+import FaqAccordion from '@/components/sections/FaqAccordion';
 import { faqs } from '@/data/faq';
+import PageBanner from '@/components/sections/PageBanner';
 
 export const metadata: Metadata = {
   title: 'FAQ | Himalayan Sathi Tours & Travels',
@@ -19,13 +20,10 @@ export default function FAQPage() {
 
   return (
     <main className="min-h-screen pb-20 bg-surface">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary to-primary-light text-white py-24 px-4 text-center">
-        <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">Frequently Asked Questions</h1>
-        <p className="text-lg md:text-xl max-w-2xl mx-auto opacity-90">
-          Find answers to common questions about booking, travel requirements, and our services.
-        </p>
-      </section>
+      <PageBanner 
+        title="Frequently Asked Questions" 
+        subtitle="Find answers to common questions about booking, travel requirements, and our services." 
+      />
 
       {/* FAQ Content */}
       <section className="container mx-auto px-4 py-16">
@@ -38,7 +36,7 @@ export default function FAQPage() {
                   {category.name}
                 </h2>
               </div>
-              <Accordion items={category.items} allowMultiple={true} />
+              <FaqAccordion items={category.items} />
             </div>
           ))}
         </div>

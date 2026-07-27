@@ -1,0 +1,35 @@
+export const SITE_INFO = {
+  name: 'Himalayan Sathi',
+  email: 'info@himalayansathi.com',
+  phone: '+91 98765 43210',
+  address: 'Mall Road, Darjeeling, West Bengal 734101',
+};
+
+export const FOOTER_LINKS = [
+  {
+    title: 'Destinations',
+    links: [
+      { label: 'Sikkim', href: '/destinations#sikkim' },
+      { label: 'Darjeeling', href: '/destinations#darjeeling' },
+      { label: 'Bhutan', href: '/destinations#bhutan' },
+      { label: 'North East India', href: '/destinations#northeast' },
+    ],
+  },
+  {
+    title: 'Company',
+    links: [
+      { label: 'About Us', href: '/about' },
+      { label: 'Contact', href: '/contact' },
+      { label: 'FAQ', href: '/faq' },
+      { label: 'Blog', href: '/blog' },
+    ],
+  },
+  {
+    title: 'Legal',
+    links: [
+      { label: 'Terms & Conditions', href: '/terms' },
+      { label: 'Privacy Policy', href: '/privacy' },
+      { label: 'Cancellation Policy', href: '/cancellation' },
+    ],
+  },
+];

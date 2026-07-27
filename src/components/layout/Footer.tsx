@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Mountain, Phone, Mail, MapPin } from 'lucide-react';
+import { FOOTER_LINKS, SITE_INFO } from '@/data/constants';
 
 /** Inline SVG brand icons (lucide-react no longer exports brand icons) */
 function InstagramIcon({ size = 18 }: { size?: number }) {
@@ -51,7 +52,7 @@ export default function Footer() {
                 <Mountain size={24} className="stroke-[2.5px]" />
               </div>
               <span className="font-heading text-xl md:text-2xl font-bold tracking-wide">
-                Himalayan Sathi
+                {SITE_INFO.name}
               </span>
             </Link>
             <h4 className="font-medium text-accent">Your Trusted Himalayan Travel Companion</h4>
@@ -60,58 +61,46 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Column 2: Quick Links */}
-          <div className="flex flex-col gap-4 lg:pl-8">
-            <h3 className="font-heading text-xl font-bold mb-2">Quick Links</h3>
-            <ul className="flex flex-col gap-3">
-              {['Home', 'Destinations', 'Packages', 'About Us', 'Contact'].map((link) => (
-                <li key={link}>
-                  <Link 
-                    href={link === 'Home' ? '/' : `/${link.toLowerCase().replace(' ', '-')}`}
-                    className="text-white/70 hover:text-accent transition-colors text-sm flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-accent/50 hover:before:bg-accent"
-                  >
-                    {link}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 3: Destinations */}
-          <div className="flex flex-col gap-4">
-            <h3 className="font-heading text-xl font-bold mb-2">Destinations</h3>
-            <ul className="flex flex-col gap-3">
-              {['Darjeeling', 'Sikkim', 'Bhutan', 'Northeast India'].map((dest) => (
-                <li key={dest}>
-                  <Link 
-                    href={`/destinations/${dest.toLowerCase().replace(' ', '-')}`}
-                    className="text-white/70 hover:text-accent transition-colors text-sm flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-accent/50 hover:before:bg-accent"
-                  >
-                    {dest}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Dynamic Link Columns */}
+          {FOOTER_LINKS.slice(0, 2).map((section) => (
+            <div key={section.title} className="flex flex-col gap-4 lg:pl-8">
+              <h3 className="font-heading text-xl font-bold mb-2">{section.title}</h3>
+              <ul className="flex flex-col gap-3">
+                {section.links.map((link) => (
+                  <li key={link.label}>
+                    <Link 
+                      href={link.href}
+                      className="text-white/70 hover:text-accent transition-colors text-sm flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-accent/50 hover:before:bg-accent"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
 
           {/* Column 4: Contact Info */}
           <div className="flex flex-col gap-4">
             <h3 className="font-heading text-xl font-bold mb-2">Contact Us</h3>
             <ul className="flex flex-col gap-4">
-              <li className="flex items-start gap-3 text-white/70 text-sm">
-                <Phone size={18} className="text-accent shrink-0 mt-0.5" />
-                <div className="flex flex-col gap-1">
-                  <a href="tel:+917679948664" className="hover:text-accent transition-colors">+91 76799 48664</a>
-                  <a href="tel:+918766807543" className="hover:text-accent transition-colors">+91 87668 07543</a>
+              <li>
+                <a href={`tel:${SITE_INFO.phone.replace(/[^+0-9]/g, '')}`} className="flex items-start gap-3 text-white/70 hover:text-accent transition-colors group">
+                  <Phone size={18} className="mt-0.5 text-accent group-hover:scale-110 transition-transform" />
+                  <span className="text-sm">{SITE_INFO.phone}</span>
+                </a>
+              </li>
+              <li>
+                <a href={`mailto:${SITE_INFO.email}`} className="flex items-start gap-3 text-white/70 hover:text-accent transition-colors group">
+                  <Mail size={18} className="mt-0.5 text-accent group-hover:scale-110 transition-transform" />
+                  <span className="text-sm">{SITE_INFO.email}</span>
+                </a>
+              </li>
+              <li>
+                <div className="flex items-start gap-3 text-white/70">
+                  <MapPin size={18} className="mt-0.5 text-accent" />
+                  <span className="text-sm leading-relaxed">{SITE_INFO.address}</span>
                 </div>
-              </li>
-              <li className="flex items-center gap-3 text-white/70 text-sm">
-                <Mail size={18} className="text-accent shrink-0" />
-                <a href="mailto:info@himalayansathi.com" className="hover:text-accent transition-colors">info@himalayansathi.com</a>
-              </li>
-              <li className="flex items-start gap-3 text-white/70 text-sm">
-                <MapPin size={18} className="text-accent shrink-0 mt-0.5" />
-                <span>Siliguri, West Bengal, India</span>
               </li>
             </ul>
             
