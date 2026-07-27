@@ -3,6 +3,7 @@ import type { Testimonial } from "@/lib/types";
 import { testimonials as staticTestimonials } from "@/data/testimonials";
 import { db } from "@/lib/db";
 import { CheckCircle } from "lucide-react";
+import ReviewForm from "./ReviewForm";
 
 export default async function TestimonialsSection() {
   // Fetch approved reviews from our MongoDB CMS
@@ -47,17 +48,8 @@ export default async function TestimonialsSection() {
         {/* Client-side carousel */}
         <TestimonialCarousel testimonials={reviewsToDisplay} />
         
-        {/* Attribution / CTA */}
-        <div className="mt-12 text-center">
-          <a 
-            href="#" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-primary font-medium hover:text-primary-light transition-colors"
-          >
-            View all reviews on Google &rarr;
-          </a>
-        </div>
+        {/* Public Review Form */}
+        <ReviewForm />
       </div>
     </section>
   );
