@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { cookies } from 'next/headers';
+import { revalidatePath } from 'next/cache';
 
 // Helper to check authentication
 async function isAuthenticated() {
@@ -49,6 +50,7 @@ export async function POST(request: NextRequest) {
     const result = await db.insertReview(review);
     
     if (result.success) {
+      revalidatePath('/'); // Purge homepage cache
       return NextResponse.json({ success: true, id: result.id });
     } else {
       return NextResponse.json({ error: 'Failed to insert review' }, { status: 500 });
@@ -74,6 +76,7 @@ export async function PATCH(request: NextRequest) {
     const result = await db.updateReviewStatus(id, status);
     
     if (result.success) {
+      revalidatePath('/'); // Purge homepage cache
       return NextResponse.json({ success: true });
     } else {
       return NextResponse.json({ error: 'Failed to update review' }, { status: 500 });
@@ -99,6 +102,7 @@ export async function DELETE(request: NextRequest) {
     const result = await db.deleteReview(id);
     
     if (result.success) {
+      revalidatePath('/'); // Purge homepage cache
       return NextResponse.json({ success: true });
     } else {
       return NextResponse.json({ error: 'Failed to delete review' }, { status: 500 });
