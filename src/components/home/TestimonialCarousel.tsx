@@ -68,13 +68,8 @@ export default function TestimonialCarousel({ testimonials }: { testimonials: Te
             </p>
 
             <div className="flex items-center gap-4 mt-auto">
-              <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-primary/10">
-                <Image
-                  src={testimonial.avatar || "/images/team-2.jpg"} // fallback avatar
-                  alt={testimonial.name}
-                  fill
-                  className="object-cover"
-                />
+              <div className="relative w-14 h-14 rounded-full flex items-center justify-center bg-primary-light/10 border-2 border-primary/10 text-primary font-heading font-bold text-xl">
+                {testimonial.name ? testimonial.name.charAt(0).toUpperCase() : "U"}
               </div>
               <div>
                 <h4 className="font-bold text-primary">{testimonial.name}</h4>
