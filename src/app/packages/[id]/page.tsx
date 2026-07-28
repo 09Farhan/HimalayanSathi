@@ -168,6 +168,28 @@ export default async function PackageDetailPage({ params }: { params: Promise<{ 
                 </div>
               </div>
             </section>
+
+            {/* Gallery Section */}
+            {pkg.gallery && pkg.gallery.length > 0 && (
+              <section className="mt-12">
+                <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8 border-b pb-4">
+                  Tour Gallery
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                  {pkg.gallery.map((imgUrl: string, index: number) => (
+                    <div key={index} className="relative h-48 md:h-64 rounded-xl overflow-hidden group shadow-sm hover:shadow-md transition-all">
+                      <Image
+                        src={imgUrl}
+                        alt={`${pkg.title} Gallery Image ${index + 1}`}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
           </div>
 
           {/* Right Sidebar (Enquiry Form) */}
