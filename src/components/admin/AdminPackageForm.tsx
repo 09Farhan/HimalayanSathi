@@ -44,9 +44,14 @@ export default function AdminPackageForm({ initialData, onSubmit, onCancel }: Ad
   };
 
   // Dynamic Array Handlers
+  const getArray = (field: string) => {
+    const val = formData[field];
+    return Array.isArray(val) ? val : [];
+  };
+
   const handleArrayChange = (field: string, index: number, value: any, subfield?: string) => {
     setFormData((prev: any) => {
-      const newArray = [...prev[field]];
+      const newArray = [...getArray(field)];
       if (subfield) {
         newArray[index] = { ...newArray[index], [subfield]: value };
       } else {
@@ -59,14 +64,14 @@ export default function AdminPackageForm({ initialData, onSubmit, onCancel }: Ad
   const addArrayItem = (field: string, defaultItem: any) => {
     setFormData((prev: any) => ({
       ...prev,
-      [field]: [...prev[field], defaultItem]
+      [field]: [...getArray(field), defaultItem]
     }));
   };
 
   const removeArrayItem = (field: string, index: number) => {
     setFormData((prev: any) => ({
       ...prev,
-      [field]: prev[field].filter((_: any, i: number) => i !== index)
+      [field]: getArray(field).filter((_: any, i: number) => i !== index)
     }));
   };
 
@@ -77,10 +82,10 @@ export default function AdminPackageForm({ initialData, onSubmit, onCancel }: Ad
     // Clean empty rows
     const cleanedData = {
       ...formData,
-      itinerary: formData.itinerary.filter((i: any) => i.title || i.description),
-      destinationsArray: formData.destinationsArray?.filter((d: any) => d.name) || [],
-      inclusions: formData.inclusions.filter((i: string) => i.trim() !== ''),
-      exclusions: formData.exclusions.filter((e: string) => e.trim() !== ''),
+      itinerary: getArray('itinerary').filter((i: any) => i && (i.title || i.description)),
+      destinationsArray: getArray('destinationsArray').filter((d: any) => d && d.name),
+      inclusions: getArray('inclusions').filter((i: string) => i && typeof i === 'string' && i.trim() !== ''),
+      exclusions: getArray('exclusions').filter((e: string) => e && typeof e === 'string' && e.trim() !== ''),
     };
 
     await onSubmit(cleanedData);
@@ -249,7 +254,7 @@ export default function AdminPackageForm({ initialData, onSubmit, onCancel }: Ad
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Gallery Images</label>
             <div className="grid grid-cols-3 gap-2 mb-4">
-              {(formData.gallery || []).map((img: string, i: number) => (
+              {getArray('gallery').map((img: string, i: number) => (
                 <div key={i} className="relative aspect-square rounded-lg overflow-hidden border border-gray-200">
                   <img src={img} alt={`Gallery ${i}`} className="w-full h-full object-cover" />
                   <button type="button" onClick={() => removeArrayItem('gallery', i)} className="absolute top-1 right-1 p-1 bg-red-500 text-white rounded-full hover:bg-red-600 scale-75">
@@ -286,21 +291,21 @@ export default function AdminPackageForm({ initialData, onSubmit, onCancel }: Ad
       <div className="space-y-4 pt-6 border-t">
         <div className="flex justify-between items-center border-b pb-2">
           <h3 className="font-semibold text-lg text-primary-dark">Day-wise Itinerary</h3>
-          <Button type="button" variant="outline" onClick={() => addArrayItem('itinerary', { day: (formData.itinerary || []).length + 1, title: '', description: '' })} className="flex items-center gap-1 text-sm py-1 px-3">
+          <Button type="button" variant="outline" onClick={() => addArrayItem('itinerary', { day: getArray('itinerary').length + 1, title: '', description: '' })} className="flex items-center gap-1 text-sm py-1 px-3">
             <Plus className="w-4 h-4" /> Add Day
           </Button>
         </div>
         
         <div className="space-y-4">
-          {(formData.itinerary || []).map((item: any, index: number) => (
+          {getArray('itinerary').map((item: any, index: number) => (
             <div key={index} className="flex gap-4 items-start bg-surface-muted p-4 rounded-lg relative group">
               <div className="w-16 flex-shrink-0">
                 <label className="block text-xs font-medium text-gray-500 mb-1">Day</label>
-                <input type="number" value={item.day} onChange={(e) => handleArrayChange('itinerary', index, Number(e.target.value), 'day')} className="w-full px-2 py-2 rounded border border-gray-300 text-center" />
+                <input type="number" value={item?.day || index+1} onChange={(e) => handleArrayChange('itinerary', index, Number(e.target.value), 'day')} className="w-full px-2 py-2 rounded border border-gray-300 text-center" />
               </div>
               <div className="flex-grow space-y-2">
-                <input type="text" value={item.title} onChange={(e) => handleArrayChange('itinerary', index, e.target.value, 'title')} placeholder="Day Title (e.g. Arrival at Darjeeling)" className="w-full px-3 py-2 rounded border border-gray-300 font-medium" />
-                <textarea value={item.description} onChange={(e) => handleArrayChange('itinerary', index, e.target.value, 'description')} placeholder="Day Description..." rows={2} className="w-full px-3 py-2 rounded border border-gray-300 text-sm"></textarea>
+                <input type="text" value={item?.title || ''} onChange={(e) => handleArrayChange('itinerary', index, e.target.value, 'title')} placeholder="Day Title (e.g. Arrival at Darjeeling)" className="w-full px-3 py-2 rounded border border-gray-300 font-medium" />
+                <textarea value={item?.description || ''} onChange={(e) => handleArrayChange('itinerary', index, e.target.value, 'description')} placeholder="Day Description..." rows={2} className="w-full px-3 py-2 rounded border border-gray-300 text-sm"></textarea>
               </div>
               <button type="button" onClick={() => removeArrayItem('itinerary', index)} className="p-2 text-red-500 hover:bg-red-50 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity absolute right-2 top-2">
                 <Trash2 className="w-5 h-5" />
@@ -321,11 +326,11 @@ export default function AdminPackageForm({ initialData, onSubmit, onCancel }: Ad
         <p className="text-xs text-gray-500 mb-4">Add specific destination details if required by the new design.</p>
         
         <div className="space-y-3">
-          {(formData.destinationsArray || []).map((item: any, index: number) => (
+          {getArray('destinationsArray').map((item: any, index: number) => (
             <div key={index} className="flex gap-3 items-center">
-              <input type="text" value={item.name} onChange={(e) => handleArrayChange('destinationsArray', index, e.target.value, 'name')} placeholder="Destination Name" className="flex-1 px-3 py-2 rounded border border-gray-300 text-sm" />
-              <input type="number" value={item.dayNumber} onChange={(e) => handleArrayChange('destinationsArray', index, Number(e.target.value), 'dayNumber')} placeholder="Day #" className="w-20 px-3 py-2 rounded border border-gray-300 text-sm text-center" />
-              <input type="text" value={item.description} onChange={(e) => handleArrayChange('destinationsArray', index, e.target.value, 'description')} placeholder="Short Note/Description" className="flex-1 px-3 py-2 rounded border border-gray-300 text-sm" />
+              <input type="text" value={item?.name || ''} onChange={(e) => handleArrayChange('destinationsArray', index, e.target.value, 'name')} placeholder="Destination Name" className="flex-1 px-3 py-2 rounded border border-gray-300 text-sm" />
+              <input type="number" value={item?.dayNumber || 1} onChange={(e) => handleArrayChange('destinationsArray', index, Number(e.target.value), 'dayNumber')} placeholder="Day #" className="w-20 px-3 py-2 rounded border border-gray-300 text-sm text-center" />
+              <input type="text" value={item?.description || ''} onChange={(e) => handleArrayChange('destinationsArray', index, e.target.value, 'description')} placeholder="Short Note/Description" className="flex-1 px-3 py-2 rounded border border-gray-300 text-sm" />
               <button type="button" onClick={() => removeArrayItem('destinationsArray', index)} className="p-2 text-red-500 hover:bg-red-50 rounded-lg">
                 <Trash2 className="w-4 h-4" />
               </button>
@@ -344,9 +349,9 @@ export default function AdminPackageForm({ initialData, onSubmit, onCancel }: Ad
             </Button>
           </div>
           <div className="space-y-2">
-            {(formData.inclusions || []).map((item: string, index: number) => (
+            {getArray('inclusions').map((item: string, index: number) => (
               <div key={index} className="flex gap-2">
-                <input type="text" value={item} onChange={(e) => handleArrayChange('inclusions', index, e.target.value)} placeholder="e.g. Breakfast on all days" className="flex-1 px-3 py-2 rounded border border-gray-300 text-sm" />
+                <input type="text" value={item || ''} onChange={(e) => handleArrayChange('inclusions', index, e.target.value)} placeholder="e.g. Breakfast on all days" className="flex-1 px-3 py-2 rounded border border-gray-300 text-sm" />
                 <button type="button" onClick={() => removeArrayItem('inclusions', index)} className="p-2 text-red-500 hover:bg-red-50 rounded"><Trash2 className="w-4 h-4" /></button>
               </div>
             ))}
@@ -361,9 +366,9 @@ export default function AdminPackageForm({ initialData, onSubmit, onCancel }: Ad
             </Button>
           </div>
           <div className="space-y-2">
-            {(formData.exclusions || []).map((item: string, index: number) => (
+            {getArray('exclusions').map((item: string, index: number) => (
               <div key={index} className="flex gap-2">
-                <input type="text" value={item} onChange={(e) => handleArrayChange('exclusions', index, e.target.value)} placeholder="e.g. Airfare/Train fare" className="flex-1 px-3 py-2 rounded border border-gray-300 text-sm" />
+                <input type="text" value={item || ''} onChange={(e) => handleArrayChange('exclusions', index, e.target.value)} placeholder="e.g. Airfare/Train fare" className="flex-1 px-3 py-2 rounded border border-gray-300 text-sm" />
                 <button type="button" onClick={() => removeArrayItem('exclusions', index)} className="p-2 text-red-500 hover:bg-red-50 rounded"><Trash2 className="w-4 h-4" /></button>
               </div>
             ))}
