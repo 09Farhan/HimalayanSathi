@@ -98,6 +98,8 @@ export default function AdminPackageForm({ initialData, onSubmit, onCancel }: Ad
     return data.signature;
   };
 
+  const hasCloudinary = !!process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+
   return (
     <form onSubmit={handleSubmit} className="space-y-8 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
       <div className="flex justify-between items-center border-b pb-4">
@@ -205,6 +207,11 @@ export default function AdminPackageForm({ initialData, onSubmit, onCancel }: Ad
       {/* Images Section using next-cloudinary */}
       <div className="space-y-4 pt-6 border-t">
         <h3 className="font-semibold text-lg text-primary-dark border-b pb-2">Images</h3>
+        {!hasCloudinary && (
+          <div className="bg-yellow-50 text-yellow-800 p-4 rounded-lg text-sm mb-4">
+            <strong>Note:</strong> Cloudinary is not configured. Please paste direct image URLs below, or add NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME to Vercel environment variables to enable the upload widget.
+          </div>
+        )}
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
@@ -218,21 +225,23 @@ export default function AdminPackageForm({ initialData, onSubmit, onCancel }: Ad
                   </button>
                 </div>
               )}
-              <CldUploadWidget 
-                signatureEndpoint="/api/cloudinary/sign"
-                onSuccess={(result) => {
-                  if (typeof result.info === 'object' && 'secure_url' in result.info) {
-                    setFormData({...formData, image: result.info.secure_url});
-                  }
-                }}
-              >
-                {({ open }) => (
-                  <button type="button" onClick={() => open()} className="flex items-center justify-center gap-2 w-full py-3 border-2 border-dashed border-gray-300 rounded-lg hover:border-accent hover:bg-surface-muted transition-colors">
-                    <ImageIcon className="w-5 h-5 text-gray-500" />
-                    <span className="text-gray-600 font-medium">{formData.image ? 'Replace Cover Image' : 'Upload Cover Image'}</span>
-                  </button>
-                )}
-              </CldUploadWidget>
+              {hasCloudinary && (
+                <CldUploadWidget 
+                  signatureEndpoint="/api/cloudinary/sign"
+                  onSuccess={(result) => {
+                    if (typeof result.info === 'object' && 'secure_url' in result.info) {
+                      setFormData({...formData, image: result.info.secure_url});
+                    }
+                  }}
+                >
+                  {({ open }) => (
+                    <button type="button" onClick={() => open()} className="flex items-center justify-center gap-2 w-full py-3 border-2 border-dashed border-gray-300 rounded-lg hover:border-accent hover:bg-surface-muted transition-colors">
+                      <ImageIcon className="w-5 h-5 text-gray-500" />
+                      <span className="text-gray-600 font-medium">{formData.image ? 'Replace Cover Image' : 'Upload Cover Image'}</span>
+                    </button>
+                  )}
+                </CldUploadWidget>
+              )}
               <input type="text" name="image" value={formData.image} onChange={handleChange} placeholder="Or paste image URL here" className="w-full px-4 py-2 rounded-lg border border-gray-300 text-sm" />
             </div>
           </div>
@@ -250,22 +259,24 @@ export default function AdminPackageForm({ initialData, onSubmit, onCancel }: Ad
               ))}
             </div>
             
-            <CldUploadWidget 
-              signatureEndpoint="/api/cloudinary/sign"
-              options={{ multiple: true }}
-              onSuccess={(result) => {
-                if (typeof result.info === 'object' && 'secure_url' in result.info) {
-                  addArrayItem('gallery', result.info.secure_url);
-                }
-              }}
-            >
-              {({ open }) => (
-                <button type="button" onClick={() => open()} className="flex items-center justify-center gap-2 w-full py-3 border-2 border-dashed border-gray-300 rounded-lg hover:border-accent hover:bg-surface-muted transition-colors">
-                  <ImageIcon className="w-5 h-5 text-gray-500" />
-                  <span className="text-gray-600 font-medium">Add Gallery Images</span>
-                </button>
-              )}
-            </CldUploadWidget>
+            {hasCloudinary && (
+              <CldUploadWidget 
+                signatureEndpoint="/api/cloudinary/sign"
+                options={{ multiple: true }}
+                onSuccess={(result) => {
+                  if (typeof result.info === 'object' && 'secure_url' in result.info) {
+                    addArrayItem('gallery', result.info.secure_url);
+                  }
+                }}
+              >
+                {({ open }) => (
+                  <button type="button" onClick={() => open()} className="flex items-center justify-center gap-2 w-full py-3 border-2 border-dashed border-gray-300 rounded-lg hover:border-accent hover:bg-surface-muted transition-colors">
+                    <ImageIcon className="w-5 h-5 text-gray-500" />
+                    <span className="text-gray-600 font-medium">Add Gallery Images</span>
+                  </button>
+                )}
+              </CldUploadWidget>
+            )}
             <input type="text" placeholder="Or paste gallery image URL here" onKeyDown={(e) => { if(e.key==='Enter') { e.preventDefault(); addArrayItem('gallery', e.currentTarget.value); e.currentTarget.value=''; } }} className="w-full px-4 py-2 rounded-lg border border-gray-300 text-sm" />
           </div>
         </div>
