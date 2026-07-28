@@ -105,7 +105,7 @@ export default function FeaturedPackages() {
                       <span className="text-xs text-text-muted font-normal">/person</span>
                     </div>
                     <Link
-                      href={`/packages/${pkg.id}`}
+                      href={`/packages/${pkg.slug}`}
                       className="inline-flex items-center gap-1 text-sm font-semibold text-accent hover:text-accent-light transition-colors"
                     >
                       Details

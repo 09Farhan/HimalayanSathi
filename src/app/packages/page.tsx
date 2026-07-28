@@ -225,7 +225,7 @@ export default function PackagesPage() {
                       </div>
                     </div>
                     <Link 
-                      href={`/packages/${pkg.id}`}
+                      href={`/packages/${pkg.slug}`}
                       className="px-5 py-2.5 bg-primary/10 text-primary hover:bg-primary hover:text-white rounded-lg font-medium transition-colors text-sm"
                     >
                       View Details
