@@ -2,7 +2,7 @@ export const SITE_INFO = {
   name: 'Himalayan Sathi',
   email: 'info@himalayansathi.com',
   phone: '+91 76799 48664',
-  address: 'Mall Road, Darjeeling, West Bengal 734101',
+  address: 'Airport More, Near, Bagdogra, Siliguri, West Bengal 734014',
 };
 
 export const FOOTER_LINKS = [
