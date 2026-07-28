@@ -7,6 +7,7 @@ import Button from '@/components/ui/Button';
 import { Star } from 'lucide-react';
 import AdminPackagesTab from '@/components/admin/AdminPackagesTab';
 import AdminBlogsTab from '@/components/admin/AdminBlogsTab';
+import AdminDestinationsTab from '@/components/admin/AdminDestinationsTab';
 
 export default function AdminDashboardClient({ 
   initialLeads, 
@@ -17,7 +18,7 @@ export default function AdminDashboardClient({
 }) {
   const [leads, setLeads] = useState<Lead[]>(initialLeads);
   const [reviews, setReviews] = useState<Review[]>(initialReviews || []);
-  const [activeTab, setActiveTab] = useState<'leads' | 'reviews' | 'packages' | 'blogs'>('leads');
+  const [activeTab, setActiveTab] = useState<'leads' | 'reviews' | 'packages' | 'blogs' | 'destinations'>('leads');
   const [isAddingReview, setIsAddingReview] = useState(false);
   const [newReview, setNewReview] = useState({ name: '', rating: 5, quote: '' });
   
@@ -102,7 +103,7 @@ export default function AdminDashboardClient({
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-6 rounded-2xl shadow-sm">
           <div>
             <h1 className="text-2xl font-bold text-primary">Admin Dashboard</h1>
-            <p className="text-text-secondary mt-1">Manage your business inquiries, reviews, packages, and blogs</p>
+            <p className="text-text-secondary mt-1">Manage your business inquiries, reviews, packages, destinations, and blogs</p>
           </div>
           <Button variant="outline" size="sm" onClick={handleLogout}>
             Sign Out
@@ -126,6 +127,13 @@ export default function AdminDashboardClient({
             {activeTab === 'packages' && <span className="absolute bottom-0 left-0 w-full h-1 bg-primary rounded-t-full"></span>}
           </button>
           <button 
+            onClick={() => setActiveTab('destinations')}
+            className={`px-4 py-3 font-medium text-base whitespace-nowrap transition-colors relative ${activeTab === 'destinations' ? 'text-primary' : 'text-text-secondary hover:text-text-primary'}`}
+          >
+            SEO Destinations
+            {activeTab === 'destinations' && <span className="absolute bottom-0 left-0 w-full h-1 bg-primary rounded-t-full"></span>}
+          </button>
+          <button 
             onClick={() => setActiveTab('blogs')}
             className={`px-4 py-3 font-medium text-base whitespace-nowrap transition-colors relative ${activeTab === 'blogs' ? 'text-primary' : 'text-text-secondary hover:text-text-primary'}`}
           >
@@ -145,6 +153,13 @@ export default function AdminDashboardClient({
         {activeTab === 'packages' && (
           <div className="animate-fade-in-up">
             <AdminPackagesTab />
+          </div>
+        )}
+
+        {/* Tab Content: DESTINATIONS */}
+        {activeTab === 'destinations' && (
+          <div className="animate-fade-in-up">
+            <AdminDestinationsTab />
           </div>
         )}
 

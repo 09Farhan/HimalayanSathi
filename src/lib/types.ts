@@ -6,19 +6,25 @@
 export interface Destination {
   id: string;
   name: string;
+  slug: string;
   region: "darjeeling" | "sikkim" | "bhutan" | "northeast";
   tagline: string;
   description: string;
+  content: string; // Rich HTML for the full destination overview
   highlights: string[];
   bestTimeToVisit: string;
   image: string;
+  gallery: string[];
+  seoTitle?: string;
+  seoDescription?: string;
+  faqs?: FAQ[];
 }
 
 /** A bookable tour package */
 export interface Package {
   id: string;
   title: string;
-  slug?: string;
+  slug: string;
   destination: string;
   region: "darjeeling" | "sikkim" | "bhutan" | "northeast";
   duration: string;
@@ -33,6 +39,9 @@ export interface Package {
   image: string;
   gallery: string[];
   featured: boolean;
+  seoTitle?: string;
+  seoDescription?: string;
+  faqs?: FAQ[];
 }
 
 /** A single day in a tour itinerary */

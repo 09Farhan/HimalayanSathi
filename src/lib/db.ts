@@ -158,6 +158,89 @@ export const db = {
       return { success: false };
     }
   },
+  // Destination Methods
+  getDestinations: async (filter: any = {}): Promise<any[]> => {
+    try {
+      const client = await getDbClient();
+      const collection = client.db().collection('destinations');
+      const destinations = await collection.find(filter).toArray();
+      
+      return destinations.map(dest => ({
+        ...dest,
+        id: dest._id?.toString(),
+        _id: dest._id?.toString()
+      }));
+    } catch (e) {
+      console.error('Failed to get destinations from MongoDB', e);
+      return [];
+    }
+  },
+
+  getDestinationBySlug: async (slug: string): Promise<any | null> => {
+    try {
+      const client = await getDbClient();
+      const collection = client.db().collection('destinations');
+      const dest = await collection.findOne({ slug });
+      
+      if (!dest) return null;
+      
+      return {
+        ...dest,
+        id: dest._id?.toString(),
+        _id: dest._id?.toString()
+      };
+    } catch (e) {
+      console.error('Failed to get destination by slug', e);
+      return null;
+    }
+  },
+
+  insertDestination: async (dest: any) => {
+    try {
+      const client = await getDbClient();
+      const collection = client.db().collection('destinations');
+      
+      const newDest = {
+        ...dest,
+        createdAt: new Date().toISOString()
+      };
+      
+      const result = await collection.insertOne(newDest);
+      return { success: true, id: result.insertedId.toString() };
+    } catch (e) {
+      console.error('Failed to insert destination', e);
+      return { success: false, error: 'Failed to save destination' };
+    }
+  },
+
+  updateDestination: async (id: string, updateData: any) => {
+    try {
+      const client = await getDbClient();
+      const collection = client.db().collection('destinations');
+      
+      await collection.updateOne(
+        { _id: new ObjectId(id) },
+        { $set: updateData }
+      );
+      return { success: true };
+    } catch (e) {
+      console.error('Failed to update destination', e);
+      return { success: false, error: 'Failed to update destination' };
+    }
+  },
+
+  deleteDestination: async (id: string) => {
+    try {
+      const client = await getDbClient();
+      const collection = client.db().collection('destinations');
+      
+      await collection.deleteOne({ _id: new ObjectId(id) });
+      return { success: true };
+    } catch (e) {
+      console.error('Failed to delete destination', e);
+      return { success: false };
+    }
+  },
 
   // Package Methods
   getPackages: async (filter: any = {}): Promise<any[]> => {

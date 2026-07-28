@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Send, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
 import Button from './Button';
 
-export default function ContactForm() {
+export default function ContactForm({ source }: { source?: string }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',

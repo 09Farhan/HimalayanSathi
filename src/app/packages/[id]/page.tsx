@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { db } from '@/lib/db';
 import { Check, X, Clock, IndianRupee, MapPin, Users } from 'lucide-react';
 import ContactForm from '@/components/ui/ContactForm';
+import ExpandableFAQ from '@/components/ui/ExpandableFAQ';
 
 // Generate metadata for SEO
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
@@ -17,8 +18,13 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   }
 
   return {
-    title: `${pkg.title} | Himalayan Sathi Tours`,
-    description: pkg.shortDescription,
+    title: pkg.seoTitle || `${pkg.title} | Himalayan Sathi Tours`,
+    description: pkg.seoDescription || pkg.shortDescription,
+    openGraph: {
+      title: pkg.seoTitle || pkg.title,
+      description: pkg.seoDescription || pkg.shortDescription,
+      images: [pkg.image],
+    }
   };
 }
 
@@ -30,8 +36,27 @@ export default async function PackageDetailPage({ params }: { params: Promise<{ 
     notFound();
   }
 
+  // Generate JSON-LD Schema for Tour/Product
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'TouristTrip',
+    'name': pkg.title,
+    'description': pkg.shortDescription,
+    'touristType': pkg.type,
+    'offers': {
+      '@type': 'Offer',
+      'price': pkg.startingPrice,
+      'priceCurrency': 'INR'
+    },
+    'image': pkg.image
+  };
+
   return (
     <div className="bg-surface min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero Banner */}
       <section className="relative h-[60vh] min-h-[400px] w-full">
         <div className="absolute inset-0 z-0">
@@ -186,6 +211,20 @@ export default async function PackageDetailPage({ params }: { params: Promise<{ 
                       />
                       <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
                     </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* FAQs Section */}
+            {pkg.faqs && pkg.faqs.length > 0 && (
+              <section className="mt-12">
+                <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8 border-b pb-4">
+                  Frequently Asked Questions
+                </h2>
+                <div className="space-y-4">
+                  {pkg.faqs.map((faq: any, index: number) => (
+                    <ExpandableFAQ key={index} question={faq.question} answer={faq.answer} />
                   ))}
                 </div>
               </section>

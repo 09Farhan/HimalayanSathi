@@ -3,6 +3,8 @@ import { Package } from '@/lib/types';
 export const packages: Package[] = [
   {
     id: "darjeeling-delight-3n4d",
+    slug: "darjeeling-delight-3n4d",
+    faqs: [],
     title: "Darjeeling Delight",
     destination: "Darjeeling",
     region: "darjeeling",
@@ -54,6 +56,8 @@ export const packages: Package[] = [
   },
   {
     id: "north-bengal-explorer-5n6d",
+    slug: "north-bengal-explorer-5n6d",
+    faqs: [],
     title: "North Bengal Explorer",
     destination: "Darjeeling & Kalimpong",
     region: "darjeeling",
@@ -113,6 +117,8 @@ export const packages: Package[] = [
   },
   {
     id: "darjeeling-honeymoon-4n5d",
+    slug: "darjeeling-honeymoon-4n5d",
+    faqs: [],
     title: "Darjeeling Honeymoon",
     destination: "Darjeeling & Kurseong",
     region: "darjeeling",
@@ -167,6 +173,8 @@ export const packages: Package[] = [
   },
   {
     id: "sikkim-serenity-5n6d",
+    slug: "sikkim-serenity-5n6d",
+    faqs: [],
     title: "Sikkim Serenity",
     destination: "Gangtok & Pelling",
     region: "sikkim",
@@ -226,6 +234,8 @@ export const packages: Package[] = [
   },
   {
     id: "north-sikkim-adventure-6n7d",
+    slug: "north-sikkim-adventure-6n7d",
+    faqs: [],
     title: "North Sikkim Adventure",
     destination: "Lachen, Lachung & Gangtok",
     region: "sikkim",
@@ -290,6 +300,8 @@ export const packages: Package[] = [
   },
   {
     id: "east-west-sikkim-complete-7n8d",
+    slug: "east-west-sikkim-complete-7n8d",
+    faqs: [],
     title: "East-West Sikkim Complete",
     destination: "Gangtok, Pelling, Namchi",
     region: "sikkim",
@@ -358,6 +370,8 @@ export const packages: Package[] = [
   },
   {
     id: "bhutan-highlights-5n6d",
+    slug: "bhutan-highlights-5n6d",
+    faqs: [],
     title: "Bhutan Highlights",
     destination: "Paro & Thimphu",
     region: "bhutan",
@@ -418,6 +432,8 @@ export const packages: Package[] = [
   },
   {
     id: "bhutan-cultural-immersion-7n8d",
+    slug: "bhutan-cultural-immersion-7n8d",
+    faqs: [],
     title: "Bhutan Cultural Immersion",
     destination: "Paro, Thimphu, Punakha",
     region: "bhutan",
@@ -487,6 +503,8 @@ export const packages: Package[] = [
   },
   {
     id: "bhutan-honeymoon-special-5n6d",
+    slug: "bhutan-honeymoon-special-5n6d",
+    faqs: [],
     title: "Bhutan Honeymoon Special",
     destination: "Paro & Punakha",
     region: "bhutan",
@@ -546,6 +564,8 @@ export const packages: Package[] = [
   },
   {
     id: "meghalaya-magic-5n6d",
+    slug: "meghalaya-magic-5n6d",
+    faqs: [],
     title: "Meghalaya Magic",
     destination: "Shillong & Cherrapunji",
     region: "northeast",
@@ -605,6 +625,8 @@ export const packages: Package[] = [
   },
   {
     id: "tawang-explorer-6n7d",
+    slug: "tawang-explorer-6n7d",
+    faqs: [],
     title: "Tawang Explorer",
     destination: "Tawang, Dirang, Bomdila",
     region: "northeast",
@@ -668,6 +690,8 @@ export const packages: Package[] = [
   },
   {
     id: "northeast-grand-tour-9n10d",
+    slug: "northeast-grand-tour-9n10d",
+    faqs: [],
     title: "Northeast Grand Tour",
     destination: "Assam, Meghalaya, Arunachal",
     region: "northeast",

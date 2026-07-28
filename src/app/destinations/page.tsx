@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Calendar } from 'lucide-react';
 import SectionContainer from '@/components/ui/SectionContainer';
 import { Destination } from '@/lib/types';
@@ -104,9 +105,10 @@ export default function DestinationsPage() {
           /* Destinations Grid */
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-children">
             {filteredDestinations.map((destination) => (
-              <div 
+              <Link
+                href={`/destinations/${destination.slug || destination.id}`}
                 key={destination.id} 
-                className="group bg-surface-card rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 transform hover:-translate-y-2 flex flex-col"
+                className="group bg-surface-card rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 transform hover:-translate-y-2 flex flex-col cursor-pointer"
               >
                 {/* Image Container */}
                 <div className="relative h-64 w-full overflow-hidden">
@@ -127,7 +129,7 @@ export default function DestinationsPage() {
 
                 {/* Content */}
                 <div className="p-6 flex flex-col flex-1">
-                  <h3 className="text-2xl font-heading font-bold text-primary mb-1">
+                  <h3 className="text-2xl font-heading font-bold text-primary mb-1 group-hover:text-primary-dark transition-colors">
                     {destination.name}
                   </h3>
                   <p className="text-accent font-medium text-sm mb-4">
@@ -138,32 +140,37 @@ export default function DestinationsPage() {
                   </p>
                   
                   {/* Highlights */}
-                  <div className="mb-6">
-                    <div className="flex flex-wrap gap-2">
-                      {destination.highlights.slice(0, 3).map((highlight, idx) => (
-                        <span 
-                          key={idx} 
-                          className="px-2.5 py-1 bg-surface-muted text-text-secondary text-xs font-medium rounded-full border border-gray-100"
-                        >
-                          {highlight}
-                        </span>
-                      ))}
-                      {destination.highlights.length > 3 && (
-                        <span className="px-2.5 py-1 bg-surface-muted text-text-secondary text-xs font-medium rounded-full border border-gray-100">
-                          +{destination.highlights.length - 3} more
-                        </span>
-                      )}
+                  {destination.highlights && (
+                    <div className="mb-6">
+                      <div className="flex flex-wrap gap-2">
+                        {destination.highlights.slice(0, 3).map((highlight, idx) => (
+                          <span 
+                            key={idx} 
+                            className="px-2.5 py-1 bg-surface-muted text-text-secondary text-xs font-medium rounded-full border border-gray-100"
+                          >
+                            {highlight}
+                          </span>
+                        ))}
+                        {destination.highlights.length > 3 && (
+                          <span className="px-2.5 py-1 bg-surface-muted text-text-secondary text-xs font-medium rounded-full border border-gray-100">
+                            +{destination.highlights.length - 3} more
+                          </span>
+                        )}
+                      </div>
                     </div>
-                  </div>
+                  )}
 
                   {/* Footer */}
-                  <div className="pt-4 border-t border-surface-muted flex items-center text-sm text-text-secondary">
-                    <Calendar className="w-4 h-4 mr-2 text-primary" />
-                    <span className="font-medium">Best time:</span>
-                    <span className="ml-1 truncate">{destination.bestTimeToVisit}</span>
+                  <div className="pt-4 border-t border-surface-muted flex items-center justify-between text-sm">
+                    <div className="flex items-center text-text-secondary">
+                      <Calendar className="w-4 h-4 mr-2 text-primary" />
+                      <span className="font-medium">Best time:</span>
+                      <span className="ml-1 truncate max-w-[120px]">{destination.bestTimeToVisit}</span>
+                    </div>
+                    <span className="text-accent font-bold group-hover:translate-x-1 transition-transform">Explore &rarr;</span>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
             
             {filteredDestinations.length === 0 && (
