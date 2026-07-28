@@ -182,7 +182,12 @@ export const db = {
       const collection = client.db().collection('destinations');
       const dest = await collection.findOne({ slug });
       
-      if (!dest) return null;
+      if (!dest) {
+        // Fallback to static data
+        const { destinations } = await import('@/data/destinations');
+        const staticDest = destinations.find(d => d.slug === slug || d.id === slug);
+        return staticDest || null;
+      }
       
       return {
         ...dest,
@@ -266,7 +271,12 @@ export const db = {
       const collection = client.db().collection('packages');
       const pkg = await collection.findOne({ slug });
       
-      if (!pkg) return null;
+      if (!pkg) {
+        // Fallback to static data
+        const { packages } = await import('@/data/packages');
+        const staticPkg = packages.find(p => p.slug === slug || p.id === slug);
+        return staticPkg || null;
+      }
       
       return {
         ...pkg,
