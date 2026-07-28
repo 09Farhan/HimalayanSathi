@@ -5,23 +5,13 @@ import dynamic from 'next/dynamic';
 import Button from '@/components/ui/Button';
 import { CldUploadWidget } from 'next-cloudinary';
 import { Trash2, Image as ImageIcon, X } from 'lucide-react';
-import 'react-quill/dist/quill.snow.css'; // Import Quill styles
+import Editor from 'react-simple-wysiwyg';
 
-// Dynamically import ReactQuill to prevent SSR window/document errors
-const ReactQuill = dynamic(() => import('react-quill'), { 
-  ssr: false, 
+// We don't need dynamic imports for react-simple-wysiwyg if we use it normally, but just in case for Next.js SSR:
+const EditorWrapper = dynamic(() => Promise.resolve(Editor), {
+  ssr: false,
   loading: () => <div className="h-64 flex items-center justify-center bg-gray-50 border border-gray-300 rounded-lg">Loading Editor...</div>
 });
-
-const modules = {
-  toolbar: [
-    [{ 'header': [2, 3, false] }],
-    ['bold', 'italic', 'underline', 'strike'],
-    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-    ['link'],
-    ['clean']
-  ],
-};
 
 interface AdminBlogFormProps {
   initialData?: any;
@@ -235,12 +225,10 @@ function AdminBlogForm({ initialData, onSubmit, onCancel }: AdminBlogFormProps) 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Full Blog Content *</label>
           <div className="bg-white rounded-lg border border-gray-300 overflow-hidden">
-            <ReactQuill 
-              theme="snow" 
+            <EditorWrapper 
               value={formData.content} 
-              onChange={handleContentChange} 
-              modules={modules}
-              className="h-96 pb-12" // pb-12 is needed because quill's container includes the toolbar
+              onChange={(e: any) => handleContentChange(e.target.value)} 
+              containerProps={{ style: { height: '400px', resize: 'vertical' } }}
             />
           </div>
         </div>
