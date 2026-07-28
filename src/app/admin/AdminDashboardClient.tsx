@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Lead, Review } from '@/lib/db';
 import Button from '@/components/ui/Button';
 import { Star } from 'lucide-react';
+import AdminPackagesTab from '@/components/admin/AdminPackagesTab';
 
 export default function AdminDashboardClient({ 
   initialLeads, 
@@ -15,7 +16,7 @@ export default function AdminDashboardClient({
 }) {
   const [leads, setLeads] = useState<Lead[]>(initialLeads);
   const [reviews, setReviews] = useState<Review[]>(initialReviews || []);
-  const [activeTab, setActiveTab] = useState<'leads' | 'reviews'>('leads');
+  const [activeTab, setActiveTab] = useState<'leads' | 'reviews' | 'packages'>('leads');
   const [isAddingReview, setIsAddingReview] = useState(false);
   const [newReview, setNewReview] = useState({ name: '', rating: 5, quote: '' });
   
@@ -100,7 +101,7 @@ export default function AdminDashboardClient({
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-6 rounded-2xl shadow-sm">
           <div>
             <h1 className="text-2xl font-bold text-primary">Admin Dashboard</h1>
-            <p className="text-text-secondary mt-1">Manage your business inquiries and reviews</p>
+            <p className="text-text-secondary mt-1">Manage your business inquiries, reviews, and packages</p>
           </div>
           <Button variant="outline" size="sm" onClick={handleLogout}>
             Sign Out
@@ -117,6 +118,13 @@ export default function AdminDashboardClient({
             {activeTab === 'leads' && <span className="absolute bottom-0 left-0 w-full h-1 bg-primary rounded-t-full"></span>}
           </button>
           <button 
+            onClick={() => setActiveTab('packages')}
+            className={`px-4 py-3 font-medium text-base whitespace-nowrap transition-colors relative ${activeTab === 'packages' ? 'text-primary' : 'text-text-secondary hover:text-text-primary'}`}
+          >
+            Tour Packages
+            {activeTab === 'packages' && <span className="absolute bottom-0 left-0 w-full h-1 bg-primary rounded-t-full"></span>}
+          </button>
+          <button 
             onClick={() => setActiveTab('reviews')}
             className={`px-4 py-3 font-medium text-base whitespace-nowrap transition-colors relative ${activeTab === 'reviews' ? 'text-primary' : 'text-text-secondary hover:text-text-primary'}`}
           >
@@ -124,6 +132,13 @@ export default function AdminDashboardClient({
             {activeTab === 'reviews' && <span className="absolute bottom-0 left-0 w-full h-1 bg-primary rounded-t-full"></span>}
           </button>
         </div>
+
+        {/* Tab Content: PACKAGES */}
+        {activeTab === 'packages' && (
+          <div className="animate-fade-in-up">
+            <AdminPackagesTab />
+          </div>
+        )}
 
         {/* Tab Content: LEADS */}
         {activeTab === 'leads' && (

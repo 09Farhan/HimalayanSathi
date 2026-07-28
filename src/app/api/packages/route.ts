@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from 'next/server';
-import { packages } from '@/data/packages';
+import { db } from '@/lib/db';
 
 export async function GET(request: NextRequest) {
   try {
@@ -9,7 +9,8 @@ export async function GET(request: NextRequest) {
     const type = searchParams.get('type');
     const featured = searchParams.get('featured');
     
-    let filteredPackages = packages;
+    // Fetch all from DB
+    let filteredPackages = await db.getPackages();
     
     if (region) {
       filteredPackages = filteredPackages.filter(
@@ -35,6 +36,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(filteredPackages);
   } catch (error) {
+    console.error('Failed to fetch packages:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }

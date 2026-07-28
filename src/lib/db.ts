@@ -157,5 +157,89 @@ export const db = {
       console.error('Failed to delete review', e);
       return { success: false };
     }
+  },
+
+  // Package Methods
+  getPackages: async (filter: any = {}): Promise<any[]> => {
+    try {
+      const client = await getDbClient();
+      const collection = client.db().collection('packages');
+      const packages = await collection.find(filter).toArray();
+      
+      return packages.map(pkg => ({
+        ...pkg,
+        id: pkg._id?.toString(),
+        _id: pkg._id?.toString()
+      }));
+    } catch (e) {
+      console.error('Failed to get packages from MongoDB', e);
+      return [];
+    }
+  },
+
+  getPackageBySlug: async (slug: string): Promise<any | null> => {
+    try {
+      const client = await getDbClient();
+      const collection = client.db().collection('packages');
+      const pkg = await collection.findOne({ slug });
+      
+      if (!pkg) return null;
+      
+      return {
+        ...pkg,
+        id: pkg._id?.toString(),
+        _id: pkg._id?.toString()
+      };
+    } catch (e) {
+      console.error('Failed to get package by slug', e);
+      return null;
+    }
+  },
+
+  insertPackage: async (pkg: any) => {
+    try {
+      const client = await getDbClient();
+      const collection = client.db().collection('packages');
+      
+      const newPackage = {
+        ...pkg,
+        createdAt: new Date().toISOString()
+      };
+      
+      const result = await collection.insertOne(newPackage);
+      return { success: true, id: result.insertedId.toString() };
+    } catch (e) {
+      console.error('Failed to insert package', e);
+      return { success: false, error: 'Failed to save package' };
+    }
+  },
+
+  updatePackage: async (id: string, updateData: any) => {
+    try {
+      const client = await getDbClient();
+      const collection = client.db().collection('packages');
+      
+      await collection.updateOne(
+        { _id: new ObjectId(id) },
+        { $set: updateData }
+      );
+      return { success: true };
+    } catch (e) {
+      console.error('Failed to update package', e);
+      return { success: false, error: 'Failed to update package' };
+    }
+  },
+
+  deletePackage: async (id: string) => {
+    try {
+      const client = await getDbClient();
+      const collection = client.db().collection('packages');
+      
+      await collection.deleteOne({ _id: new ObjectId(id) });
+      return { success: true };
+    } catch (e) {
+      console.error('Failed to delete package', e);
+      return { success: false };
+    }
   }
 };
