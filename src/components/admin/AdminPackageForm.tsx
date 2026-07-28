@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Package } from '@/lib/types';
 import Button from '@/components/ui/Button';
 import { CldUploadWidget } from 'next-cloudinary';
@@ -12,7 +12,32 @@ interface AdminPackageFormProps {
   onCancel: () => void;
 }
 
-export default function AdminPackageForm({ initialData, onSubmit, onCancel }: AdminPackageFormProps) {
+class FormErrorBoundary extends React.Component<{children: React.ReactNode}, {hasError: boolean, error: any}> {
+  constructor(props: {children: React.ReactNode}) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+  static getDerivedStateFromError(error: any) {
+    return { hasError: true, error };
+  }
+  render() {
+    if (this.state.hasError) {
+      return <div className="p-10 bg-red-100 text-red-900 border border-red-500 rounded">
+        <h2 className="font-bold text-lg mb-2">Form Crashed!</h2>
+        <pre className="text-xs whitespace-pre-wrap">{this.state.error?.toString()}</pre>
+        <pre className="text-xs whitespace-pre-wrap mt-2">{this.state.error?.stack}</pre>
+        <Button onClick={() => this.setState({hasError: false})} className="mt-4">Try Again</Button>
+      </div>;
+    }
+    return this.props.children;
+  }
+}
+
+export default function AdminPackageFormWrapper(props: AdminPackageFormProps) {
+  return <FormErrorBoundary><AdminPackageForm {...props} /></FormErrorBoundary>;
+}
+
+function AdminPackageForm({ initialData, onSubmit, onCancel }: AdminPackageFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState<any>({
     title: '',
