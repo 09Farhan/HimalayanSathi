@@ -9,10 +9,10 @@ export const FOOTER_LINKS = [
   {
     title: 'Destinations',
     links: [
-      { label: 'Sikkim', href: '/destinations#sikkim' },
-      { label: 'Darjeeling', href: '/destinations#darjeeling' },
-      { label: 'Bhutan', href: '/destinations#bhutan' },
-      { label: 'North East India', href: '/destinations#northeast' },
+      { label: 'Sikkim', href: '/destinations?region=sikkim' },
+      { label: 'Darjeeling', href: '/destinations?region=darjeeling' },
+      { label: 'Bhutan', href: '/destinations?region=bhutan' },
+      { label: 'North East India', href: '/destinations?region=northeast' },
     ],
   },
   {

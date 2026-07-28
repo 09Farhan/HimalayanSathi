@@ -13,6 +13,16 @@ export default function DestinationsPage() {
   const [activeRegion, setActiveRegion] = useState<string>('all');
 
   useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const regionParam = params.get('region');
+      if (regionParam && ['darjeeling', 'sikkim', 'bhutan', 'northeast'].includes(regionParam)) {
+        setActiveRegion(regionParam);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
     const fetchDestinations = async () => {
       try {
         // Fallback or API call
