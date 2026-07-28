@@ -23,13 +23,13 @@ export default function Button({
   type = 'button',
   ...props
 }: ButtonProps) {
-  const baseStyles = 'inline-flex items-center justify-center rounded-xl transition-all font-medium focus-ring';
+  const baseStyles = 'inline-flex items-center justify-center rounded-full transition-all duration-300 font-semibold focus-ring';
   
   const variants = {
-    primary: 'gradient-primary text-white hover:scale-105 hover:shadow-card disabled:opacity-70 disabled:hover:scale-100 disabled:hover:shadow-none',
-    secondary: 'bg-[var(--color-secondary)] text-white hover:bg-[var(--color-secondary-light)] disabled:opacity-70',
-    outline: 'border-2 border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white disabled:opacity-70',
-    accent: 'gradient-accent text-[var(--color-text-primary)] hover:pulse-glow disabled:opacity-70'
+    primary: 'gradient-primary text-white shadow-md hover:shadow-lg hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:translate-y-0 disabled:hover:shadow-md',
+    secondary: 'bg-[var(--color-secondary)] text-white shadow-sm hover:shadow-md hover:bg-[var(--color-secondary-light)] disabled:opacity-70',
+    outline: 'border border-[var(--color-primary-light)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white disabled:opacity-70',
+    accent: 'gradient-accent text-primary-dark shadow-[0_4px_14px_0_rgba(214,158,46,0.39)] hover:shadow-[0_6px_20px_rgba(214,158,46,0.23)] hover:-translate-y-0.5 disabled:opacity-70'
   };
 
   const sizes = {

@@ -89,72 +89,72 @@ export default async function PackageDetailPage({ params }: { params: Promise<{ 
       </section>
 
       {/* Quick Info Bar */}
-      <div className="bg-white shadow-md relative z-20">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 divide-x divide-gray-100">
-            <div className="flex items-center gap-3 pl-0">
-              <div className="bg-primary/10 p-3 rounded-full text-primary shrink-0">
+      <div className="bg-surface-card shadow-lg shadow-black/5 relative z-20">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6 divide-x-0 md:divide-x divide-surface-muted">
+            <div className="flex items-center gap-4 pl-0">
+              <div className="bg-primary-light/10 p-3 rounded-2xl text-primary-light shrink-0">
                 <Clock className="w-6 h-6" />
               </div>
               <div>
-                <p className="text-xs text-gray-500 font-medium uppercase">Duration</p>
-                <p className="font-semibold text-gray-900">{pkg.duration}</p>
+                <p className="text-xs text-text-muted font-bold tracking-wider uppercase mb-1">Duration</p>
+                <p className="font-bold text-primary-dark">{pkg.duration}</p>
               </div>
             </div>
             
-            <div className="flex items-center gap-3 pl-6">
-              <div className="bg-accent/10 p-3 rounded-full text-accent shrink-0">
+            <div className="flex items-center gap-4 md:pl-6">
+              <div className="bg-accent/15 p-3 rounded-2xl text-accent shrink-0">
                 <MapPin className="w-6 h-6" />
               </div>
               <div>
-                <p className="text-xs text-gray-500 font-medium uppercase">Destination</p>
-                <p className="font-semibold text-gray-900 truncate">{pkg.destination}</p>
+                <p className="text-xs text-text-muted font-bold tracking-wider uppercase mb-1">Destination</p>
+                <p className="font-bold text-primary-dark truncate">{pkg.destination}</p>
               </div>
             </div>
             
-            <div className="flex items-center gap-3 pl-6">
-              <div className="bg-green-100 p-3 rounded-full text-green-600 shrink-0">
+            <div className="flex items-center gap-4 pl-0 md:pl-6">
+              <div className="bg-secondary-light/15 p-3 rounded-2xl text-secondary-light shrink-0">
                 <IndianRupee className="w-6 h-6" />
               </div>
               <div>
-                <p className="text-xs text-gray-500 font-medium uppercase">Starting Price</p>
-                <p className="font-semibold text-gray-900">₹{pkg.startingPrice.toLocaleString('en-IN')}</p>
+                <p className="text-xs text-text-muted font-bold tracking-wider uppercase mb-1">Starting Price</p>
+                <p className="font-bold text-primary-dark">₹{pkg.startingPrice.toLocaleString('en-IN')}</p>
               </div>
             </div>
             
-            <div className="flex items-center gap-3 pl-6">
-              <div className="bg-blue-100 p-3 rounded-full text-blue-600 shrink-0">
+            <div className="flex items-center gap-4 md:pl-6">
+              <div className="bg-primary/10 p-3 rounded-2xl text-primary shrink-0">
                 <Users className="w-6 h-6" />
               </div>
               <div>
-                <p className="text-xs text-gray-500 font-medium uppercase">Tour Type</p>
-                <p className="font-semibold text-gray-900 capitalize">{pkg.type}</p>
+                <p className="text-xs text-text-muted font-bold tracking-wider uppercase mb-1">Tour Type</p>
+                <p className="font-bold text-primary-dark capitalize">{pkg.type}</p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 md:px-8 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
           
           {/* Left Content (Itinerary & Details) */}
-          <div className="lg:col-span-2 space-y-12">
+          <div className="lg:col-span-2 space-y-16">
             
             {/* Itinerary Section */}
             <section>
-              <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8 border-b pb-4">
+              <h2 className="text-3xl font-heading font-bold text-primary-dark mb-10 border-b border-surface-muted pb-4">
                 Tour Itinerary
               </h2>
-              <div className="space-y-0 relative before:absolute before:inset-0 before:ml-6 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-300 before:to-transparent">
+              <div className="space-y-0 relative before:absolute before:inset-0 before:ml-6 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-surface-muted before:to-transparent">
                 {pkg.itinerary.map((day: any, index: number) => (
                   <div key={day.day || index} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active py-6">
-                    <div className="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-accent text-white font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                    <div className="flex items-center justify-center w-12 h-12 rounded-full border-[3px] border-white bg-accent text-primary-dark font-bold shadow-md shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-transform duration-300 group-hover:scale-110">
                       D{day.day}
                     </div>
-                    <div className="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-white p-6 rounded-2xl shadow-sm border border-gray-100 transition-all hover:shadow-md">
-                      <h3 className="font-bold text-lg text-gray-900 mb-2">{day.title}</h3>
-                      <p className="text-gray-600 text-sm leading-relaxed">{day.description}</p>
+                    <div className="w-[calc(100%-4rem)] md:w-[calc(50%-4rem)] bg-surface-card p-8 rounded-3xl shadow-sm border border-surface-muted transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+                      <h3 className="font-bold text-lg text-primary-dark mb-3">{day.title}</h3>
+                      <p className="text-text-secondary text-sm leading-relaxed">{day.description}</p>
                     </div>
                   </div>
                 ))}
@@ -162,7 +162,7 @@ export default async function PackageDetailPage({ params }: { params: Promise<{ 
             </section>
 
             {/* Inclusions / Exclusions */}
-            <section className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <section className="bg-surface-card p-8 md:p-10 rounded-3xl shadow-sm border border-surface-muted">
               <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">What's Included</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
@@ -233,14 +233,15 @@ export default async function PackageDetailPage({ params }: { params: Promise<{ 
 
           {/* Right Sidebar (Enquiry Form) */}
           <div className="lg:col-span-1">
-            <div className="sticky top-24">
-              <div className="bg-primary text-white p-6 rounded-t-2xl">
-                <h3 className="text-xl font-heading font-bold mb-2">Enquire About This Package</h3>
-                <p className="text-primary-light text-sm opacity-90">
+            <div className="sticky top-28">
+              <div className="bg-primary-dark text-white p-8 rounded-t-3xl shadow-lg shadow-black/5 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-16 translate-x-12 blur-2xl"></div>
+                <h3 className="text-xl font-heading font-bold mb-3 relative z-10">Enquire About This Package</h3>
+                <p className="text-white/70 text-sm leading-relaxed relative z-10">
                   Fill out the form below and our travel experts will get in touch with you shortly.
                 </p>
               </div>
-              <div className="-mt-4">
+              <div className="-mt-6 relative z-20">
                 <ContactForm />
               </div>
             </div>

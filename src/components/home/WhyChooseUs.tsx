@@ -119,11 +119,11 @@ export default function WhyChooseUs() {
         </div>
 
         {/* Feature cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
           {features.map((feature, index) => (
             <div
               key={feature.title}
-              className={`group p-6 rounded-2xl bg-surface border border-surface-muted hover:border-primary-light/30 transition-all duration-500 hover:-translate-y-2 ${
+              className={`group p-8 rounded-3xl bg-surface-card border border-transparent hover:border-accent/10 transition-all duration-500 hover:-translate-y-2 ${
                 inView ? "animate-fade-in-up" : "opacity-0"
               }`}
               style={{

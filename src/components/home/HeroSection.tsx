@@ -85,20 +85,20 @@ export default function HeroSection() {
 
         {/* CTA Buttons */}
         <div
-          className={`flex flex-col sm:flex-row justify-center items-center gap-4 space-y-4 sm:space-y-0 mt-8 w-full px-4 sm:px-0 transition-all duration-700 delay-500 ${
+          className={`flex flex-col sm:flex-row justify-center items-center gap-5 space-y-4 sm:space-y-0 mt-8 w-full px-4 sm:px-0 transition-all duration-700 delay-500 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
           <Link
             href="/packages"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-accent hover:bg-accent-light text-primary-dark font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-9 py-4 rounded-full bg-accent hover:bg-accent-light text-primary-dark font-bold text-lg transition-all duration-300 shadow-[0_4px_14px_0_rgba(214,158,46,0.39)] hover:shadow-[0_6px_20px_rgba(214,158,46,0.23)] hover:-translate-y-0.5"
           >
             <Calendar className="w-5 h-5" />
             View Tour Packages
           </Link>
           <Link
             href="/contact"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border-2 border-white/40 text-white font-semibold text-lg hover:bg-white/10 transition-all duration-300 hover:scale-105"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-9 py-4 rounded-full border border-white/60 text-white font-bold text-lg hover:bg-white hover:text-primary-dark transition-all duration-300 hover:-translate-y-0.5"
           >
             <Users className="w-5 h-5" />
             Plan Your Trip
@@ -107,7 +107,7 @@ export default function HeroSection() {
 
         {/* Quick stats */}
         <div
-          className={`grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mt-12 md:mt-16 transition-all duration-700 delay-700 ${
+          className={`grid grid-cols-2 md:grid-cols-4 gap-5 max-w-3xl mx-auto mt-12 md:mt-16 transition-all duration-700 delay-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
@@ -117,9 +117,9 @@ export default function HeroSection() {
             { value: "50+", label: "Tour Packages" },
             { value: "4.8★", label: "Average Rating" },
           ].map((stat) => (
-            <div key={stat.label} className="glass rounded-xl px-4 py-3 text-center">
-              <p className="text-2xl sm:text-3xl font-bold text-accent">{stat.value}</p>
-              <p className="text-xs sm:text-sm text-white/70">{stat.label}</p>
+            <div key={stat.label} className="glass rounded-2xl px-5 py-4 text-center border-white/20">
+              <p className="text-3xl sm:text-4xl font-bold text-accent mb-1">{stat.value}</p>
+              <p className="text-xs sm:text-sm font-medium text-white/90">{stat.label}</p>
             </div>
           ))}
         </div>

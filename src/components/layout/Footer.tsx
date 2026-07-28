@@ -47,9 +47,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-12">
           
           {/* Column 1: Brand Info */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-5">
             <Link href="/" className="group inline-block w-fit">
-              <div className="relative w-48 h-32 md:w-56 md:h-36 bg-[#faf8f5] rounded-2xl p-2 shadow-sm transition-transform duration-300 group-hover:scale-105">
+              <div className="relative w-48 h-32 md:w-56 md:h-36 bg-white rounded-3xl p-3 shadow-lg shadow-black/10 transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
                 <Image
                   src="/images/logo.png"
                   alt="Himalayan Sathi Logo"
@@ -58,8 +58,8 @@ export default function Footer() {
                 />
               </div>
             </Link>
-            <h4 className="font-medium text-accent">Your Trusted Himalayan Travel Companion</h4>
-            <p className="text-white/70 text-sm leading-relaxed mt-2">
+            <h4 className="font-heading text-lg text-accent-light">Your Trusted Himalayan Travel Companion</h4>
+            <p className="text-white/80 text-sm leading-relaxed mt-1">
               Discover the breathtaking beauty of the Himalayas with expertly crafted tours to Sikkim, Darjeeling, Bhutan, and Northeast India. We provide memorable experiences tailored to your desires.
             </p>
           </div>

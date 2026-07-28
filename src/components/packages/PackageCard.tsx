@@ -5,51 +5,51 @@ import { Package } from '@/lib/types';
 export default function PackageCard({ pkg }: { pkg: Package }) {
   return (
     <div 
-      className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group flex flex-col hover:-translate-y-1"
+      className="bg-white rounded-3xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-500 border border-transparent hover:border-accent/20 group flex flex-col hover:-translate-y-2"
     >
-      <div className="relative h-56 overflow-hidden">
+      <div className="relative h-60 overflow-hidden">
         <div className="absolute top-4 left-4 z-10 flex gap-2">
-          <span className="bg-primary/90 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
+          <span className="bg-primary/90 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg">
             {pkg.region}
           </span>
         </div>
         <div className="absolute top-4 right-4 z-10">
-          <span className="bg-white/90 backdrop-blur-sm text-gray-800 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1 shadow-sm">
-            <Clock className="w-3 h-3 text-accent" />
+          <span className="bg-white/95 backdrop-blur-md text-primary text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg">
+            <Clock className="w-3.5 h-3.5 text-accent" />
             {pkg.duration}
           </span>
         </div>
         <img
           src={pkg.image}
           alt={pkg.title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
       </div>
       
-      <div className="p-6 flex flex-col flex-grow">
-        <h3 className="text-xl font-bold font-heading text-gray-900 mb-2 line-clamp-1 group-hover:text-primary transition-colors">
+      <div className="p-7 flex flex-col flex-grow">
+        <h3 className="text-xl font-bold font-heading text-primary-dark mb-3 line-clamp-1 group-hover:text-primary transition-colors">
           {pkg.title}
         </h3>
-        <div className="flex items-center text-gray-500 text-sm mb-4">
-          <MapPin className="w-4 h-4 mr-1 text-accent" />
-          <span className="line-clamp-1">{pkg.destination}</span>
+        <div className="flex items-center text-text-muted text-sm mb-4">
+          <MapPin className="w-4 h-4 mr-1.5 text-accent" />
+          <span className="line-clamp-1 font-medium">{pkg.destination}</span>
         </div>
-        <p className="text-gray-600 text-sm mb-6 line-clamp-2 flex-grow">
+        <p className="text-text-secondary text-sm mb-6 line-clamp-2 flex-grow leading-relaxed">
           {pkg.shortDescription}
         </p>
         
-        <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+        <div className="flex items-center justify-between mt-auto pt-5 border-t border-surface-muted">
           <div>
-            <span className="text-xs text-gray-500 block mb-1">Starting from</span>
-            <div className="flex items-center text-lg font-bold text-gray-900">
+            <span className="text-xs text-text-muted font-medium block mb-1">Starting from</span>
+            <div className="flex items-center text-xl font-bold text-primary-dark">
               <IndianRupee className="w-4 h-4 mr-0.5" />
               {pkg.startingPrice.toLocaleString('en-IN')}
             </div>
           </div>
           <Link 
             href={`/packages/${pkg.slug}`}
-            className="px-5 py-2.5 bg-primary/10 text-primary hover:bg-primary hover:text-white rounded-lg font-medium transition-colors text-sm"
+            className="px-6 py-2.5 bg-surface-muted text-primary hover:bg-primary hover:text-white rounded-xl font-semibold transition-colors duration-300 text-sm"
           >
             View Details
           </Link>

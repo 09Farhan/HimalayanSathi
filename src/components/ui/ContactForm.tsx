@@ -54,7 +54,7 @@ export default function ContactForm({ source }: { source?: string }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white p-6 md:p-8 rounded-2xl shadow-card">
+    <form onSubmit={handleSubmit} className="bg-surface-card p-6 md:p-8 rounded-3xl shadow-card border border-surface-muted">
       {status === 'success' && (
         <div className="mb-6 p-4 bg-green-50 text-green-800 rounded-xl flex items-center gap-3 animate-fade-in-up">
           <CheckCircle className="w-5 h-5 text-green-500" />

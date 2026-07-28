@@ -62,54 +62,56 @@ export default function FeaturedPackages() {
             {packages.map((pkg) => (
               <div
                 key={pkg.id}
-                className="group bg-surface-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2"
+                className="group bg-surface-card rounded-3xl overflow-hidden transition-all duration-500 hover:-translate-y-2 border border-transparent hover:border-accent/20"
                 style={{ boxShadow: "var(--shadow-card)" }}
                 onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-card-hover)")}
                 onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-card)")}
               >
                 {/* Image */}
-                <div className="relative h-52 overflow-hidden">
+                <div className="relative h-60 overflow-hidden">
                   <Image
                     src={pkg.image}
                     alt={pkg.title}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
                   {/* Duration badge */}
-                  <span className="absolute top-3 right-3 inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/90 text-primary text-xs font-semibold">
-                    <Clock className="w-3 h-3" />
+                  <span className="absolute top-4 right-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-md text-primary text-xs font-bold shadow-lg">
+                    <Clock className="w-3.5 h-3.5 text-accent" />
                     {pkg.duration}
                   </span>
                   {/* Region badge */}
-                  <span className="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-accent/90 text-primary-dark text-xs font-bold uppercase tracking-wider">
+                  <span className="absolute top-4 left-4 inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-primary/90 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-widest shadow-lg">
                     {pkg.region}
                   </span>
                 </div>
 
                 {/* Content */}
-                <div className="p-5">
-                  <h3 className="font-heading text-lg font-bold text-text-primary mb-2 group-hover:text-primary-light transition-colors">
+                <div className="p-7">
+                  <h3 className="font-heading text-xl font-bold text-primary-dark mb-3 group-hover:text-primary transition-colors line-clamp-1">
                     {pkg.title}
                   </h3>
-                  <p className="text-text-muted text-sm mb-4 line-clamp-2">
+                  <p className="text-text-secondary text-sm mb-6 line-clamp-2 leading-relaxed">
                     {pkg.shortDescription}
                   </p>
 
                   {/* Price + CTA */}
-                  <div className="flex items-center justify-between pt-3 border-t border-surface-muted">
-                    <div className="flex items-center gap-1 text-primary font-bold">
-                      <IndianRupee className="w-4 h-4" />
-                      <span className="text-lg">{pkg.startingPrice.toLocaleString("en-IN")}</span>
-                      <span className="text-xs text-text-muted font-normal">/person</span>
+                  <div className="flex items-center justify-between pt-5 border-t border-surface-muted">
+                    <div>
+                      <span className="text-xs text-text-muted font-medium block mb-1">Starting from</span>
+                      <div className="flex items-center gap-1 text-primary-dark font-bold text-xl">
+                        <IndianRupee className="w-4 h-4 mr-[-4px]" />
+                        <span>{pkg.startingPrice.toLocaleString("en-IN")}</span>
+                      </div>
                     </div>
                     <Link
                       href={`/packages/${pkg.slug}`}
-                      className="inline-flex items-center gap-1 text-sm font-semibold text-accent hover:text-accent-light transition-colors"
+                      className="inline-flex items-center justify-center px-5 py-2.5 bg-surface-muted text-primary hover:bg-primary hover:text-white rounded-xl text-sm font-semibold transition-colors duration-300 group/btn"
                     >
                       Details
-                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                      <ArrowRight className="w-4 h-4 ml-1.5 transition-transform group-hover/btn:translate-x-1" />
                     </Link>
                   </div>
                 </div>

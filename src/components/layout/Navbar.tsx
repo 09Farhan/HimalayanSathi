@@ -115,10 +115,10 @@ export default function Navbar() {
             </nav>
 
             {/* CTA & Mobile Toggle */}
-            <div className="flex items-center gap-4 z-50">
+            <div className="flex items-center gap-5 z-50">
               <Link
                 href="/contact"
-                className="hidden md:inline-flex items-center justify-center px-6 py-2.5 text-sm font-bold text-primary bg-accent hover:bg-accent-light rounded-full transition-colors duration-300 shadow-md hover:shadow-lg"
+                className="hidden md:inline-flex items-center justify-center px-7 py-2.5 text-sm font-semibold text-primary bg-accent hover:bg-accent-light rounded-full transition-all duration-300 shadow-[0_4px_14px_0_rgba(214,158,46,0.39)] hover:shadow-[0_6px_20px_rgba(214,158,46,0.23)] hover:-translate-y-0.5"
               >
                 Book Now
               </Link>
