@@ -18,6 +18,7 @@ export interface Destination {
 export interface Package {
   id: string;
   title: string;
+  slug?: string;
   destination: string;
   region: "darjeeling" | "sikkim" | "bhutan" | "northeast";
   duration: string;
