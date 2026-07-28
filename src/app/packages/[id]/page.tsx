@@ -90,45 +90,45 @@ export default async function PackageDetailPage({ params }: { params: Promise<{ 
 
       {/* Quick Info Bar */}
       <div className="bg-surface-card shadow-lg shadow-black/5 relative z-20">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6 divide-x-0 md:divide-x divide-surface-muted">
-            <div className="flex items-center gap-4 pl-0">
-              <div className="bg-primary-light/10 p-3 rounded-2xl text-primary-light shrink-0">
-                <Clock className="w-6 h-6" />
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-6 md:py-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-6 gap-x-4 md:gap-6 divide-x-0 md:divide-x divide-surface-muted">
+            <div className="flex items-center gap-3 md:gap-4 pl-0">
+              <div className="bg-primary-light/10 p-2.5 md:p-3 rounded-2xl text-primary-light shrink-0">
+                <Clock className="w-5 h-5 md:w-6 md:h-6" />
               </div>
-              <div>
-                <p className="text-xs text-text-muted font-bold tracking-wider uppercase mb-1">Duration</p>
-                <p className="font-bold text-primary-dark">{pkg.duration}</p>
-              </div>
-            </div>
-            
-            <div className="flex items-center gap-4 md:pl-6">
-              <div className="bg-accent/15 p-3 rounded-2xl text-accent shrink-0">
-                <MapPin className="w-6 h-6" />
-              </div>
-              <div>
-                <p className="text-xs text-text-muted font-bold tracking-wider uppercase mb-1">Destination</p>
-                <p className="font-bold text-primary-dark truncate">{pkg.destination}</p>
+              <div className="min-w-0 flex-1">
+                <p className="text-[10px] md:text-xs text-text-muted font-bold tracking-wider uppercase mb-0.5 md:mb-1">Duration</p>
+                <p className="font-bold text-sm md:text-base text-primary-dark truncate">{pkg.duration}</p>
               </div>
             </div>
             
-            <div className="flex items-center gap-4 pl-0 md:pl-6">
-              <div className="bg-secondary-light/15 p-3 rounded-2xl text-secondary-light shrink-0">
-                <IndianRupee className="w-6 h-6" />
+            <div className="flex items-center gap-3 md:gap-4 md:pl-6">
+              <div className="bg-accent/15 p-2.5 md:p-3 rounded-2xl text-accent shrink-0">
+                <MapPin className="w-5 h-5 md:w-6 md:h-6" />
               </div>
-              <div>
-                <p className="text-xs text-text-muted font-bold tracking-wider uppercase mb-1">Starting Price</p>
-                <p className="font-bold text-primary-dark">₹{pkg.startingPrice.toLocaleString('en-IN')}</p>
+              <div className="min-w-0 flex-1">
+                <p className="text-[10px] md:text-xs text-text-muted font-bold tracking-wider uppercase mb-0.5 md:mb-1">Destination</p>
+                <p className="font-bold text-sm md:text-base text-primary-dark truncate">{pkg.destination}</p>
               </div>
             </div>
             
-            <div className="flex items-center gap-4 md:pl-6">
-              <div className="bg-primary/10 p-3 rounded-2xl text-primary shrink-0">
-                <Users className="w-6 h-6" />
+            <div className="flex items-center gap-3 md:gap-4 pl-0 md:pl-6">
+              <div className="bg-secondary-light/15 p-2.5 md:p-3 rounded-2xl text-secondary-light shrink-0">
+                <IndianRupee className="w-5 h-5 md:w-6 md:h-6" />
               </div>
-              <div>
-                <p className="text-xs text-text-muted font-bold tracking-wider uppercase mb-1">Tour Type</p>
-                <p className="font-bold text-primary-dark capitalize">{pkg.type}</p>
+              <div className="min-w-0 flex-1">
+                <p className="text-[10px] md:text-xs text-text-muted font-bold tracking-wider uppercase mb-0.5 md:mb-1">Starting Price</p>
+                <p className="font-bold text-sm md:text-base text-primary-dark truncate">₹{pkg.startingPrice.toLocaleString('en-IN')}</p>
+              </div>
+            </div>
+            
+            <div className="flex items-center gap-3 md:gap-4 md:pl-6">
+              <div className="bg-primary/10 p-2.5 md:p-3 rounded-2xl text-primary shrink-0">
+                <Users className="w-5 h-5 md:w-6 md:h-6" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="text-[10px] md:text-xs text-text-muted font-bold tracking-wider uppercase mb-0.5 md:mb-1">Tour Type</p>
+                <p className="font-bold text-sm md:text-base text-primary-dark capitalize truncate">{pkg.type}</p>
               </div>
             </div>
           </div>
