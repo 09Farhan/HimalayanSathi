@@ -53,7 +53,7 @@ export async function PATCH(request: NextRequest) {
 
   try {
     const body = await request.json();
-    const { id, ...updateData } = body;
+    const { id, _id, ...updateData } = body;
 
     if (!id) {
       return NextResponse.json({ error: 'Missing id' }, { status: 400 });
