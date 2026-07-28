@@ -1,26 +1,28 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { Calendar } from 'lucide-react';
 import SectionContainer from '@/components/ui/SectionContainer';
 import { Destination } from '@/lib/types';
 
-export default function DestinationsPage() {
+function DestinationsContent() {
+  const searchParams = useSearchParams();
+  const regionQuery = searchParams.get('region');
+
   const [destinations, setDestinations] = useState<Destination[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeRegion, setActiveRegion] = useState<string>('all');
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      const regionParam = params.get('region');
-      if (regionParam && ['darjeeling', 'sikkim', 'bhutan', 'northeast'].includes(regionParam)) {
-        setActiveRegion(regionParam);
-      }
+    if (regionQuery && ['darjeeling', 'sikkim', 'bhutan', 'northeast'].includes(regionQuery)) {
+      setActiveRegion(regionQuery);
+    } else if (!regionQuery) {
+      setActiveRegion('all');
     }
-  }, []);
+  }, [regionQuery]);
 
   useEffect(() => {
     const fetchDestinations = async () => {
@@ -192,5 +194,17 @@ export default function DestinationsPage() {
         )}
       </SectionContainer>
     </main>
+  );
+}
+
+export default function DestinationsPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-surface flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+      </div>
+    }>
+      <DestinationsContent />
+    </Suspense>
   );
 }
