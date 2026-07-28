@@ -5,7 +5,6 @@ import { db } from '@/lib/db';
 import { Calendar, User, ArrowLeft, Tag } from 'lucide-react';
 import ContactForm from '@/components/ui/ContactForm';
 // We need to render raw HTML for the blog content
-import 'react-quill/dist/quill.snow.css'; 
 
 // Generate metadata for SEO
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
@@ -83,9 +82,8 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
 
             <article className="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-gray-100">
               {/* Quill outputs html, so we use dangerouslySetInnerHTML */}
-              {/* We wrap it in 'ql-editor' to apply quill's default styling, ensuring lists and headings look right */}
               <div 
-                className="ql-editor prose prose-lg max-w-none prose-headings:font-heading prose-headings:text-primary-dark prose-a:text-primary hover:prose-a:text-accent"
+                className="prose prose-lg max-w-none prose-headings:font-heading prose-headings:text-primary-dark prose-a:text-primary hover:prose-a:text-accent"
                 dangerouslySetInnerHTML={{ __html: blog.content }}
               />
 
