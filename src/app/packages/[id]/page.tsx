@@ -122,8 +122,8 @@ export default async function PackageDetailPage({ params }: { params: Promise<{ 
                 Tour Itinerary
               </h2>
               <div className="space-y-0 relative before:absolute before:inset-0 before:ml-6 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-300 before:to-transparent">
-                {pkg.itinerary.map((day, index) => (
-                  <div key={day.day} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active py-6">
+                {pkg.itinerary.map((day: any, index: number) => (
+                  <div key={day.day || index} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active py-6">
                     <div className="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-accent text-white font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
                       D{day.day}
                     </div>
@@ -145,7 +145,7 @@ export default async function PackageDetailPage({ params }: { params: Promise<{ 
                     <Check className="w-5 h-5 text-green-500" /> Inclusions
                   </h3>
                   <ul className="space-y-3">
-                    {pkg.inclusions.map((item, i) => (
+                    {pkg.inclusions.map((item: any, i: number) => (
                       <li key={i} className="flex items-start gap-3 text-gray-600 text-sm">
                         <Check className="w-4 h-4 text-green-500 shrink-0 mt-0.5" />
                         <span>{item}</span>
@@ -158,7 +158,7 @@ export default async function PackageDetailPage({ params }: { params: Promise<{ 
                     <X className="w-5 h-5 text-red-500" /> Exclusions
                   </h3>
                   <ul className="space-y-3">
-                    {pkg.exclusions.map((item, i) => (
+                    {pkg.exclusions.map((item: any, i: number) => (
                       <li key={i} className="flex items-start gap-3 text-gray-600 text-sm">
                         <X className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
                         <span>{item}</span>
