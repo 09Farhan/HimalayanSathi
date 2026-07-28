@@ -94,7 +94,7 @@ export default function HeroSection() {
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-accent hover:bg-accent-light text-primary-dark font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
           >
             <Calendar className="w-5 h-5" />
-            View Sikkim Tour Packages
+            View Tour Packages
           </Link>
           <Link
             href="/contact"
