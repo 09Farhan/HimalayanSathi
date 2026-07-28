@@ -241,5 +241,90 @@ export const db = {
       console.error('Failed to delete package', e);
       return { success: false };
     }
+  },
+
+  // Blog Methods
+  getBlogs: async (filter: any = {}): Promise<any[]> => {
+    try {
+      const client = await getDbClient();
+      const collection = client.db().collection('blogs');
+      const blogs = await collection.find(filter).sort({ date: -1 }).toArray();
+      
+      return blogs.map(blog => ({
+        ...blog,
+        id: blog._id?.toString(),
+        _id: blog._id?.toString()
+      }));
+    } catch (e) {
+      console.error('Failed to get blogs from MongoDB', e);
+      return [];
+    }
+  },
+
+  getBlogBySlug: async (slug: string): Promise<any | null> => {
+    try {
+      const client = await getDbClient();
+      const collection = client.db().collection('blogs');
+      const blog = await collection.findOne({ slug });
+      
+      if (!blog) return null;
+      
+      return {
+        ...blog,
+        id: blog._id?.toString(),
+        _id: blog._id?.toString()
+      };
+    } catch (e) {
+      console.error('Failed to get blog by slug', e);
+      return null;
+    }
+  },
+
+  insertBlog: async (blog: any) => {
+    try {
+      const client = await getDbClient();
+      const collection = client.db().collection('blogs');
+      
+      const newBlog = {
+        ...blog,
+        date: blog.date || new Date().toISOString(),
+        createdAt: new Date().toISOString()
+      };
+      
+      const result = await collection.insertOne(newBlog);
+      return { success: true, id: result.insertedId.toString() };
+    } catch (e) {
+      console.error('Failed to insert blog', e);
+      return { success: false, error: 'Failed to save blog' };
+    }
+  },
+
+  updateBlog: async (id: string, updateData: any) => {
+    try {
+      const client = await getDbClient();
+      const collection = client.db().collection('blogs');
+      
+      await collection.updateOne(
+        { _id: new ObjectId(id) },
+        { $set: updateData }
+      );
+      return { success: true };
+    } catch (e) {
+      console.error('Failed to update blog', e);
+      return { success: false, error: 'Failed to update blog' };
+    }
+  },
+
+  deleteBlog: async (id: string) => {
+    try {
+      const client = await getDbClient();
+      const collection = client.db().collection('blogs');
+      
+      await collection.deleteOne({ _id: new ObjectId(id) });
+      return { success: true };
+    } catch (e) {
+      console.error('Failed to delete blog', e);
+      return { success: false };
+    }
   }
 };

@@ -44,15 +44,21 @@ export interface ItineraryDay {
 
 /** A blog post / travel guide */
 export interface BlogPost {
+  _id?: any; // MongoDB ID
   id: string;
   title: string;
   slug: string;
   date: string;
-  category: string;
+  category?: string;
+  tags?: string[];
   excerpt: string;
   content: string;
   coverImage: string;
+  gallery?: string[];
   author: string;
+  status: 'published' | 'draft';
+  seoTitle?: string;
+  seoDescription?: string;
 }
 
 /** A customer testimonial or Google Review */

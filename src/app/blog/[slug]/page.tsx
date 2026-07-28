@@ -1,168 +1,146 @@
-import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
-import { Calendar, User, ArrowRight, ChevronRight } from 'lucide-react';
-import { blogPosts } from '@/data/blog';
+import { db } from '@/lib/db';
+import { Calendar, User, ArrowLeft, Tag } from 'lucide-react';
+import ContactForm from '@/components/ui/ContactForm';
+// We need to render raw HTML for the blog content
+import 'react-quill/dist/quill.snow.css'; 
 
-interface Props {
-  params: Promise<{
-    slug: string;
-  }>;
-}
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+// Generate metadata for SEO
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = blogPosts.find((p) => p.slug === slug);
+  const blog = await db.getBlogBySlug(slug);
   
-  if (!post) {
+  if (!blog || blog.status !== 'published') {
     return {
-      title: 'Post Not Found | Himalayan Sathi',
+      title: 'Blog Not Found | Himalayan Sathi',
     };
   }
-  
+
   return {
-    title: `${post.title} | Himalayan Sathi Tours & Travels`,
-    description: post.excerpt,
+    title: blog.seoTitle || `${blog.title} | Himalayan Sathi Tours`,
+    description: blog.seoDescription || blog.excerpt,
   };
 }
 
-export default async function BlogPostPage({ params }: Props) {
+export default async function BlogDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = blogPosts.find((p) => p.slug === slug);
+  const blog = await db.getBlogBySlug(slug);
   
-  if (!post) {
+  if (!blog || blog.status !== 'published') {
     notFound();
   }
 
-  // Get 3 other posts for the sidebar/bottom
-  const otherPosts = blogPosts.filter((p) => p.id !== post.id).slice(0, 3);
-  
-  // Split content by double newlines for paragraphs
-  const paragraphs = post.content.split('\n\n');
-
   return (
-    <main className="min-h-screen pb-20 bg-surface">
-      {/* Hero Section */}
-      <section className="relative h-[60vh] min-h-[400px] w-full">
-        <Image
-          src={post.coverImage}
-          alt={post.title}
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-black/60"></div>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="container mx-auto px-4 text-center text-white">
-            <span className="inline-block px-4 py-1.5 bg-accent text-white text-sm font-bold rounded-full mb-6">
-              {post.category}
-            </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 max-w-4xl mx-auto leading-tight">
-              {post.title}
-            </h1>
-            <div className="flex flex-wrap items-center justify-center gap-6 text-sm md:text-base opacity-90">
-              <div className="flex items-center">
-                <Calendar className="w-5 h-5 mr-2" />
-                {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-              </div>
-              <div className="flex items-center">
-                <User className="w-5 h-5 mr-2" />
-                {post.author}
-              </div>
+    <div className="bg-surface min-h-screen">
+      {/* Blog Hero Banner */}
+      <section className="relative h-[50vh] min-h-[400px] w-full">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={blog.coverImage || '/images/placeholder.jpg'}
+            alt={blog.title}
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/30"></div>
+        </div>
+        
+        <div className="absolute inset-0 z-10 flex flex-col justify-end pb-12 px-4 md:px-8 max-w-4xl mx-auto w-full text-center">
+          {blog.category && (
+            <div className="mb-4">
+              <span className="bg-primary px-4 py-1 text-white text-xs font-bold uppercase tracking-wider rounded-full">
+                {blog.category}
+              </span>
+            </div>
+          )}
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-6">
+            {blog.title}
+          </h1>
+          
+          <div className="flex items-center justify-center gap-6 text-white/90 text-sm md:text-base">
+            <div className="flex items-center gap-2">
+              <Calendar className="w-5 h-5 text-accent" />
+              {new Date(blog.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+            </div>
+            <div className="flex items-center gap-2">
+              <User className="w-5 h-5 text-accent" />
+              {blog.author}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Breadcrumbs */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center text-sm text-gray-500">
-            <Link href="/" className="hover:text-primary transition-colors">Home</Link>
-            <ChevronRight className="w-4 h-4 mx-2" />
-            <Link href="/blog" className="hover:text-primary transition-colors">Blog</Link>
-            <ChevronRight className="w-4 h-4 mx-2" />
-            <span className="text-primary font-medium truncate">{post.title}</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Content Section */}
-      <section className="container mx-auto px-4 py-12 lg:py-20">
-        <div className="flex flex-col lg:flex-row gap-12">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          
           {/* Main Content */}
-          <div className="lg:w-2/3">
-            <article className="prose prose-lg max-w-none prose-headings:font-heading prose-headings:text-primary prose-a:text-primary-light hover:prose-a:text-primary">
-              {paragraphs.map((para, index) => (
-                <p key={index} className="text-gray-700 leading-relaxed mb-6 text-lg">
-                  {para}
-                </p>
-              ))}
-            </article>
-            
-            {/* CTA Banner */}
-            <div className="mt-12 bg-primary-light/10 border border-primary-light/20 rounded-2xl p-8 text-center sm:text-left sm:flex sm:items-center sm:justify-between">
-              <div>
-                <h3 className="text-2xl font-heading font-bold text-primary mb-2">Ready to plan your trip?</h3>
-                <p className="text-gray-600 mb-6 sm:mb-0">Explore our curated tour packages tailored for you.</p>
-              </div>
-              <Link 
-                href="/packages" 
-                className="inline-flex items-center justify-center px-8 py-3 bg-primary text-white rounded-xl font-medium hover:bg-primary-dark transition-colors flex-shrink-0"
-              >
-                View Packages <ArrowRight className="w-5 h-5 ml-2" />
-              </Link>
-            </div>
-          </div>
+          <div className="lg:col-span-2">
+            <Link href="/blog" className="inline-flex items-center gap-2 text-primary hover:text-accent font-medium mb-8 transition-colors">
+              <ArrowLeft className="w-4 h-4" /> Back to all posts
+            </Link>
 
-          {/* Sidebar */}
-          <div className="lg:w-1/3 space-y-10">
-            <div>
-              <h3 className="text-xl font-heading font-bold text-primary mb-6 flex items-center">
-                <span className="w-8 h-1 bg-accent mr-3"></span>
-                Other Posts
-              </h3>
-              <div className="space-y-6">
-                {otherPosts.map((otherPost) => (
-                  <Link key={otherPost.id} href={`/blog/${otherPost.slug}`} className="group flex gap-4 items-start">
-                    <div className="relative w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
+            <article className="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-gray-100">
+              {/* Quill outputs html, so we use dangerouslySetInnerHTML */}
+              {/* We wrap it in 'ql-editor' to apply quill's default styling, ensuring lists and headings look right */}
+              <div 
+                className="ql-editor prose prose-lg max-w-none prose-headings:font-heading prose-headings:text-primary-dark prose-a:text-primary hover:prose-a:text-accent"
+                dangerouslySetInnerHTML={{ __html: blog.content }}
+              />
+
+              {/* Tags */}
+              {blog.tags && blog.tags.length > 0 && (
+                <div className="mt-12 pt-6 border-t border-gray-100 flex items-center flex-wrap gap-2">
+                  <Tag className="w-5 h-5 text-gray-400 mr-2" />
+                  {blog.tags.map((tag: string, index: number) => (
+                    <span key={index} className="bg-surface-muted px-3 py-1 rounded-md text-sm text-gray-600 font-medium">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </article>
+
+            {/* Gallery Section */}
+            {blog.gallery && blog.gallery.length > 0 && (
+              <section className="mt-12">
+                <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6 border-b pb-4">
+                  Photo Gallery
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {blog.gallery.map((imgUrl: string, index: number) => (
+                    <div key={index} className="relative h-64 rounded-xl overflow-hidden group shadow-sm hover:shadow-md transition-all">
                       <Image
-                        src={otherPost.coverImage}
-                        alt={otherPost.title}
+                        src={imgUrl}
+                        alt={`${blog.title} Gallery Image ${index + 1}`}
                         fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-110"
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
                       />
                     </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900 group-hover:text-primary transition-colors line-clamp-2 mb-1">
-                        {otherPost.title}
-                      </h4>
-                      <div className="text-xs text-gray-500 mb-2">
-                        {new Date(otherPost.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
-                      </div>
-                      <span className="text-xs font-medium text-accent">Read more</span>
-                    </div>
-                  </Link>
-                ))}
+                  ))}
+                </div>
+              </section>
+            )}
+          </div>
+
+          {/* Right Sidebar */}
+          <div className="lg:col-span-1">
+            <div className="sticky top-24">
+              <div className="bg-primary text-white p-6 rounded-t-2xl">
+                <h3 className="text-xl font-heading font-bold mb-2">Plan Your Trip</h3>
+                <p className="text-primary-light text-sm opacity-90">
+                  Inspired by this story? Fill out the form below to start planning your own Himalayan adventure.
+                </p>
+              </div>
+              <div className="-mt-4">
+                <ContactForm />
               </div>
             </div>
-            
-            <div className="bg-surface-dark text-white p-8 rounded-2xl shadow-card">
-              <h3 className="text-xl font-heading font-bold mb-4">Need Help Planning?</h3>
-              <p className="text-gray-300 mb-6 text-sm">
-                Our travel experts are ready to help you customize the perfect itinerary for your Himalayan adventure.
-              </p>
-              <Link 
-                href="/contact" 
-                className="block w-full py-3 px-4 bg-accent text-white text-center rounded-xl font-medium hover:bg-opacity-90 transition-colors"
-              >
-                Contact Us
-              </Link>
-            </div>
           </div>
+
         </div>
-      </section>
-    </main>
+      </div>
+    </div>
   );
 }

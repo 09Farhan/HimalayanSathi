@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
     
     if (category) {
       filteredPosts = filteredPosts.filter(
-        (post) => post.category.toLowerCase() === category.toLowerCase()
+        (post) => post.category?.toLowerCase() === category.toLowerCase()
       );
     }
 
