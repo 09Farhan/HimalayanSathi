@@ -1,16 +1,16 @@
 import { NextResponse, NextRequest } from 'next/server';
-import { destinations } from '@/data/destinations';
+import { db } from '@/lib/db';
 
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
     const region = searchParams.get('region');
     
-    let filteredDestinations = destinations;
+    let filteredDestinations = await db.getDestinations();
     
     if (region) {
-      filteredDestinations = destinations.filter(
-        (dest) => dest.region.toLowerCase() === region.toLowerCase()
+      filteredDestinations = filteredDestinations.filter(
+        (dest: any) => dest.region.toLowerCase() === region.toLowerCase()
       );
     }
 

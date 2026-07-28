@@ -163,16 +163,32 @@ export const db = {
     try {
       const client = await getDbClient();
       const collection = client.db().collection('destinations');
-      const destinations = await collection.find(filter).toArray();
+      const dbDestinations = await collection.find(filter).toArray();
       
-      return destinations.map(dest => ({
+      const mappedDbDestinations = dbDestinations.map(dest => ({
         ...dest,
         id: dest._id?.toString(),
         _id: dest._id?.toString()
       }));
+
+      // Merge with static destinations to ensure existing data is not lost
+      const { destinations } = await import('@/data/destinations');
+      
+      // We want to combine them, but avoid duplicates if they were migrated
+      const mergedDestinations: any[] = [...mappedDbDestinations];
+      
+      for (const staticDest of destinations) {
+        if (!mergedDestinations.find(d => d.slug === staticDest.slug || d.id === staticDest.id)) {
+          mergedDestinations.push(staticDest);
+        }
+      }
+
+      return mergedDestinations;
     } catch (e) {
       console.error('Failed to get destinations from MongoDB', e);
-      return [];
+      // Fallback completely to static if DB fails
+      const { destinations } = await import('@/data/destinations');
+      return destinations;
     }
   },
 
@@ -252,16 +268,31 @@ export const db = {
     try {
       const client = await getDbClient();
       const collection = client.db().collection('packages');
-      const packages = await collection.find(filter).toArray();
+      const dbPackages = await collection.find(filter).toArray();
       
-      return packages.map(pkg => ({
+      const mappedDbPackages = dbPackages.map(pkg => ({
         ...pkg,
         id: pkg._id?.toString(),
         _id: pkg._id?.toString()
       }));
+
+      // Merge with static packages to ensure existing data is not lost
+      const { packages } = await import('@/data/packages');
+      
+      const mergedPackages: any[] = [...mappedDbPackages];
+      
+      for (const staticPkg of packages) {
+        if (!mergedPackages.find(p => p.slug === staticPkg.slug || p.id === staticPkg.id)) {
+          mergedPackages.push(staticPkg);
+        }
+      }
+
+      return mergedPackages;
     } catch (e) {
       console.error('Failed to get packages from MongoDB', e);
-      return [];
+      // Fallback completely to static if DB fails
+      const { packages } = await import('@/data/packages');
+      return packages;
     }
   },
 
