@@ -128,7 +128,7 @@ function AdminPackageForm({ initialData, onSubmit, onCancel }: AdminPackageFormP
     return data.signature;
   };
 
-  const hasCloudinary = !!process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+  const hasCloudinary = !!(process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME && process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY);
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
@@ -239,7 +239,7 @@ function AdminPackageForm({ initialData, onSubmit, onCancel }: AdminPackageFormP
         <h3 className="font-semibold text-lg text-primary-dark border-b pb-2">Images</h3>
         {!hasCloudinary && (
           <div className="bg-yellow-50 text-yellow-800 p-4 rounded-lg text-sm mb-4">
-            <strong>Note:</strong> Cloudinary is not configured. Please paste direct image URLs below, or add NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME to Vercel environment variables to enable the upload widget.
+            <strong>Note:</strong> Cloudinary is not fully configured. Please paste direct image URLs below, or ensure BOTH <code>NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME</code> and <code>NEXT_PUBLIC_CLOUDINARY_API_KEY</code> are set in Vercel environment variables to enable the upload widget.
           </div>
         )}
         
