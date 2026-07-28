@@ -218,7 +218,7 @@ export default function AdminPackageForm({ initialData, onSubmit, onCancel }: Ad
                   </button>
                 </div>
               )}
-              <CldUploadWidget 
+              {/* <CldUploadWidget 
                 signatureEndpoint="/api/cloudinary/sign"
                 onSuccess={(result) => {
                   if (typeof result.info === 'object' && 'secure_url' in result.info) {
@@ -232,7 +232,7 @@ export default function AdminPackageForm({ initialData, onSubmit, onCancel }: Ad
                     <span className="text-gray-600 font-medium">{formData.image ? 'Replace Cover Image' : 'Upload Cover Image'}</span>
                   </button>
                 )}
-              </CldUploadWidget>
+              </CldUploadWidget> */}
               <input type="text" name="image" value={formData.image} onChange={handleChange} placeholder="Or paste image URL here" className="w-full px-4 py-2 rounded-lg border border-gray-300 text-sm" />
             </div>
           </div>
@@ -250,7 +250,7 @@ export default function AdminPackageForm({ initialData, onSubmit, onCancel }: Ad
               ))}
             </div>
             
-            <CldUploadWidget 
+              {/* <CldUploadWidget 
               signatureEndpoint="/api/cloudinary/sign"
               options={{ multiple: true }}
               onSuccess={(result) => {
@@ -265,7 +265,8 @@ export default function AdminPackageForm({ initialData, onSubmit, onCancel }: Ad
                   <span className="text-gray-600 font-medium">Add Gallery Images</span>
                 </button>
               )}
-            </CldUploadWidget>
+            </CldUploadWidget> */}
+            <input type="text" placeholder="Or paste gallery image URL here" onKeyDown={(e) => { if(e.key==='Enter') { e.preventDefault(); addArrayItem('gallery', e.currentTarget.value); e.currentTarget.value=''; } }} className="w-full px-4 py-2 rounded-lg border border-gray-300 text-sm" />
           </div>
         </div>
       </div>
