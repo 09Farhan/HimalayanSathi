@@ -7,8 +7,8 @@ export async function GET() {
   try {
     // Basic auth check
     const cookieStore = await cookies();
-    const authCookie = cookieStore.get('admin_auth');
-    if (authCookie?.value !== 'authenticated') {
+    const sessionToken = cookieStore.get('admin_session');
+    if (sessionToken?.value !== process.env.ADMIN_SECRET) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
