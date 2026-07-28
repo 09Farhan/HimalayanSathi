@@ -1,14 +1,14 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { packages } from '@/data/packages';
+import { db } from '@/lib/db';
 import { Check, X, Clock, IndianRupee, MapPin, Users } from 'lucide-react';
 import ContactForm from '@/components/ui/ContactForm';
 
 // Generate metadata for SEO
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const pkg = packages.find(p => p.id === id);
+  const pkg = await db.getPackageBySlug(id);
   
   if (!pkg) {
     return {
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
 export default async function PackageDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const pkg = packages.find(p => p.id === id);
+  const pkg = await db.getPackageBySlug(id);
   
   if (!pkg) {
     notFound();
