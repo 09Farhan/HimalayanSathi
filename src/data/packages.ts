@@ -3,6 +3,94 @@ import { Package } from '@/lib/types';
 
 export const packages: Package[] = [
   {
+    id: "sikkim-darjeeling-comprehensive-9n10d",
+    slug: "sikkim-darjeeling-comprehensive-9n10d",
+    faqs: [],
+    title: "Sikkim & Darjeeling Comprehensive Tour",
+    destination: "Gangtok, Lachung, Pelling, Darjeeling",
+    region: "sikkim",
+    duration: "9 Nights / 10 Days",
+    durationCategory: "7+ days",
+    type: "family",
+    priceRange: "Price on Request",
+    startingPrice: 0,
+    shortDescription: "A comprehensive 10-day journey exploring the pristine valleys of Sikkim and the historic charm of Darjeeling. Experience Gangtok, Lachung's Yumthang Valley, the magnificent views of Pelling, and Darjeeling's tea gardens.\n\n**Accommodation Notes:**\nNights 1, 2, 5: Gangtok (3-star, Breakfast)\nNights 3, 4: Lachung (3-star, Breakfast & Dinner)\nNights 6, 7: Pelling (3-star, Breakfast)\nNights 8, 9: Darjeeling (3-star, Breakfast)\nTransport: Innova / Xylo",
+    itinerary: [
+      {
+        day: 1,
+        title: "Bagdogra Airport / NJP Railway Station to Gangtok — Pickup",
+        description: "On arrival at NJP Railway Station / Bagdogra Airport, you will be met by our driver who will assist you to board your vehicle to Gangtok. On arrival check into the hotel and enjoy the day at leisure. At an altitude of 1750 m, Gangtok became the state capital in the mid-19th century and has undergone rapid development since then. Surrounded by monasteries and orchids, Gangtok is truly a traveller's delight."
+      },
+      {
+        day: 2,
+        title: "Gangtok to Tsomgo Lake & Baba Mandir — Excursion",
+        description: "Breakfast at the hotel and full-day excursion to Tsomgo Lake (Changu Lake), 35 kms from Gangtok at an altitude of 12,400 feet. The lake derives its waters from melting snow off the surrounding mountains. Legends say that lamas could forecast the future by studying the colour of the lake's waters. (Note: Nathula Pass is optional and subject to permit availability, extra cost applies)."
+      },
+      {
+        day: 3,
+        title: "Gangtok to Lachung — Drive with Sightseeing En Route",
+        description: "Breakfast at the hotel, then drive to Lachung (approx. 120 kms, 5–6 hrs), a remote town in North Sikkim at an altitude of 2,750 m. En route, stop for sightseeing at scenic waterfalls, viewpoints and villages along the Teesta and Lachung rivers. On arrival, check into the hotel and enjoy the evening amid the mountains."
+      },
+      {
+        day: 4,
+        title: "Lachung — Yumthang Valley Excursion",
+        description: "Early breakfast, then a full-day excursion to Yumthang Valley (also known as the \"Valley of Flowers\"), at an altitude of about 3,564 m — famed for its rhododendron sanctuary, alpine meadows and hot springs, framed by snow-capped peaks. Depending on road conditions and permits, the drive can be extended to Zero Point for closer mountain views. Return to Lachung by evening."
+      },
+      {
+        day: 5,
+        title: "Lachung to Gangtok — Transfer",
+        description: "Breakfast at the hotel, then drive back to Gangtok. On arrival, check into the hotel and enjoy the rest of the day at leisure."
+      },
+      {
+        day: 6,
+        title: "Gangtok to Pelling — Transfer via Namchi & Ravangla",
+        description: "After breakfast at the hotel, drive to Pelling via Namchi Chardham & Ravangla Buddha Park. Pelling is famous for its magnificent view of the snow-capped mountains of Kanchenjunga. On arrival, check into the hotel and enjoy the day, with sightseeing at Namchi's Sai Mandir, Chardham and Buddha Park."
+      },
+      {
+        day: 7,
+        title: "Pelling — Full Day Sightseeing",
+        description: "After breakfast, embark on a sightseeing tour of Pelling covering Kanchenjunga Falls, Pemyang Monastery, Rimbi Waterfall, Khecheopalri Lake, Orange Garden, and Rabdentse Ruins. Skywalk included. (Optional add-on: Singshore Bridge)."
+      },
+      {
+        day: 8,
+        title: "Pelling to Darjeeling — Transfer",
+        description: "Breakfast at the hotel, later proceed to Darjeeling. Once a summer resort for the British Raj elite, it remains the terminus of the narrow-gauge Darjeeling Himalayan Railway (the \"Toy Train\"). It's famed for the distinctive black tea grown on plantations that dot its surrounding slopes, with a backdrop of Mt. Kanchenjunga."
+      },
+      {
+        day: 9,
+        title: "Darjeeling — Full Day Sightseeing",
+        description: "Early morning visit Tiger Hill to see a beautiful sunrise and the Himalayan range, including Kanchenjunga and Mount Everest. On the way back, visit Ghoom Monastery (built in 1875) and Batasia Loop, then transfer to the hotel. After breakfast, proceed for a city tour visiting Himalayan Mountaineering Institute, Padmaja Naidu Zoological Park, Tibetan Refugee Centre, Tenzing Rock, Tea Estate (from outside), and the Japanese Peace Pagoda."
+      },
+      {
+        day: 10,
+        title: "Darjeeling to NJP Railway Station / Bagdogra Airport — Drop",
+        description: "Breakfast at the hotel and drive to Bagdogra Airport / NJP Railway Station in time for your flight/train to onward destination."
+      }
+    ],
+    inclusions: [
+      "Accommodation in 3-star hotels (Gangtok, Lachung, Pelling, Darjeeling)",
+      "Meal plan as per itinerary (Breakfast included; Dinner also included in Lachung)",
+      "Exclusive non-AC vehicle (Innova/Xylo) for transfers & sightseeing (point-to-point basis)",
+      "All permit fees & hotel taxes as per itinerary",
+      "Rates valid for Indian nationals only"
+    ],
+    exclusions: [
+      "Air fare / train fare",
+      "Personal expenses — laundry, telephone calls, tips & gratuity, mineral water, drinks, porterage",
+      "Additional sightseeing or extra vehicle usage beyond the itinerary; entrance fees & guide charges",
+      "Any cost from natural calamities, road blockages, or political disturbances",
+      "Any increase in taxes or fuel prices affecting surface transport before departure",
+      "Room heater charges"
+    ],
+    image: IMAGES.REGIONS.SIKKIM,
+    gallery: [
+      IMAGES.REGIONS.SIKKIM,
+      IMAGES.REGIONS.DARJEELING,
+      IMAGES.REGIONS.SIKKIM
+    ],
+    featured: true
+  },
+  {
     id: "darjeeling-delight-3n4d",
     slug: "darjeeling-delight-3n4d",
     faqs: [],
