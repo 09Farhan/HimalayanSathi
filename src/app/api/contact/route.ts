@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
     await db.insertLead(leadData);
 
     // Send notifications concurrently (non-blocking, if any fail it won't crash the user response)
-    Promise.allSettled([
+    await Promise.allSettled([
       sendLeadNotificationEmail(leadData),
       sendCustomerAutoReplyEmail(leadData),
       // sendWhatsAppNotification(leadData)
