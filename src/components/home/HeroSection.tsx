@@ -10,7 +10,7 @@ import { IMAGES } from "@/data/images";
  * HeroSection – Full-viewport hero with animated tagline,
  * image slideshow background, and dual CTA buttons.
  */
-export default function HeroSection() {
+export default function HeroSection({ totalPackages = 50 }: { totalPackages?: number }) {
   const [isVisible, setIsVisible] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -132,8 +132,8 @@ export default function HeroSection() {
         >
           {[
             { value: "20+", label: "Years Experience" },
-            { value: "5000+", label: "Happy Travellers" },
-            { value: "50+", label: "Tour Packages" },
+            { value: "1,000+", label: "Happy Travellers" },
+            { value: `${totalPackages}+`, label: "Tour Packages" },
             { value: "4.8★", label: "Average Rating" },
           ].map((stat) => (
             <div key={stat.label} className="glass rounded-2xl px-5 py-4 text-center border-white/20">

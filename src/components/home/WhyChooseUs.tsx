@@ -71,19 +71,19 @@ const features = [
   },
 ];
 
-const stats = [
-  { icon: Mountain, value: 50, suffix: "+", label: "Tour Packages" },
-  { icon: Users, value: 5000, suffix: "+", label: "Happy Travellers" },
-  { icon: Compass, value: 30, suffix: "+", label: "Destinations Covered" },
-  { icon: Car, value: 100, suffix: "+", label: "Vehicles in Fleet" },
-];
-
 /**
  * WhyChooseUs – Feature cards + animated stats counters
  */
-export default function WhyChooseUs() {
+export default function WhyChooseUs({ totalPackages = 50 }: { totalPackages?: number }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
+
+  const stats = [
+    { icon: Mountain, value: totalPackages, suffix: "+", label: "Tour Packages" },
+    { icon: Users, value: 1000, suffix: "+", label: "Happy Travellers" },
+    { icon: Compass, value: 30, suffix: "+", label: "Destinations Covered" },
+    { icon: Car, value: 50, suffix: "+", label: "Vehicles in Fleet" },
+  ];
 
   // Intersection observer to trigger counter animation
   useEffect(() => {

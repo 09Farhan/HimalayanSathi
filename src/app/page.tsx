@@ -26,16 +26,21 @@ export const metadata: Metadata = {
   ],
 };
 
+import { db } from "@/lib/db";
+
 /**
  * Home page – The main landing page for Himalayan Sathi Tours & Travels.
  * Composes hero, featured packages, why-choose-us, gallery, testimonials, and contact strip.
  */
-export default function HomePage() {
+export default async function HomePage() {
+  const packages = await db.getPackages();
+  const totalPackages = packages.length;
+
   return (
     <>
-      <HeroSection />
+      <HeroSection totalPackages={totalPackages} />
       <FeaturedPackages />
-      <WhyChooseUs />
+      <WhyChooseUs totalPackages={totalPackages} />
       <TravellerGallery />
       <TestimonialsSection />
       <ContactStrip />
