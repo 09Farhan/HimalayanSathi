@@ -95,7 +95,7 @@ export default async function DestinationDetailPage({ params }: { params: Promis
 
               {destination.highlights && destination.highlights.length > 0 && (
                 <div>
-                  <h3 className="text-xl font-bold text-primary-dark mb-4">Key Highlights</h3>
+                  <h3 className="text-xl font-bold text-primary-dark mb-4">Places to Visit</h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {destination.highlights.map((highlight: string, index: number) => (
                       <div key={index} className="flex items-start gap-3">
