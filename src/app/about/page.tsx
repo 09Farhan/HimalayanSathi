@@ -1,3 +1,4 @@
+import { IMAGES } from '@/data/images';
 import React from 'react';
 import Image from 'next/image';
 import { Target, Eye, Heart, Users, UsersRound, Briefcase } from 'lucide-react';
@@ -46,7 +47,7 @@ export default function AboutPage() {
           </div>
           <div className="relative h-[400px] lg:h-[500px] w-full animate-fade-in-right rounded-2xl overflow-hidden shadow-card">
             <Image
-              src="/images/hero-banner.jpg"
+              src={IMAGES.ABOUT_HERO}
               alt="Himalayan Sathi - Sikkim and Darjeeling Tour Operator"
               fill
               className="object-cover"

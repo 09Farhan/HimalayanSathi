@@ -1,3 +1,4 @@
+import { IMAGES } from '@/data/images';
 import { Package } from '@/lib/types';
 
 export const packages: Package[] = [
@@ -50,8 +51,8 @@ export const packages: Package[] = [
       "Personal expenses like laundry, telephone calls, tips",
       "Any activities not mentioned in inclusions"
     ],
-    image: "/images/darjeeling.jpg",
-    gallery: ["/images/darjeeling.jpg", "/images/darjeeling.jpg", "/images/darjeeling.jpg"],
+    image: IMAGES.REGIONS.DARJEELING,
+    gallery: [IMAGES.REGIONS.DARJEELING, IMAGES.REGIONS.DARJEELING, IMAGES.REGIONS.DARJEELING],
     featured: false
   },
   {
@@ -111,8 +112,8 @@ export const packages: Package[] = [
       "Lunch",
       "Guide charges"
     ],
-    image: "/images/darjeeling.jpg",
-    gallery: ["/images/darjeeling.jpg", "/images/darjeeling.jpg", "/images/darjeeling.jpg"],
+    image: IMAGES.REGIONS.DARJEELING,
+    gallery: [IMAGES.REGIONS.DARJEELING, IMAGES.REGIONS.DARJEELING, IMAGES.REGIONS.DARJEELING],
     featured: true
   },
   {
@@ -167,8 +168,8 @@ export const packages: Package[] = [
       "Lunch",
       "Personal expenses"
     ],
-    image: "/images/darjeeling.jpg",
-    gallery: ["/images/darjeeling.jpg", "/images/darjeeling.jpg", "/images/darjeeling.jpg"],
+    image: IMAGES.REGIONS.DARJEELING,
+    gallery: [IMAGES.REGIONS.DARJEELING, IMAGES.REGIONS.DARJEELING, IMAGES.REGIONS.DARJEELING],
     featured: false
   },
   {
@@ -228,8 +229,8 @@ export const packages: Package[] = [
       "Personal expenses",
       "Airfare"
     ],
-    image: "/images/sikkim.jpg",
-    gallery: ["/images/sikkim.jpg", "/images/sikkim.jpg", "/images/sikkim.jpg"],
+    image: IMAGES.REGIONS.SIKKIM,
+    gallery: [IMAGES.REGIONS.SIKKIM, IMAGES.REGIONS.SIKKIM, IMAGES.REGIONS.SIKKIM],
     featured: true
   },
   {
@@ -294,8 +295,8 @@ export const packages: Package[] = [
       "Personal expenses",
       "Entry fees to museums"
     ],
-    image: "/images/sikkim.jpg",
-    gallery: ["/images/sikkim.jpg", "/images/sikkim.jpg", "/images/sikkim.jpg"],
+    image: IMAGES.REGIONS.SIKKIM,
+    gallery: [IMAGES.REGIONS.SIKKIM, IMAGES.REGIONS.SIKKIM, IMAGES.REGIONS.SIKKIM],
     featured: false
   },
   {
@@ -364,8 +365,8 @@ export const packages: Package[] = [
       "Camera fees",
       "Tips and porterage"
     ],
-    image: "/images/sikkim.jpg",
-    gallery: ["/images/sikkim.jpg", "/images/sikkim.jpg", "/images/sikkim.jpg"],
+    image: IMAGES.REGIONS.SIKKIM,
+    gallery: [IMAGES.REGIONS.SIKKIM, IMAGES.REGIONS.SIKKIM, IMAGES.REGIONS.SIKKIM],
     featured: false
   },
   {
@@ -426,8 +427,8 @@ export const packages: Package[] = [
       "Alcoholic beverages",
       "Tips for guide and driver"
     ],
-    image: "/images/bhutan.jpg",
-    gallery: ["/images/bhutan.jpg", "/images/bhutan.jpg", "/images/bhutan.jpg"],
+    image: IMAGES.REGIONS.BHUTAN,
+    gallery: [IMAGES.REGIONS.BHUTAN, IMAGES.REGIONS.BHUTAN, IMAGES.REGIONS.BHUTAN],
     featured: true
   },
   {
@@ -497,8 +498,8 @@ export const packages: Package[] = [
       "Personal expenses",
       "Optional activities like hot stone bath"
     ],
-    image: "/images/bhutan.jpg",
-    gallery: ["/images/bhutan.jpg", "/images/bhutan.jpg", "/images/bhutan.jpg"],
+    image: IMAGES.REGIONS.BHUTAN,
+    gallery: [IMAGES.REGIONS.BHUTAN, IMAGES.REGIONS.BHUTAN, IMAGES.REGIONS.BHUTAN],
     featured: false
   },
   {
@@ -558,8 +559,8 @@ export const packages: Package[] = [
       "Alcoholic beverages",
       "Personal shopping"
     ],
-    image: "/images/bhutan.jpg",
-    gallery: ["/images/bhutan.jpg", "/images/bhutan.jpg", "/images/bhutan.jpg"],
+    image: IMAGES.REGIONS.BHUTAN,
+    gallery: [IMAGES.REGIONS.BHUTAN, IMAGES.REGIONS.BHUTAN, IMAGES.REGIONS.BHUTAN],
     featured: false
   },
   {
@@ -619,8 +620,8 @@ export const packages: Package[] = [
       "Entry tickets to caves and museums",
       "Guide charges"
     ],
-    image: "/images/northeast.jpg",
-    gallery: ["/images/northeast.jpg", "/images/northeast.jpg", "/images/northeast.jpg"],
+    image: IMAGES.REGIONS.NORTHEAST,
+    gallery: [IMAGES.REGIONS.NORTHEAST, IMAGES.REGIONS.NORTHEAST, IMAGES.REGIONS.NORTHEAST],
     featured: true
   },
   {
@@ -684,8 +685,8 @@ export const packages: Package[] = [
       "Lunch",
       "Camera fees"
     ],
-    image: "/images/northeast.jpg",
-    gallery: ["/images/northeast.jpg", "/images/northeast.jpg", "/images/northeast.jpg"],
+    image: IMAGES.REGIONS.NORTHEAST,
+    gallery: [IMAGES.REGIONS.NORTHEAST, IMAGES.REGIONS.NORTHEAST, IMAGES.REGIONS.NORTHEAST],
     featured: false
   },
   {
@@ -766,8 +767,8 @@ export const packages: Package[] = [
       "Any additional safaris",
       "Guide fees"
     ],
-    image: "/images/northeast.jpg",
-    gallery: ["/images/northeast.jpg", "/images/northeast.jpg", "/images/northeast.jpg"],
+    image: IMAGES.REGIONS.NORTHEAST,
+    gallery: [IMAGES.REGIONS.NORTHEAST, IMAGES.REGIONS.NORTHEAST, IMAGES.REGIONS.NORTHEAST],
     featured: false
   }
 ];

@@ -1,4 +1,5 @@
 'use client';
+import { IMAGES } from '@/data/images';
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';

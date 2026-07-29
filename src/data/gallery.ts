@@ -1,9 +1,10 @@
+import { IMAGES } from '@/data/images';
 import { GalleryPhoto } from '@/lib/types';
 
 export const galleryPhotos: GalleryPhoto[] = [
   {
     id: 'g1',
-    src: '/images/gallery/rhododendrons.jpg',
+    src: IMAGES.GALLERY.RHODODENDRONS,
     alt: 'Rhododendrons blooming in the Himalayas',
     caption: 'Vibrant rhododendrons blooming against the misty mountain backdrop',
     traveller: 'Ananya Sharma',
@@ -12,7 +13,7 @@ export const galleryPhotos: GalleryPhoto[] = [
   },
   {
     id: 'g2',
-    src: '/images/gallery/mountain-stream.jpg',
+    src: IMAGES.GALLERY.MOUNTAIN_STREAM,
     alt: 'Crystal clear mountain stream with snow peaks',
     caption: 'Feet dipped in a crystal-clear Himalayan stream with snow-capped peaks rising behind',
     traveller: 'Rohit Mehra',
@@ -21,7 +22,7 @@ export const galleryPhotos: GalleryPhoto[] = [
   },
   {
     id: 'g3',
-    src: '/images/gallery/waterfall.jpg',
+    src: IMAGES.GALLERY.WATERFALL,
     alt: 'Majestic waterfall cascading down cliff',
     caption: 'A breathtaking waterfall cascading down the dramatic cliffs of North Sikkim',
     traveller: 'Priya Das',

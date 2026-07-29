@@ -1,3 +1,4 @@
+import { IMAGES } from '@/data/images';
 import TestimonialCarousel from "./TestimonialCarousel";
 import type { Testimonial } from "@/lib/types";
 import { testimonials as staticTestimonials } from "@/data/testimonials";
@@ -16,7 +17,7 @@ export default async function TestimonialsSection() {
       name: r.name,
       rating: r.rating,
       quote: r.quote,
-      avatar: r.avatar || "/images/team-2.jpg", // default avatar
+      avatar: r.avatar || IMAGES.TEAM.MEMBER_2, // default avatar
       time: new Date(r.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long' }),
       location: r.location
     }));

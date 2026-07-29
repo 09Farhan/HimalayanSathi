@@ -1,3 +1,4 @@
+import { IMAGES } from '@/data/images';
 import { Testimonial } from '@/lib/types';
 
 export const testimonials: Testimonial[] = [
@@ -7,7 +8,7 @@ export const testimonials: Testimonial[] = [
     location: "Delhi",
     rating: 5,
     quote: "Our honeymoon trip to Darjeeling and Kurseong was impeccably planned by Himalayan Sathi. The candlelight dinner arrangements and the choice of premium hotels made our trip unforgettable. Highly recommended for couples looking for a hassle-free romantic getaway.",
-    avatar: "/images/avatar-placeholder.png",
+    avatar: IMAGES.AVATAR_PLACEHOLDER,
     tripType: "Honeymoon Tour"
   },
   {
@@ -16,7 +17,7 @@ export const testimonials: Testimonial[] = [
     location: "Hyderabad",
     rating: 5,
     quote: "I took the North Sikkim Adventure tour, and it was the experience of a lifetime. Traveling to high altitudes like Gurudongmar Lake requires perfect logistics, and the team handled the permits, vehicles, and stays flawlessly. Our driver was experienced and very polite.",
-    avatar: "/images/avatar-placeholder.png",
+    avatar: IMAGES.AVATAR_PLACEHOLDER,
     tripType: "Adventure Tour"
   },
   {
@@ -25,7 +26,7 @@ export const testimonials: Testimonial[] = [
     location: "Chennai",
     rating: 4,
     quote: "We traveled as a family of six, including two senior citizens, to Bhutan. Himalayan Sathi ensured that the itinerary was relaxed and comfortable for my parents. The guide they provided in Thimphu was incredibly knowledgeable about Buddhist history.",
-    avatar: "/images/avatar-placeholder.png",
+    avatar: IMAGES.AVATAR_PLACEHOLDER,
     tripType: "Family Trip"
   },
   {
@@ -34,7 +35,7 @@ export const testimonials: Testimonial[] = [
     location: "Mumbai",
     rating: 5,
     quote: "Meghalaya was a dream! Exploring the living root bridges and the waterfalls of Cherrapunji was magical. As a solo female traveler, safety was my primary concern, but the team at Himalayan Sathi made me feel secure and well-cared for throughout the journey.",
-    avatar: "/images/avatar-placeholder.png",
+    avatar: IMAGES.AVATAR_PLACEHOLDER,
     tripType: "Solo Travel"
   },
   {
@@ -43,7 +44,7 @@ export const testimonials: Testimonial[] = [
     location: "Kolkata",
     rating: 4,
     quote: "A well-organized weekend trip to Darjeeling. The highlight was definitely catching the sunrise at Tiger Hill. The coordination for hotel pickups and drops was prompt. We missed the toy train ride due to ticket unavailability, but otherwise a great trip.",
-    avatar: "/images/avatar-placeholder.png",
+    avatar: IMAGES.AVATAR_PLACEHOLDER,
     tripType: "Weekend Getaway"
   },
   {
@@ -52,7 +53,7 @@ export const testimonials: Testimonial[] = [
     location: "Bangalore",
     rating: 5,
     quote: "Our college reunion trip to Tawang was epic. The drive through Sela Pass was thrilling. The agency managed our large group's accommodations and ILP permits without any hiccups. Great value for money and excellent ground support in Arunachal.",
-    avatar: "/images/avatar-placeholder.png",
+    avatar: IMAGES.AVATAR_PLACEHOLDER,
     tripType: "Group Tour"
   }
 ];

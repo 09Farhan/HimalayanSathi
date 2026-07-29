@@ -1,3 +1,4 @@
+import { IMAGES } from '@/data/images';
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
@@ -75,7 +76,7 @@ const travelAgencySchema = {
   "@context": "https://schema.org",
   "@type": "TravelAgency",
   "name": "Himalayan Sathi Tours & Travels",
-  "image": `${DOMAIN}/images/logo.png`, // Placeholder for actual logo
+  "image": `${DOMAIN}${IMAGES.LOGO}`, // Placeholder for actual logo
   "url": DOMAIN,
   "telephone": "+91-9876543210", // Placeholder
   "address": {

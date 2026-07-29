@@ -1,3 +1,4 @@
+import { IMAGES } from '@/data/images';
 import { notFound } from 'next/navigation';
 import { db } from '@/lib/db';
 import PackageCard from '@/components/packages/PackageCard';

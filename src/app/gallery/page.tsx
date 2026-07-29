@@ -1,4 +1,5 @@
 "use client";
+import { IMAGES } from '@/data/images';
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
@@ -31,7 +32,7 @@ export default function GalleryPage() {
             {/* Some photos might need a min-height for masonry to look good, using object-cover with fixed sizes or dynamic heights if images had width/height props. We use a responsive wrapper here. */}
             <div className="relative w-full aspect-[4/3] sm:aspect-auto sm:min-h-[250px]">
               <Image 
-                src={photo.src || "/images/darjeeling-pkg.jpg"} 
+                src={photo.src || IMAGES.GALLERY.DEFAULT_PKG} 
                 alt={photo.alt} 
                 fill 
                 className="object-cover group-hover:scale-105 transition-transform duration-700" 
@@ -69,7 +70,7 @@ export default function GalleryPage() {
           >
             <div className="relative w-full h-[60vh] md:h-[75vh]">
               <Image 
-                src={selectedPhoto.src || "/images/darjeeling-pkg.jpg"} 
+                src={selectedPhoto.src || IMAGES.GALLERY.DEFAULT_PKG} 
                 alt={selectedPhoto.alt} 
                 fill 
                 className="object-contain" 

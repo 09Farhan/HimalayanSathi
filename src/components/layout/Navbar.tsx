@@ -1,4 +1,5 @@
 'use client';
+import { IMAGES } from '@/data/images';
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -85,7 +86,7 @@ export default function Navbar() {
             <Link href="/" className="z-50 group flex-shrink-0 relative h-16 md:h-20 w-24 md:w-44">
               <div className="absolute -top-2 md:-top-6 left-0 w-28 md:w-48 h-24 md:h-40 bg-[#faf8f5] rounded-b-2xl md:rounded-b-3xl p-1 md:p-2 shadow-lg transition-transform duration-300 group-hover:shadow-xl flex items-center justify-center">
                 <Image
-                  src="/images/logo.png"
+                  src={IMAGES.LOGO}
                   alt="Himalayan Sathi Logo"
                   fill
                   className="object-contain p-1"

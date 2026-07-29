@@ -4,32 +4,52 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, MapPin, Calendar, Users } from "lucide-react";
 import { useEffect, useState } from "react";
+import { IMAGES } from "@/data/images";
 
 /**
  * HeroSection – Full-viewport hero with animated tagline,
- * parallax-style background, and dual CTA buttons.
+ * image slideshow background, and dual CTA buttons.
  */
 export default function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
     setIsVisible(true);
+    
+    // Auto-advance slideshow
+    const slideInterval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % IMAGES.HERO_SLIDESHOW.length);
+    }, 6000); // 6 seconds per slide
+
+    return () => clearInterval(slideInterval);
   }, []);
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background image */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/images/hero-banner.jpg"
-          alt="Sikkim Darjeeling Bhutan tour packages by Himalayan Sathi"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
+      {/* Background Slideshow */}
+      <div className="absolute inset-0 z-0 bg-primary-dark">
+        {IMAGES.HERO_SLIDESHOW.map((imgSrc, index) => (
+          <div
+            key={imgSrc}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              index === currentSlide ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <Image
+              src={imgSrc}
+              alt="Sikkim Darjeeling Bhutan tour packages by Himalayan Sathi"
+              fill
+              priority={index === 0}
+              className={`object-cover transition-transform duration-[10000ms] ease-linear ${
+                index === currentSlide ? "scale-105" : "scale-100"
+              }`}
+              sizes="100vw"
+            />
+          </div>
+        ))}
         {/* Gradient overlay */}
-        <div className="absolute inset-0 gradient-hero" />
+        <div className="absolute inset-0 gradient-hero opacity-90" />
         {/* Subtle animated particles / floating dots */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {[...Array(6)].map((_, i) => (
@@ -47,7 +67,6 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Content */}
       {/* Content — add pt-24 to clear the fixed navbar, and pb-24 to clear the scroll indicator */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-24 md:pt-28 pb-24 md:pb-32">
         {/* Badge */}
@@ -123,6 +142,20 @@ export default function HeroSection() {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Slideshow Dots */}
+      <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+        {IMAGES.HERO_SLIDESHOW.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrentSlide(i)}
+            className={`transition-all duration-300 rounded-full ${
+              currentSlide === i ? "w-8 h-2 bg-accent" : "w-2 h-2 bg-white/50 hover:bg-white/80"
+            }`}
+            aria-label={`Go to slide ${i + 1}`}
+          />
+        ))}
       </div>
 
       {/* Scroll indicator */}

@@ -1,4 +1,5 @@
 'use client';
+import { IMAGES } from '@/data/images';
 
 import React, { useState, useEffect, Suspense } from 'react';
 import Image from 'next/image';
@@ -126,7 +127,7 @@ function DestinationsContent() {
                 <div className="relative h-64 w-full overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10 transition-opacity duration-300 group-hover:opacity-80" />
                   <Image
-                    src={destination.image || "/images/darjeeling.jpg"}
+                    src={destination.image || IMAGES.REGIONS.DARJEELING}
                     alt={destination.name}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
