@@ -3,6 +3,290 @@ import { Package } from '@/lib/types';
 
 export const packages: Package[] = [
   {
+    id: "bhutan-group-trip-phobjikha-7n8d",
+    slug: "bhutan-group-trip-phobjikha-7n8d",
+    faqs: [],
+    title: "Bhutan Group Trip (With Phobjikha Valley)",
+    destination: "Phuentsholing, Thimphu, Punakha, Paro",
+    region: "bhutan",
+    duration: "7 Nights / 8 Days",
+    durationCategory: "7+ days",
+    type: "group",
+    priceRange: "Price on Request",
+    startingPrice: 0,
+    shortDescription: "Embark on an unforgettable group journey across the Land of the Thunder Dragon. Explore Phuentsholing, Thimphu, Punakha, and Paro, featuring a special excursion to the picturesque Phobjikha Valley and the iconic Tiger's Nest.\n\n**Accommodation Notes:**\nNights 1, 7: Phuentsholing (3-star)\nNight 2: Thimphu (3-star)\nNights 3, 4: Punakha (3-star)\nNights 5, 6: Paro (3-star)\nTransport: Tempo Traveller / Coach (Bhutan permit vehicle)",
+    itinerary: [
+      {
+        day: 1,
+        title: "Pickup from Bagdogra Airport and Transfer to Phuentsholing",
+        description: "Arrive at Bagdogra Airport (IXB), and proceed towards Phuentsholing (145 kms / 4 hrs). Embark on the unforgettable experience of crossing the Indo-Bhutan border on foot. Check in to your hotel and explore the locality, trying local cuisines or simply relaxing. Overnight stay in Phuentsholing."
+      },
+      {
+        day: 2,
+        title: "Transfer to Thimphu, On the Way Sightseeing, Stay in Thimphu",
+        description: "After breakfast, complete immigration formalities and proceed towards Thimphu (160 kms / 5 hrs). Pass through Dochula viewpoints, the Dharma Kaya Stupas and Chuzom Bridge — the confluence of the Thimphu and Paro rivers. Arrive in Thimphu by evening and check in to your hotel. Leisure time in the evening. Dinner and overnight stay in Thimphu."
+      },
+      {
+        day: 3,
+        title: "Thimphu Sightseeing, Transfer to Punakha, Stay in Punakha",
+        description: "After breakfast, proceed for Thimphu local sightseeing (75 kms / 2.5 hrs to Punakha). Visit Buddha Dordenma Statue, Simply Bhutan Museum (taste 'Aara', try archery, drink traditional 'Butter Tea'), The National Memorial Chorten, Royal Takin Preserve, and Bhutan Postal Museum. Arrive in Punakha by evening. Dinner and overnight stay in Punakha."
+      },
+      {
+        day: 4,
+        title: "Phobjikha Valley Day Excursion, Stay in Punakha",
+        description: "After an early breakfast, drive to the scenic Phobjikha Valley (75 kms / 2.5 hrs one way). Visit Gangtey Goemba — a 17th-century monastery dramatically situated at the head of the valley. Watch for the rare black-necked cranes. Return to your hotel by evening. Dinner and overnight stay in Punakha."
+      },
+      {
+        day: 5,
+        title: "Punakha Local Sightseeing, Transfer to Paro, Stay in Paro",
+        description: "After breakfast, head out for Punakha sightseeing (115 kms / 3.5 hrs to Paro). Visit Punakha Dzong, the second oldest dzong in Bhutan, Punakha Suspension Bridge, and Dochula Pass featuring 108 memorial stupas. Arrive in Paro by evening. Dinner and overnight stay in Paro."
+      },
+      {
+        day: 6,
+        title: "Short Hike to Tiger's Nest, Overnight Stay in Paro",
+        description: "After breakfast, proceed to Tiger's Nest Monastery (Paro Taktsang). The hike is easy to moderate (6.4 kms / 3-5 hrs). Horses are available for hire at the starting point. After the hike, enjoy a traditional hot stone bath at a countryside farmhouse. Dinner and overnight stay in Paro."
+      },
+      {
+        day: 7,
+        title: "Paro Dzong, Stay in Phuentsholing",
+        description: "After breakfast, visit Rinpung Dzong (Paro Dzong) — dress up in traditional Bhutanese Gho & Kira for a memorable photo. Visit Paro Airport View Point. Afternoon drive to Phuentsholing (148 kms / 4.5 hrs) with stopovers to enjoy the scenic beauty. Overnight stay in Phuentsholing."
+      },
+      {
+        day: 8,
+        title: "Transfer from Phuentsholing to Bagdogra Airport",
+        description: "After breakfast, check out from the hotel. Depart at 8:00 AM for Bagdogra Airport (145 kms / 4 hrs) for your onward journey."
+      }
+    ],
+    inclusions: [
+      "Accommodation in 3-star hotels as per itinerary",
+      "Meal plan: Breakfast daily (Dinner included where mentioned)",
+      "Group vehicle (Tempo Traveller / Coach) for transfers & sightseeing",
+      "All permit fees & hotel taxes as per itinerary",
+      "Bhutan entry permit assistance & Sustainable Development Fee (SDF) for Indian nationals",
+      "Services of a tour escort/coordinator for the group"
+    ],
+    exclusions: [
+      "Air fare / train fare",
+      "Personal expenses, room heater charges",
+      "Additional sightseeing or extra vehicle usage beyond the itinerary",
+      "Any cost from natural calamities"
+    ],
+    image: IMAGES.REGIONS.BHUTAN,
+    gallery: [
+      IMAGES.REGIONS.BHUTAN,
+      IMAGES.REGIONS.BHUTAN
+    ],
+    featured: false
+  },
+  {
+    id: "bhutan-private-trip-thimphu-tshechu-5n6d",
+    slug: "bhutan-private-trip-thimphu-tshechu-5n6d",
+    faqs: [],
+    title: "Bhutan Private Trip (With Thimphu Festival)",
+    destination: "Phuentsholing, Thimphu, Paro",
+    region: "bhutan",
+    duration: "5 Nights / 6 Days",
+    durationCategory: "4-6 days",
+    type: "family",
+    priceRange: "Price on Request",
+    startingPrice: 0,
+    shortDescription: "A private Bhutanese adventure timed to coincide with the vibrant Thimphu Drubchen Tshechu Festival. Experience Bhutan's spirituality through colourful masked dances, hike to Tiger's Nest, and explore historical Dzongs.\n\n**Accommodation Notes:**\nNights 1, 5: Phuentsholing (3-star)\nNight 2: Thimphu (3-star)\nNights 3, 4: Paro (3-star)\nTransport: Innova / Xylo",
+    itinerary: [
+      {
+        day: 1,
+        title: "Pickup from Bagdogra Airport and Transfer to Phuentsholing",
+        description: "Arrive at Bagdogra Airport (IXB), and proceed towards Phuentsholing. Check in to your hotel and freshen up. Explore the locality in Phuentsholing and try local cuisines. Overnight stay in Phuentsholing."
+      },
+      {
+        day: 2,
+        title: "Transfer to Thimphu, On the Way Sightseeing, Stay in Thimphu",
+        description: "After breakfast, complete immigration formalities and proceed towards Thimphu. Pass through the Eight Dharma Kaya Stupas and Chuzom Bridge. Arrive in Thimphu by evening and check in to your hotel. Dinner and overnight stay in Thimphu."
+      },
+      {
+        day: 3,
+        title: "Witness Thimphu Drubchen Tshechu, Transfer to Paro, Stay in Paro",
+        description: "After breakfast, proceed for Thimphu local sightseeing. Visit Buddha Dordenma Statue, National Memorial Chorten, and Simply Bhutan Museum. Proceed to Tashichho Dzong for the Thimphu Drubchen Festival to experience Bhutan's spirituality through colourful masked dances and traditional music. Arrive in Paro by evening. Dinner and overnight stay in Paro."
+      },
+      {
+        day: 4,
+        title: "Short Hike to Tiger's Nest and Overnight Stay in Paro",
+        description: "After breakfast, proceed to Tiger's Nest Monastery. After the hike, enjoy a hot stone bath at the countryside. Overnight stay in Paro."
+      },
+      {
+        day: 5,
+        title: "Paro Dzong and Paro Market, Stay in Phuentsholing",
+        description: "After breakfast, proceed towards Paro town. Visit Rinpung Dzong (Paro Dzong), dress up in traditional Bhutanese Gho & Kira. Visit Paro Airport View Point. Afternoon drive to Phuentsholing. Overnight stay in Phuentsholing."
+      },
+      {
+        day: 6,
+        title: "Transfer from Phuentsholing to Bagdogra Airport",
+        description: "After breakfast, check out from the hotel. Depart at 8:00 AM for Bagdogra Airport for your onward journey."
+      }
+    ],
+    inclusions: [
+      "Accommodation in 3-star hotels as per itinerary",
+      "Meal plan: Breakfast daily",
+      "Exclusive non-AC vehicle for transfers & sightseeing",
+      "All permit fees & hotel taxes as per itinerary",
+      "Bhutan entry permit assistance & SDF for Indian nationals"
+    ],
+    exclusions: [
+      "Air fare / train fare",
+      "Personal expenses, room heater charges",
+      "Additional sightseeing or extra vehicle usage beyond the itinerary",
+      "Any cost from natural calamities"
+    ],
+    image: IMAGES.REGIONS.BHUTAN,
+    gallery: [
+      IMAGES.REGIONS.BHUTAN,
+      IMAGES.REGIONS.BHUTAN
+    ],
+    featured: false
+  },
+  {
+    id: "sikkim-darjeeling-explorer-7n8d",
+    slug: "sikkim-darjeeling-explorer-7n8d",
+    faqs: [],
+    title: "Sikkim - Darjeeling Explorer",
+    destination: "Gangtok, Pelling, Darjeeling",
+    region: "sikkim",
+    duration: "7 Nights / 8 Days",
+    durationCategory: "7+ days",
+    type: "family",
+    priceRange: "₹96,500",
+    startingPrice: 96500,
+    shortDescription: "A mesmerizing 8-day tour covering the pristine beauty of Gangtok, the sweeping mountain views of Pelling, and the historic tea-capital of Darjeeling.\n\n**Accommodation Notes:**\nNights 1-3: Gangtok (e.g. Ghasso Residency)\nNights 4-5: Pelling (e.g. De Regency)\nNights 6-7: Darjeeling (e.g. Golden Potala)\nTransport: Innova / Xylo",
+    itinerary: [
+      {
+        day: 1,
+        title: "Bagdogra Airport / NJP Railway Station to Gangtok — Pickup",
+        description: "On arrival at NJP Railway Station / Bagdogra Airport, our driver will receive you and assist with boarding your vehicle to Gangtok. Check into your hotel on arrival and enjoy the rest of the day at leisure. Overnight at Gangtok."
+      },
+      {
+        day: 2,
+        title: "Gangtok to Tsomgo Lake & Baba Mandir — Excursion",
+        description: "After breakfast, a full-day excursion to Tsomgo Lake (Changu Lake), roughly 35 km from Gangtok at 12,400 ft, fed by melting mountain snow. Also visit the New Baba Mandir nearby. (Nathula Pass is optional)."
+      },
+      {
+        day: 3,
+        title: "Gangtok — Full-Day Sightseeing",
+        description: "After breakfast, sightseeing around Gangtok covering Tashi View Point, Hanuman Tok, Ganesh Tok, Enchey Monastery, the Flower Exhibition Centre, Do Drul Chorten, the Namgyal Institute of Tibetology, the Cottage Industry, the Ropeway, and Bakthang Falls."
+      },
+      {
+        day: 4,
+        title: "Gangtok to Pelling — Transfer",
+        description: "After breakfast, transfer to Pelling (approx. 2,000 m), pleasantly warm in summer and cold in winter. Optional add-on: Namchi Chardham & Ravangla Buddha Park."
+      },
+      {
+        day: 5,
+        title: "Pelling — Full-Day Sightseeing",
+        description: "After Breakfast embark on a sightseeing tour of Pelling covering Kanchenjunga falls, Penyang Monastery, Rimbi Waterfall, Khecheopalri Lake, Orange Garden, Rabdentse Ruins. Skywalk included."
+      },
+      {
+        day: 6,
+        title: "Pelling to Darjeeling — Transfer",
+        description: "After breakfast, transfer to Darjeeling — a former British Raj hill retreat and terminus of the narrow-gauge Darjeeling Himalayan Railway. Renowned for its tea gardens, with Mt. Kanchenjunga as a backdrop."
+      },
+      {
+        day: 7,
+        title: "Darjeeling to Tinchuley, Takdah & Lamahatta / Full Day Sightseeing",
+        description: "Early morning visit to Tiger Hill for sunrise views over the Himalayas. En route, visit Ghoom Monastery and Batasia Loop. After breakfast, proceed for local sightseeing: Himalayan Mountaineering Institute, Padmaja Naidu Zoological Park, Tibetan Refugee Centre, Tenzing & Gombu Rock, Tea Estate, and Japanese Peace Pagoda."
+      },
+      {
+        day: 8,
+        title: "Darjeeling to Bagdogra Airport / NJP Railway Station — Drop",
+        description: "After breakfast, drive to Bagdogra Airport / NJP Railway Station in time for your onward flight/train."
+      }
+    ],
+    inclusions: [
+      "Accommodation as mentioned in the Hotels section",
+      "Meal plan as mentioned above (Dinner + Breakfast)",
+      "Exclusive non-AC vehicle for transfers & sightseeing",
+      "All permit fees & hotel taxes as per itinerary",
+      "Rates valid for Indian nationals only"
+    ],
+    exclusions: [
+      "Air fare / train fare",
+      "Personal expenses, room heater charges",
+      "Additional sightseeing or extra vehicle usage beyond the itinerary",
+      "Any cost from natural calamities"
+    ],
+    image: IMAGES.REGIONS.SIKKIM,
+    gallery: [
+      IMAGES.REGIONS.SIKKIM,
+      IMAGES.REGIONS.DARJEELING,
+      IMAGES.REGIONS.SIKKIM
+    ],
+    featured: false
+  },
+  {
+    id: "magical-north-east-india-5n6d",
+    slug: "magical-north-east-india-5n6d",
+    faqs: [],
+    title: "Magical North East India Tour",
+    destination: "Guwahati, Shillong, Kaziranga",
+    region: "northeast",
+    duration: "5 Nights / 6 Days",
+    durationCategory: "4-6 days",
+    type: "family",
+    priceRange: "Price on Request",
+    startingPrice: 0,
+    shortDescription: "Discover the magic of Northeast India in this 6-day adventure. Experience the sacred Kamakhya Temple in Guwahati, the waterfalls and living root bridges of Shillong, and the majestic one-horned rhinoceros in Kaziranga National Park.\n\n**Accommodation Notes:**\nNights 1, 5: Guwahati (3-star, Breakfast & Dinner)\nNights 2, 3: Shillong (3-star, Breakfast & Dinner)\nNight 4: Kaziranga (3-star, Breakfast & Dinner)\nTransport: Private Sedan / SUV",
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrival in Guwahati, Local Sightseeing",
+        description: "Arrival at Guwahati and pickup from the Railway Station. Proceed to visit Peacock Island, the smallest inhabited river island in the world, and the local market. Dinner and overnight stay in Guwahati."
+      },
+      {
+        day: 2,
+        title: "Guwahati to Shillong, En-Route Sightseeing at Cherrapunji",
+        description: "Proceed towards Shillong. Visit Mawsmai Cave, Cherrapunji — one of the rainiest places on Earth — and Nohkalikai Falls. Evening check-in to your hotel. Dinner and overnight stay in Shillong."
+      },
+      {
+        day: 3,
+        title: "Mawlynnong, Living Root Bridge & Dawki River Sightseeing",
+        description: "Visit Mawlynnong, the cleanest village in Asia, along with its famous Living Root Bridge. Visit Dawki River, known as Asia's cleanest river. Evening return to your hotel. Dinner and overnight stay in Shillong."
+      },
+      {
+        day: 4,
+        title: "Umiam Lake & Ward's Lake Sightseeing, Transfer to Kaziranga",
+        description: "Visit Umiam Lake and Ward's Lake en route. Proceed to Kaziranga. Evening check-in to your hotel. Dinner and overnight stay in Kaziranga."
+      },
+      {
+        day: 5,
+        title: "Jungle Safari at Kaziranga, Transfer to Guwahati",
+        description: "Enjoy a jungle safari at Kaziranga National Park, home to the majestic one-horned rhinoceros. Proceed towards Guwahati. Evening check-in to your hotel. Dinner and overnight stay in Guwahati."
+      },
+      {
+        day: 6,
+        title: "Kamakhya Temple Darshan, Drop at Guwahati Railway Station",
+        description: "Have your darshan at Maa Kamakhya Temple — one of the 51 Shakti Peethas, considered among the most sacred and oldest temples in India. Drop at Guwahati Railway Station."
+      }
+    ],
+    inclusions: [
+      "Accommodation in 3-star hotels as per itinerary",
+      "Meal plan: Breakfast & Dinner",
+      "Private vehicle (Sedan / SUV) for transfers & sightseeing",
+      "All toll, parking & driver allowance as per itinerary",
+      "Pickup from Guwahati Railway Station and drop at Guwahati Railway Station"
+    ],
+    exclusions: [
+      "Air fare / train fare",
+      "Jeep Safari at Kaziranga National Park is not included in the package",
+      "Personal expenses, boating, adventure activities",
+      "Lunch and any meals not specifically mentioned",
+      "Entry fees, camera fees & guide charges at monuments, parks and viewpoints",
+      "Any cost from natural calamities"
+    ],
+    image: IMAGES.REGIONS.NORTHEAST,
+    gallery: [
+      IMAGES.REGIONS.NORTHEAST,
+      IMAGES.REGIONS.NORTHEAST
+    ],
+    featured: false
+  },
+  {
     id: "sikkim-darjeeling-comprehensive-9n10d",
     slug: "sikkim-darjeeling-comprehensive-9n10d",
     faqs: [],
