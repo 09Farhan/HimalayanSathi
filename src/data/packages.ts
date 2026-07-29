@@ -3,6 +3,151 @@ import { Package } from '@/lib/types';
 
 export const packages: Package[] = [
   {
+    id: "bhutan-private-trip-7n8d",
+    slug: "bhutan-private-trip-7n8d",
+    faqs: [],
+    title: "Bhutan Private Trip (7 Nights)",
+    destination: "Phuentsholing, Thimphu, Punakha, Paro",
+    region: "bhutan",
+    duration: "7 Nights / 8 Days",
+    durationCategory: "7+ days",
+    type: "family",
+    priceRange: "Price on Request",
+    startingPrice: 0,
+    shortDescription: "Embark on an unforgettable private journey across the Land of the Thunder Dragon. Explore Phuentsholing, Thimphu, Punakha, and Paro, and hike to the iconic Tiger's Nest.\n\n**Accommodation Notes:**\nNights 1, 7: Phuentsholing (3-star)\nNights 2, 3: Thimphu (3-star)\nNight 4: Punakha (3-star)\nNights 5, 6: Paro (3-star)\nTransport: Innova / Xylo",
+    itinerary: [
+      {
+        day: 1,
+        title: "Pickup from Bagdogra Airport and Transfer to Phuentsholing",
+        description: "Arrive at Bagdogra Airport (IXB), and proceed towards Phuentsholing (145 kms / 4 hrs). Complete immigration formalities and check in to your hotel. Explore the locality in Phuentsholing and try local cuisines. Overnight stay in Phuentsholing."
+      },
+      {
+        day: 2,
+        title: "Transfer to Thimphu, On the Way Sightseeing, Stay in Thimphu",
+        description: "After breakfast, check out from the hotel and proceed towards Thimphu (160 kms / 5 hrs). Enjoy this beautiful journey through the landscapes of the Land of the Thunder Dragon. Arrive in Thimphu by evening and check in to your hotel. Dinner and overnight stay in Thimphu."
+      },
+      {
+        day: 3,
+        title: "Thimphu Sightseeing, Stay in Thimphu",
+        description: "After breakfast, proceed for Thimphu local sightseeing. Visit Buddha Dordenma Statue, The National Memorial Chorten, Takin Zoo, Changangkha Lhakhang, and Simply Bhutan Museum. Return to the hotel by evening. Overnight stay in Thimphu."
+      },
+      {
+        day: 4,
+        title: "Thimphu to Punakha Sightseeing, Stay in Punakha",
+        description: "After breakfast, drive to Punakha. Visit Dochula Pass (3,150 m) — a beautiful mountain pass with a concentration of 108 memorial stupas. Arrive in Punakha, check in to your hotel, and head out to see Punakha Dzong and the Punakha Suspension Bridge. Overnight stay in Punakha."
+      },
+      {
+        day: 5,
+        title: "Punakha to Paro, Stay in Paro",
+        description: "After breakfast, drive to Paro. Arrive in Paro and check in to your hotel. Spend the rest of the day relaxing. Overnight stay in Paro."
+      },
+      {
+        day: 6,
+        title: "Trekking to Tiger's Nest, Overnight Stay in Paro",
+        description: "After breakfast, proceed to Tiger's Nest. Hike to Taktsang Monastery, which clings to a cliff 3,000 feet above the valley floor. After the hike, enjoy a traditional hot stone bath at a countryside farmhouse. Overnight stay in Paro."
+      },
+      {
+        day: 7,
+        title: "Paro Local Sightseeing, Stay in Phuentsholing",
+        description: "After breakfast, proceed for Paro local sightseeing. Visit Ta Dzong and Rinpung Dzong. Afternoon drive to Phuentsholing (148 kms / 4.5 hrs) with stopovers to enjoy the scenic beauty. Overnight stay in Phuentsholing."
+      },
+      {
+        day: 8,
+        title: "Transfer from Phuentsholing to Bagdogra Airport",
+        description: "After breakfast, check out from the hotel. Depart for Bagdogra Airport (145 kms / 4 hrs) for your onward journey."
+      }
+    ],
+    inclusions: [
+      "Accommodation in 3-star hotels as per itinerary",
+      "Meal plan: Breakfast daily",
+      "Exclusive non-AC vehicle (Innova / Xylo) for transfers & sightseeing",
+      "All permit fees & hotel taxes as per itinerary",
+      "Bhutan entry permit assistance & SDF for Indian nationals"
+    ],
+    exclusions: [
+      "Air fare / train fare",
+      "Personal expenses, room heater charges",
+      "Additional sightseeing or extra vehicle usage beyond the itinerary",
+      "Any cost from natural calamities"
+    ],
+    image: IMAGES.REGIONS.BHUTAN,
+    gallery: [
+      IMAGES.REGIONS.BHUTAN,
+      IMAGES.REGIONS.BHUTAN
+    ],
+    featured: false
+  },
+  {
+    id: "bhutan-dzong-special-6n7d",
+    slug: "bhutan-dzong-special-6n7d",
+    faqs: [],
+    title: "Bhutan Dzong Special Tour Package",
+    destination: "Phuentsholing, Thimphu, Paro",
+    region: "bhutan",
+    duration: "6 Nights / 7 Days",
+    durationCategory: "4-6 days",
+    type: "family",
+    priceRange: "Price on Request",
+    startingPrice: 0,
+    shortDescription: "A culturally focused tour highlighting Bhutan's magnificent Dzongs and the iconic Tiger's Nest hike. Explore the architectural marvels of Thimphu and Paro while experiencing the rich heritage of the Thunder Dragon.\n\n**Accommodation Notes:**\nNights 1, 6: Phuentsholing (3-star)\nNights 2, 3: Thimphu (3-star)\nNights 4, 5: Paro (3-star)\nTransport: Innova / Xylo",
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrival in Siliguri | Transfer to Phuentsholing",
+        description: "Upon arrival, get transferred to the hotel in Phuentsholing and check in. You can relax for the day or self-explore the city by visiting places like the Bhutan Gate and Zangto Pelri. Overnight stay in Phuentsholing."
+      },
+      {
+        day: 2,
+        title: "Arrival in Thimphu",
+        description: "Check out from the hotel and get transferred to Thimphu. After check-in at the hotel, you can relax for the day or self-explore the city by visiting attractions like the Clock Tower Square and Simply Bhutan. Overnight stay in Thimphu."
+      },
+      {
+        day: 3,
+        title: "Thimphu Sightseeing Tour",
+        description: "Board your transfer from the hotel for a sightseeing tour of Thimphu. Explore attractions like the National Memorial Chorten, Buddha Statue, Tashichho Dzong, Simtokha Dzong, and more. Later, get transferred back to the hotel for an overnight stay."
+      },
+      {
+        day: 4,
+        title: "Arrival in Paro",
+        description: "Check out from the hotel and get transferred to Paro. Upon arrival, check in at the hotel and relax. Later, you can self-explore the city by visiting attractions like the Zuri Dzong Fort and Paro Chu. Overnight stay in Paro."
+      },
+      {
+        day: 5,
+        title: "Hike to Tiger's Nest",
+        description: "Board your transfer from the hotel for a hiking experience to the beautiful Taktsang Monastery. Enjoy an assisted walk through the pine forest, leading you to Tiger's Nest. Also enjoy a visit to Ta Dzong and Paro Rinpung Dzong. Overnight stay in Paro."
+      },
+      {
+        day: 6,
+        title: "Arrival in Phuentsholing",
+        description: "Check out from the hotel and get transferred to the hotel in Phuentsholing. After check-in, explore the city by yourself, visiting attractions like Alapan's View Point and Chukha Hydropower Dam. Overnight stay in Phuentsholing."
+      },
+      {
+        day: 7,
+        title: "Departure Day",
+        description: "After breakfast, check out from the hotel and get transferred to Bagdogra Airport / Railway Station. This is where your trip ends."
+      }
+    ],
+    inclusions: [
+      "Accommodation in 3-star hotels as per itinerary",
+      "Meal plan: Breakfast daily",
+      "Exclusive non-AC vehicle (Innova / Xylo) for transfers & sightseeing",
+      "All permit fees & hotel taxes as per itinerary",
+      "Bhutan entry permit assistance & SDF for Indian nationals"
+    ],
+    exclusions: [
+      "Air fare / train fare",
+      "Personal expenses, room heater charges",
+      "Additional sightseeing or extra vehicle usage beyond the itinerary",
+      "Any cost from natural calamities"
+    ],
+    image: IMAGES.REGIONS.BHUTAN,
+    gallery: [
+      IMAGES.REGIONS.BHUTAN,
+      IMAGES.REGIONS.BHUTAN
+    ],
+    featured: false
+  },
+  {
     id: "bhutan-group-trip-phobjikha-7n8d",
     slug: "bhutan-group-trip-phobjikha-7n8d",
     faqs: [],
