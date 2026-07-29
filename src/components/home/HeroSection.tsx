@@ -20,7 +20,7 @@ export default function HeroSection() {
     // Auto-advance slideshow
     const slideInterval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % IMAGES.HERO_SLIDESHOW.length);
-    }, 6000); // 6 seconds per slide
+    }, 4000); // 4 seconds per slide
 
     return () => clearInterval(slideInterval);
   }, []);
