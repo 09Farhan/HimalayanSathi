@@ -1,6 +1,7 @@
 import { NextResponse, NextRequest } from 'next/server';
 import { db } from '@/lib/db';
-import { sendLeadNotificationEmail } from '@/lib/email';
+import { sendLeadNotificationEmail, sendCustomerAutoReplyEmail } from '@/lib/email';
+import { sendWhatsAppNotification } from '@/lib/whatsapp';
 
 export async function POST(request: NextRequest) {
   try {
@@ -28,8 +29,12 @@ export async function POST(request: NextRequest) {
     // Insert lead into database
     await db.insertLead(leadData);
 
-    // Send email notification (non-blocking, if it fails it won't crash the user response)
-    await sendLeadNotificationEmail(leadData);
+    // Send notifications concurrently (non-blocking, if any fail it won't crash the user response)
+    Promise.allSettled([
+      sendLeadNotificationEmail(leadData),
+      sendCustomerAutoReplyEmail(leadData),
+      sendWhatsAppNotification(leadData)
+    ]).catch(err => console.error("Error in notification Promise.allSettled:", err));
     
     return NextResponse.json(
       { success: true, message: 'Enquiry received successfully' },
@@ -40,3 +45,4 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
+

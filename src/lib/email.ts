@@ -98,3 +98,53 @@ export async function sendLeadNotificationEmail(lead: LeadData) {
     return false; // Return false but don't throw to prevent crashing the main API route
   }
 }
+
+export async function sendCustomerAutoReplyEmail(lead: LeadData) {
+  const htmlContent = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 30px; border: 1px solid #e0e0e0; border-radius: 12px; background-color: #ffffff;">
+      <div style="text-align: center; margin-bottom: 20px;">
+        <h1 style="color: #2c3e50; margin-bottom: 5px;">Himalayan Sathi</h1>
+        <p style="color: #f39c12; font-weight: bold; margin-top: 0; font-size: 14px;">YOUR JOURNEY, OUR PROMISE</p>
+      </div>
+      
+      <p style="font-size: 16px; color: #2c3e50; line-height: 1.5;">Dear <strong>${lead.name}</strong>,</p>
+      
+      <p style="font-size: 16px; color: #34495e; line-height: 1.6;">
+        Thank you for your interest! We have received your enquiry and our travel experts are currently reviewing your request.
+      </p>
+      
+      <p style="font-size: 16px; color: #34495e; line-height: 1.6;">
+        We will get back to you shortly with more details${lead.destination ? ` regarding your trip to <strong>${lead.destination}</strong>` : ''}.
+      </p>
+
+      <div style="margin-top: 30px; padding: 20px; background-color: #f8f9fa; border-radius: 8px; text-align: center;">
+        <p style="margin: 0; color: #7f8c8d; font-size: 14px;">If you need immediate assistance, feel free to reach out to us at:</p>
+        <p style="margin: 10px 0 0 0; color: #2c3e50; font-weight: bold;">📞 +91 76799 48664</p>
+      </div>
+
+      <div style="margin-top: 30px; font-size: 12px; color: #bdc3c7; text-align: center; border-top: 1px solid #eee; padding-top: 15px;">
+        <p style="margin: 0;">&copy; ${new Date().getFullYear()} Himalayan Sathi Tours & Travels. All rights reserved.</p>
+      </div>
+    </div>
+  `;
+
+  try {
+    if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+      console.warn('⚠️ Auto-reply email skipped: SMTP credentials not configured.');
+      return false;
+    }
+
+    await transporter.sendMail({
+      from: `"Himalayan Sathi" <${process.env.SMTP_USER}>`,
+      to: lead.email,
+      subject: `Thank you for contacting Himalayan Sathi!`,
+      html: htmlContent,
+    });
+    
+    console.log(`✅ Auto-reply email sent successfully to ${lead.email}`);
+    return true;
+  } catch (error) {
+    console.error('❌ Failed to send auto-reply email:', error);
+    return false;
+  }
+}
