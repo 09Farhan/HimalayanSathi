@@ -3,18 +3,18 @@ import { Package } from '@/lib/types';
 
 export const packages: Package[] = [
   {
-    id: "sikkim-darjeeling-5n6d",
-    slug: "sikkim-darjeeling-5n6d",
+    id: "sikkim-darjeeling-4n5d",
+    slug: "sikkim-darjeeling-4n5d",
     faqs: [],
-    title: "Sikkim & Darjeeling Tour Package (5 Nights)",
+    title: "Sikkim & Darjeeling Tour Package (4 Nights)",
     destination: "Gangtok, Darjeeling",
     region: "sikkim",
-    duration: "5 Nights / 6 Days",
+    duration: "4 Nights / 5 Days",
     durationCategory: "4-6 days",
     type: "family",
     priceRange: "Price on Request",
     startingPrice: 0,
-    shortDescription: "A beautiful 6-day getaway covering the vibrant city of Gangtok and the historic tea-capital of Darjeeling, perfect for families and couples.\n\n**Accommodation Notes:**\nNights 1, 2, 3: Gangtok (3-star)\nNights 4, 5: Darjeeling (3-star)\nTransport: Innova / Xylo",
+    shortDescription: "A beautiful 5-day getaway covering the vibrant city of Gangtok and the historic tea-capital of Darjeeling, perfect for families and couples.\n\n**Accommodation Notes:**\nNights 1, 2: Gangtok (3-star)\nNights 3, 4: Darjeeling (3-star)\nTransport: Innova / Xylo",
     itinerary: [
       {
         day: 1,
@@ -28,21 +28,16 @@ export const packages: Package[] = [
       },
       {
         day: 3,
-        title: "Gangtok — Full-day Sightseeing",
-        description: "Breakfast at the hotel, later proceed for sightseeing in Gangtok visiting Tashi View Point, Hanuman Tok, Ganesh Tok, Enchey Monastery, Flower Exhibition Centre, Do Drul Chorten, Namgyal Institute of Tibetology, Cottage Industry, Ropeway & Bakthang Falls."
-      },
-      {
-        day: 4,
         title: "Gangtok to Darjeeling — Transfer",
         description: "Breakfast at the hotel, later proceed to Darjeeling. Darjeeling is a town in India's West Bengal state, in the Himalayan foothills. Once a summer resort for the British Raj elite, it remains the terminus of the narrow-gauge Darjeeling Himalayan Railway, or the 'Toy Train'."
       },
       {
-        day: 5,
+        day: 4,
         title: "Darjeeling — Full Day Sightseeing",
         description: "Early morning visit Tiger Hill to see a beautiful sunrise and the Himalayan range, including Kanchenjunga and Mount Everest. On the way back, visit Ghoom Monastery and Batasia Loop. After breakfast, proceed for a city tour visiting Himalayan Mountaineering Institute, Padmaja Naidu Zoological Park, Tibetan Refugee Centre, Tenzing Rock, Tea Estate (from outside), and the Japanese Peace Pagoda."
       },
       {
-        day: 6,
+        day: 5,
         title: "Darjeeling to New Jalpaiguri Railway Station / Bagdogra Airport — Drop",
         description: "Breakfast at the hotel and drive to Bagdogra Airport / NJP Railway Station in time for your flight/train to onward destination."
       }
@@ -68,6 +63,73 @@ export const packages: Package[] = [
     ],
     featured: false
   },
+  {
+    id: "sikkim-pelling-darjeeling-5n6d",
+    slug: "sikkim-pelling-darjeeling-5n6d",
+    faqs: [],
+    title: "Sikkim, Pelling & Darjeeling Tour (5 Nights)",
+    destination: "Gangtok, Pelling, Darjeeling",
+    region: "sikkim",
+    duration: "5 Nights / 6 Days",
+    durationCategory: "4-6 days",
+    type: "family",
+    priceRange: "Price on Request",
+    startingPrice: 0,
+    shortDescription: "A scenic 6-day tour traversing the highlights of Gangtok, the majestic views of Pelling, and the rolling hills of Darjeeling.\n\n**Accommodation Notes:**\nNights 1, 2: Gangtok (3-star)\nNight 3: Pelling (3-star)\nNights 4, 5: Darjeeling (3-star)\nTransport: Innova / Xylo",
+    itinerary: [
+      {
+        day: 1,
+        title: "Bagdogra Airport / NJP Railway Station to Gangtok — Pickup",
+        description: "On arrival at NJP Railway Station / Bagdogra Airport, you will be met by our driver who will assist you to board your vehicle to Gangtok. Check into the hotel and enjoy the day at leisure."
+      },
+      {
+        day: 2,
+        title: "Gangtok to Tsomgo Lake & Baba Mandir — Excursion",
+        description: "Breakfast at the hotel and full-day excursion to Tsomgo Lake (Changu Lake), 35 kms from Gangtok at an altitude of 12,400 feet. The lake derives its waters from melting snow off the surrounding mountains."
+      },
+      {
+        day: 3,
+        title: "Gangtok to Pelling — Transfer via Namchi & Ravangla",
+        description: "After breakfast at the hotel, drive to Pelling via Namchi Chardham & Ravangla Buddha Park. Pelling is famous for its magnificent view of the snow-capped mountains of Kanchenjunga. On arrival, check into the hotel and enjoy the day, with sightseeing at Namchi's Sai Mandir, Chardham and Buddha Park."
+      },
+      {
+        day: 4,
+        title: "Pelling — Half Day Sightseeing, Transfer to Darjeeling",
+        description: "After breakfast, embark on a sightseeing tour of Pelling covering Pemyang Monastery, Rimbi Waterfall, and Skywalk. Then transfer to Darjeeling. Darjeeling is a town in India's West Bengal state, in the Himalayan foothills."
+      },
+      {
+        day: 5,
+        title: "Darjeeling — Full Day Sightseeing",
+        description: "Early morning visit Tiger Hill to see a beautiful sunrise. On the way back, visit Ghoom Monastery and Batasia Loop. After breakfast, proceed for a city tour visiting Himalayan Mountaineering Institute, Padmaja Naidu Zoological Park, Tibetan Refugee Centre, Tenzing Rock / Gombu Rock, Tea Estate (from outside), and the Japanese Peace Pagoda."
+      },
+      {
+        day: 6,
+        title: "Darjeeling to New Jalpaiguri Railway Station / Bagdogra Airport — Drop",
+        description: "Breakfast at the hotel and drive to Bagdogra Airport / NJP Railway Station in time for your flight/train to onward destination."
+      }
+    ],
+    inclusions: [
+      "Accommodation in 3-star hotels as per itinerary",
+      "Meal plan: Breakfast daily",
+      "Exclusive non-AC vehicle (Innova / Xylo) for transfers & sightseeing",
+      "All permit fees & hotel taxes as per itinerary",
+      "Rates valid for Indian nationals only"
+    ],
+    exclusions: [
+      "Air fare / train fare",
+      "Personal expenses, room heater charges",
+      "Additional sightseeing or extra vehicle usage beyond the itinerary",
+      "Any cost from natural calamities"
+    ],
+    image: IMAGES.REGIONS.SIKKIM,
+    gallery: [
+      IMAGES.REGIONS.SIKKIM,
+      IMAGES.REGIONS.DARJEELING,
+      IMAGES.REGIONS.SIKKIM
+    ],
+    featured: false
+  },
+  
   {
     id: "sikkim-lachung-darjeeling-7n8d",
     slug: "sikkim-lachung-darjeeling-7n8d",
@@ -144,77 +206,7 @@ export const packages: Package[] = [
     ],
     featured: false
   },
-  {
-    id: "sikkim-pelling-darjeeling-6n7d",
-    slug: "sikkim-pelling-darjeeling-6n7d",
-    faqs: [],
-    title: "Sikkim, Pelling & Darjeeling Tour",
-    destination: "Gangtok, Pelling, Darjeeling",
-    region: "sikkim",
-    duration: "6 Nights / 7 Days",
-    durationCategory: "4-6 days",
-    type: "family",
-    priceRange: "Price on Request",
-    startingPrice: 0,
-    shortDescription: "A scenic 7-day tour traversing the highlights of Gangtok, the majestic views of Pelling, and the rolling hills of Darjeeling.\n\n**Accommodation Notes:**\nNights 1, 2: Gangtok (3-star)\nNights 3, 4: Pelling (3-star)\nNights 5, 6: Darjeeling (3-star)\nTransport: Innova / Xylo",
-    itinerary: [
-      {
-        day: 1,
-        title: "Bagdogra Airport / NJP Railway Station to Gangtok — Pickup",
-        description: "On arrival at NJP Railway Station / Bagdogra Airport, you will be met by our driver who will assist you to board your vehicle to Gangtok. Check into the hotel and enjoy the day at leisure."
-      },
-      {
-        day: 2,
-        title: "Gangtok to Tsomgo Lake & Baba Mandir — Excursion",
-        description: "Breakfast at the hotel and full-day excursion to Tsomgo Lake (Changu Lake), 35 kms from Gangtok at an altitude of 12,400 feet. The lake derives its waters from melting snow off the surrounding mountains."
-      },
-      {
-        day: 3,
-        title: "Gangtok to Pelling — Transfer via Namchi & Ravangla",
-        description: "After breakfast at the hotel, drive to Pelling. Pelling is famous for its magnificent view of the snow-capped mountains of Kanchenjunga. On arrival, check into the hotel and enjoy the day with sightseeing at Namchi's Sai Mandir, Chardham and Buddha Park."
-      },
-      {
-        day: 4,
-        title: "Pelling — Half Day Sightseeing, Transfer to Darjeeling",
-        description: "After breakfast, embark on a sightseeing tour of Pelling covering Pemyang Monastery, Rimbi Waterfall, and Skywalk. Then transfer to Darjeeling."
-      },
-      {
-        day: 5,
-        title: "Darjeeling — Full Day Sightseeing",
-        description: "Early morning visit Tiger Hill to see a beautiful sunrise. On the way back, visit Ghoom Monastery and Batasia Loop. After breakfast, proceed for a city tour visiting Himalayan Mountaineering Institute, Padmaja Naidu Zoological Park, Tibetan Refugee Centre, Tenzing Rock / Gombu Rock, Tea Estate (from outside), and the Japanese Peace Pagoda."
-      },
-      {
-        day: 6,
-        title: "Darjeeling to New Jalpaiguri Railway Station / Bagdogra Airport — Drop",
-        description: "Breakfast at the hotel and drive to Bagdogra Airport / NJP Railway Station in time for your flight/train to onward destination. Note: It seems the document actually marks Darjeeling as a 2 night stay, so you might explore Mall road at leisure."
-      },
-      {
-        day: 7,
-        title: "Departure",
-        description: "Drop at Bagdogra Airport / NJP Railway Station."
-      }
-    ],
-    inclusions: [
-      "Accommodation in 3-star hotels as per itinerary",
-      "Meal plan: Breakfast daily",
-      "Exclusive non-AC vehicle (Innova / Xylo) for transfers & sightseeing",
-      "All permit fees & hotel taxes as per itinerary",
-      "Rates valid for Indian nationals only"
-    ],
-    exclusions: [
-      "Air fare / train fare",
-      "Personal expenses, room heater charges",
-      "Additional sightseeing or extra vehicle usage beyond the itinerary",
-      "Any cost from natural calamities"
-    ],
-    image: IMAGES.REGIONS.SIKKIM,
-    gallery: [
-      IMAGES.REGIONS.SIKKIM,
-      IMAGES.REGIONS.DARJEELING,
-      IMAGES.REGIONS.SIKKIM
-    ],
-    featured: false
-  },
+  
   {
     id: "bhutan-private-trip-7n8d",
     slug: "bhutan-private-trip-7n8d",
