@@ -134,9 +134,12 @@ export default function PackagesPage() {
                 className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-gray-50"
               >
                 <option value="all">All Durations</option>
-                <option value="weekend">Weekend (1-3 Days)</option>
-                <option value="4-6 days">4-6 Days</option>
-                <option value="7+ days">7+ Days</option>
+                <option value="4N/5D">4N/5D</option>
+                <option value="5N/6D">5N/6D</option>
+                <option value="6N/7D">6N/7D</option>
+                <option value="7N/8D">7N/8D</option>
+                <option value="8N/9D">8N/9D</option>
+                <option value="9N/10D">9N/10D</option>
               </select>
             </div>
             
@@ -153,7 +156,6 @@ export default function PackagesPage() {
                 <option value="family">Family</option>
                 <option value="honeymoon">Honeymoon</option>
                 <option value="adventure">Adventure</option>
-                <option value="pilgrimage">Pilgrimage</option>
                 <option value="group">Group</option>
               </select>
             </div>
