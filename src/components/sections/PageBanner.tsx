@@ -8,7 +8,7 @@ interface PageBannerProps {
 
 export default function PageBanner({ title, subtitle, icon }: PageBannerProps) {
   return (
-    <section className="relative py-20 bg-primary overflow-hidden">
+    <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 bg-primary overflow-hidden">
       <div className="absolute inset-0 pattern-bg opacity-10"></div>
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
         {icon && <div className="text-4xl mb-4 animate-float">{icon}</div>}
