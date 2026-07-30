@@ -3,6 +3,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 
+import PageBanner from '@/components/sections/PageBanner';
+
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
@@ -15,14 +17,12 @@ export default async function BlogListingPage() {
   const blogs = await db.getBlogs({ status: 'published' });
 
   return (
-    <div className="bg-surface min-h-screen pt-28 pb-20">
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-heading font-bold text-primary-dark mb-4">Travel Blog & Guides</h1>
-          <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-            Discover travel tips, destination guides, and beautiful stories from the Himalayas.
-          </p>
-        </div>
+    <div className="bg-surface min-h-screen pb-20">
+      <PageBanner 
+        title="Travel Blog & Guides" 
+        subtitle="Discover travel tips, destination guides, and beautiful stories from the Himalayas." 
+      />
+      <div className="max-w-7xl mx-auto px-4 md:px-8 mt-12">
 
         {blogs.length === 0 ? (
           <div className="text-center py-20 bg-white rounded-2xl shadow-sm border border-gray-100">
