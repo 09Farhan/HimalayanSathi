@@ -225,7 +225,7 @@ async function run() {
     await client.connect();
     console.log("Connected successfully to server");
 
-    const db = client.db('himalayan_sathi');
+    const db = client.db();
     const collection = db.collection('packages');
 
     for (const pkg of honeymoonPackages) {
