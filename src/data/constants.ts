@@ -1,6 +1,7 @@
 export const SITE_INFO = {
   name: 'Himalayan Sathi',
   email: 'info@himalayansathi.com',
+  secondaryEmail: 'himalayansathi@gmail.com',
   phone: '+91 76799 48664',
   address: 'Airport More, Near, Bagdogra, Siliguri, West Bengal 734014',
 };

@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import ContactForm from '@/components/ui/ContactForm';
 import { Phone, Mail, MapPin, MessageCircle, Clock } from 'lucide-react';
+import { SITE_INFO } from '@/data/constants';
 
 export const metadata: Metadata = {
   title: 'Contact Himalayan Sathi | Sikkim Tour Operator',
@@ -51,7 +52,12 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold mb-1">Email</h3>
-                  <a href="mailto:info@himalayansathi.com" className="hover:text-accent transition-colors">info@himalayansathi.com</a>
+                  <div className="flex flex-col space-y-1">
+                    <a href={`mailto:${SITE_INFO.email}`} className="hover:text-accent transition-colors">{SITE_INFO.email}</a>
+                    {SITE_INFO.secondaryEmail && (
+                      <a href={`mailto:${SITE_INFO.secondaryEmail}`} className="hover:text-accent transition-colors">{SITE_INFO.secondaryEmail}</a>
+                    )}
+                  </div>
                 </div>
               </div>
 

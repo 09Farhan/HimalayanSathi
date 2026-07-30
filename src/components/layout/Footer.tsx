@@ -107,6 +107,12 @@ export default function Footer() {
                 </a>
               </li>
               <li>
+                <a href={`mailto:${SITE_INFO.secondaryEmail}`} className="flex items-start gap-3 text-white/70 hover:text-accent transition-colors group">
+                  <Mail size={18} className="mt-0.5 text-accent group-hover:scale-110 transition-transform" />
+                  <span className="text-sm">{SITE_INFO.secondaryEmail}</span>
+                </a>
+              </li>
+              <li>
                 <div className="flex items-start gap-3 text-white/70">
                   <MapPin size={18} className="mt-0.5 text-accent" />
                   <span className="text-sm leading-relaxed">{SITE_INFO.address}</span>
