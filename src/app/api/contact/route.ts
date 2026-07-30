@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
     await Promise.allSettled([
       sendLeadNotificationEmail(leadData),
       sendCustomerAutoReplyEmail(leadData),
-      // sendWhatsAppNotification(leadData)
+      sendWhatsAppNotification(leadData)
     ]).catch(err => console.error("Error in notification Promise.allSettled:", err));
     
     return NextResponse.json(
