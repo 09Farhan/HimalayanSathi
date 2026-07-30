@@ -46,7 +46,6 @@ function AdminPackageForm({ initialData, onSubmit, onCancel }: AdminPackageFormP
     region: 'darjeeling',
     duration: '',
     durationCategory: 'weekend',
-    type: 'family',
     priceRange: '',
     startingPrice: 0,
     shortDescription: '',
@@ -57,7 +56,8 @@ function AdminPackageForm({ initialData, onSubmit, onCancel }: AdminPackageFormP
     destinationsArray: [{ name: '', dayNumber: 1, description: '' }], // New from requirements
     inclusions: [''],
     exclusions: [''],
-    ...initialData
+    ...initialData,
+    type: initialData ? (Array.isArray(initialData.type) ? initialData.type : (initialData.type ? [initialData.type] : ['family'])) : ['family']
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -172,12 +172,20 @@ function AdminPackageForm({ initialData, onSubmit, onCancel }: AdminPackageFormP
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Type *</label>
-              <select name="type" value={formData.type} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300">
-                <option value="family">Family</option>
-                <option value="couple">Couple/Honeymoon</option>
-                <option value="group">Group</option>
-                <option value="adventure">Adventure</option>
-              </select>
+              <div className="flex flex-wrap gap-3 mt-2">
+                {['family', 'honeymoon', 'group', 'adventure'].map(t => (
+                  <label key={t} className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+                    <input type="checkbox" checked={formData.type.includes(t)} onChange={(e) => {
+                      if (e.target.checked) {
+                        setFormData((prev: any) => ({ ...prev, type: [...prev.type, t] }));
+                      } else {
+                        setFormData((prev: any) => ({ ...prev, type: prev.type.filter((type: string) => type !== t) }));
+                      }
+                    }} className="w-4 h-4 text-accent rounded border-gray-300" />
+                    <span className="capitalize">{t}</span>
+                  </label>
+                ))}
+              </div>
             </div>
           </div>
 

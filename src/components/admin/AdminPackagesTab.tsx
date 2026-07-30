@@ -137,7 +137,7 @@ export default function AdminPackagesTab() {
                     <td className="p-4">
                       <div className="font-semibold text-primary-dark text-lg mb-1">{pkg.title}</div>
                       <div className="text-sm text-gray-500 flex items-center gap-2">
-                        <span className="capitalize">{pkg.region}</span> • <span>{pkg.type}</span>
+                        <span className="capitalize">{pkg.region}</span> • <span className="capitalize">{Array.isArray(pkg.type) ? pkg.type.join(', ') : pkg.type}</span>
                       </div>
                     </td>
                     <td className="p-4">

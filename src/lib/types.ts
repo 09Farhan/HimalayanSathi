@@ -29,7 +29,7 @@ export interface Package {
   region: "darjeeling" | "sikkim" | "bhutan" | "northeast";
   duration: string;
   durationCategory: "weekend" | "4-6 days" | "7+ days";
-  type: "family" | "honeymoon" | "adventure" | "pilgrimage" | "group";
+  type: string[];
   priceRange: string;
   startingPrice: number;
   shortDescription: string;

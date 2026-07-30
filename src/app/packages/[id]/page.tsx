@@ -76,7 +76,7 @@ export default async function PackageDetailPage({ params }: { params: Promise<{ 
               {pkg.region}
             </span>
             <span className="bg-white/20 backdrop-blur-md px-3 py-1 text-white text-sm rounded-full">
-              {pkg.type.charAt(0).toUpperCase() + pkg.type.slice(1)} Tour
+              {pkg.type.map((t: string) => t.charAt(0).toUpperCase() + t.slice(1)).join(' & ')} Tour
             </span>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-4">
@@ -128,7 +128,7 @@ export default async function PackageDetailPage({ params }: { params: Promise<{ 
               </div>
               <div className="min-w-0 flex-1">
                 <p className="text-[10px] md:text-xs text-text-muted font-bold tracking-wider uppercase mb-0.5 md:mb-1">Tour Type</p>
-                <p className="font-bold text-sm md:text-base text-primary-dark capitalize truncate">{pkg.type}</p>
+                <p className="font-bold text-sm md:text-base text-primary-dark capitalize truncate">{pkg.type.join(', ')}</p>
               </div>
             </div>
           </div>

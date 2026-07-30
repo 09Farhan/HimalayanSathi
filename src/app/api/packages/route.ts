@@ -25,9 +25,12 @@ export async function GET(request: NextRequest) {
     }
     
     if (type) {
-      filteredPackages = filteredPackages.filter(
-        (pkg) => pkg.type.toLowerCase() === type.toLowerCase()
-      );
+      filteredPackages = filteredPackages.filter((pkg) => {
+        if (Array.isArray(pkg.type)) {
+          return pkg.type.some((t: string) => t.toLowerCase() === type.toLowerCase());
+        }
+        return pkg.type && pkg.type.toLowerCase() === type.toLowerCase();
+      });
     }
     
     if (featured === 'true') {
