@@ -8,10 +8,15 @@ export default function PackageCard({ pkg }: { pkg: Package }) {
       className="bg-white rounded-3xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-500 border border-transparent hover:border-accent/20 group flex flex-col hover:-translate-y-2"
     >
       <div className="relative h-60 overflow-hidden">
-        <div className="absolute top-4 left-4 z-10 flex gap-2">
+        <div className="absolute top-4 left-4 z-10 flex flex-wrap gap-2 pr-12">
           <span className="bg-primary/90 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg">
             {pkg.region}
           </span>
+          {pkg.type && (
+            <span className="bg-white/90 backdrop-blur-md text-primary-dark text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg truncate max-w-[150px]">
+              {Array.isArray(pkg.type) ? pkg.type.join(' & ') : pkg.type}
+            </span>
+          )}
         </div>
         <div className="absolute top-4 right-4 z-10">
           <span className="bg-white/95 backdrop-blur-md text-primary text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg">
