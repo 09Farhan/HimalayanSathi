@@ -11,6 +11,7 @@ const navLinks = [
   { name: 'Home', href: '/' },
   { name: 'Destinations', href: '/destinations' },
   { name: 'Packages', href: '/packages' },
+  { name: 'Honeymoon Tours', href: '/honeymoon-tour-packages' },
   { name: 'Cab Services', href: '/cab-services' },
   { name: 'About', href: '/about' },
   { name: 'Blog', href: '/blog' },

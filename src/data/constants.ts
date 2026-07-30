@@ -19,6 +19,7 @@ export const FOOTER_LINKS = [
     title: 'Company',
     links: [
       { label: 'About Us', href: '/about' },
+      { label: 'Honeymoon Packages', href: '/honeymoon-tour-packages' },
       { label: 'Contact', href: '/contact' },
       { label: 'FAQ', href: '/faq' },
       { label: 'Blog', href: '/blog' },
