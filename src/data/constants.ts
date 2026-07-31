@@ -4,6 +4,10 @@ export const SITE_INFO = {
   secondaryEmail: 'himalayansathi@gmail.com',
   phone: '+91 76799 48664',
   address: 'Airport More, Near, Bagdogra, Siliguri, West Bengal 734014',
+  socials: {
+    facebook: 'https://www.facebook.com/share/1MDQ1h7duE/?mibextid=wwXIfr',
+    instagram: 'https://www.instagram.com/himalayan_sathi_travels',
+  }
 };
 
 export const FOOTER_LINKS = [

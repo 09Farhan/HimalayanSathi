@@ -121,11 +121,11 @@ export default function Footer() {
             </ul>
             
             <div className="flex items-center gap-4 mt-2">
-              <a href="#" aria-label="Instagram" className="bg-white/10 p-2.5 rounded-full hover:bg-accent hover:text-primary transition-all duration-300">
-                <InstagramIcon size={18} />
-              </a>
-              <a href="#" aria-label="Facebook" className="bg-white/10 p-2.5 rounded-full hover:bg-accent hover:text-primary transition-all duration-300">
+              <a href={SITE_INFO.socials.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="bg-white/10 p-2.5 rounded-full hover:bg-accent hover:text-primary transition-all duration-300">
                 <FacebookIcon size={18} />
+              </a>
+              <a href={SITE_INFO.socials.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="bg-white/10 p-2.5 rounded-full hover:bg-accent hover:text-primary transition-all duration-300">
+                <InstagramIcon size={18} />
               </a>
               <a href="https://wa.me/917679948664" aria-label="WhatsApp" className="bg-white/10 p-2.5 rounded-full hover:bg-accent hover:text-primary transition-all duration-300">
                 <Phone size={18} />
