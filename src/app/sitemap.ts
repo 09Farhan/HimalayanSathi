@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { packages } from '@/data/packages';
 import { blogPosts } from '@/data/blog';
 
-const DOMAIN = 'https://himalayan-sathi.vercel.app';
+const DOMAIN = 'https://himalayansathi.com';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Static Routes
