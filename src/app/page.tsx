@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import HeroSection from "@/components/home/HeroSection";
 import FeaturedPackages from "@/components/home/FeaturedPackages";
+import HotelPartners from "@/components/home/HotelPartners";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import ContactStrip from "@/components/home/ContactStrip";
@@ -40,6 +41,7 @@ export default async function HomePage() {
     <>
       <HeroSection totalPackages={totalPackages} />
       <FeaturedPackages />
+      <HotelPartners />
       <WhyChooseUs totalPackages={totalPackages} />
       <TravellerGallery />
       <TestimonialsSection />
