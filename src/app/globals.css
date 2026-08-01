@@ -162,12 +162,6 @@ h1, h2, h3, h4, h5, h6 {
   animation: marquee-reverse 80s linear infinite;
 }
 
-/* Pause animation on hover */
-.group:hover .animate-marquee,
-.group:hover .animate-marquee-reverse {
-  animation-play-state: paused;
-}
-
 /* Stagger children animations */
 .stagger-children > * {
   opacity: 0;

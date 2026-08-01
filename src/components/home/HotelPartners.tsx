@@ -29,7 +29,7 @@ export default function HotelPartners() {
         <div className="w-16 h-1 bg-accent mx-auto mt-4 rounded-full" />
       </div>
 
-      <div className="flex flex-col gap-10 relative group">
+      <div className="flex flex-col gap-10 relative">
         {/* Top Row - Scrolls Right (marquee-reverse) */}
         <div className="flex w-full overflow-hidden">
           <div className="flex shrink-0 min-w-full animate-marquee-reverse gap-6 sm:gap-10 pr-6 sm:pr-10">
