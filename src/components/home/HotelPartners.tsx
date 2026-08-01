@@ -5,7 +5,6 @@ export interface HotelPartner {
   id: string;
   name: string;
   logoUrl: string;
-  website?: string; // Optional link to the hotel's website
 }
 
 /**
@@ -34,122 +33,78 @@ export default function HotelPartners() {
         {/* Top Row - Scrolls Right (marquee-reverse) */}
         <div className="flex w-full overflow-hidden">
           <div className="flex shrink-0 min-w-full animate-marquee-reverse gap-6 sm:gap-10 pr-6 sm:pr-10">
-            {row1Logos.map((partner, index) => {
-              const Content = (
-                <div
-                  className="relative w-36 h-36 sm:w-48 sm:h-48 shrink-0 shadow-md hover:shadow-xl transition-shadow duration-300"
-                  style={{ borderRadius: '40%', overflow: 'hidden' }}
-                >
-                  <Image
-                    src={partner.logoUrl}
-                    alt={partner.name}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 144px, 192px"
-                  />
-                </div>
-              );
-              
-              return partner.website ? (
-                <a key={`row1-${partner.id}-${index}`} href={partner.website} target="_blank" rel="noopener noreferrer" className="shrink-0">
-                  {Content}
-                </a>
-              ) : (
-                <div key={`row1-${partner.id}-${index}`} className="shrink-0">
-                  {Content}
-                </div>
-              );
-            })}
+            {row1Logos.map((partner, index) => (
+              <div
+                key={`row1-${partner.id}-${index}`}
+                className="relative w-36 h-36 sm:w-48 sm:h-48 shrink-0 shadow-md hover:shadow-xl transition-shadow duration-300"
+                style={{ borderRadius: '40%', overflow: 'hidden' }}
+              >
+                <Image
+                  src={partner.logoUrl}
+                  alt={partner.name}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 144px, 192px"
+                />
+              </div>
+            ))}
           </div>
           {/* Duplicate set for seamless infinite loop */}
           <div className="flex shrink-0 min-w-full animate-marquee-reverse gap-6 sm:gap-10 pr-6 sm:pr-10" aria-hidden="true">
-            {row1Logos.map((partner, index) => {
-              const Content = (
-                <div
-                  className="relative w-36 h-36 sm:w-48 sm:h-48 shrink-0 shadow-md hover:shadow-xl transition-shadow duration-300"
-                  style={{ borderRadius: '40%', overflow: 'hidden' }}
-                >
-                  <Image
-                    src={partner.logoUrl}
-                    alt={partner.name}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 144px, 192px"
-                  />
-                </div>
-              );
-              
-              return partner.website ? (
-                <a key={`row1-dup-${partner.id}-${index}`} href={partner.website} target="_blank" rel="noopener noreferrer" className="shrink-0" tabIndex={-1}>
-                  {Content}
-                </a>
-              ) : (
-                <div key={`row1-dup-${partner.id}-${index}`} className="shrink-0">
-                  {Content}
-                </div>
-              );
-            })}
+            {row1Logos.map((partner, index) => (
+              <div
+                key={`row1-dup-${partner.id}-${index}`}
+                className="relative w-36 h-36 sm:w-48 sm:h-48 shrink-0 shadow-md hover:shadow-xl transition-shadow duration-300"
+                style={{ borderRadius: '40%', overflow: 'hidden' }}
+              >
+                <Image
+                  src={partner.logoUrl}
+                  alt={partner.name}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 144px, 192px"
+                />
+              </div>
+            ))}
           </div>
         </div>
 
         {/* Bottom Row - Scrolls Left (marquee) */}
         <div className="flex w-full overflow-hidden">
           <div className="flex shrink-0 min-w-full animate-marquee gap-6 sm:gap-10 pr-6 sm:pr-10">
-            {row2Logos.map((partner, index) => {
-              const Content = (
-                <div
-                  className="relative w-36 h-36 sm:w-48 sm:h-48 shrink-0 shadow-md hover:shadow-xl transition-shadow duration-300"
-                  style={{ borderRadius: '40%', overflow: 'hidden' }}
-                >
-                  <Image
-                    src={partner.logoUrl}
-                    alt={partner.name}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 144px, 192px"
-                  />
-                </div>
-              );
-              
-              return partner.website ? (
-                <a key={`row2-${partner.id}-${index}`} href={partner.website} target="_blank" rel="noopener noreferrer" className="shrink-0">
-                  {Content}
-                </a>
-              ) : (
-                <div key={`row2-${partner.id}-${index}`} className="shrink-0">
-                  {Content}
-                </div>
-              );
-            })}
+            {row2Logos.map((partner, index) => (
+              <div
+                key={`row2-${partner.id}-${index}`}
+                className="relative w-36 h-36 sm:w-48 sm:h-48 shrink-0 shadow-md hover:shadow-xl transition-shadow duration-300"
+                style={{ borderRadius: '40%', overflow: 'hidden' }}
+              >
+                <Image
+                  src={partner.logoUrl}
+                  alt={partner.name}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 144px, 192px"
+                />
+              </div>
+            ))}
           </div>
           {/* Duplicate set for seamless infinite loop */}
           <div className="flex shrink-0 min-w-full animate-marquee gap-6 sm:gap-10 pr-6 sm:pr-10" aria-hidden="true">
-            {row2Logos.map((partner, index) => {
-              const Content = (
-                <div
-                  className="relative w-36 h-36 sm:w-48 sm:h-48 shrink-0 shadow-md hover:shadow-xl transition-shadow duration-300"
-                  style={{ borderRadius: '40%', overflow: 'hidden' }}
-                >
-                  <Image
-                    src={partner.logoUrl}
-                    alt={partner.name}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 144px, 192px"
-                  />
-                </div>
-              );
-              
-              return partner.website ? (
-                <a key={`row2-dup-${partner.id}-${index}`} href={partner.website} target="_blank" rel="noopener noreferrer" className="shrink-0" tabIndex={-1}>
-                  {Content}
-                </a>
-              ) : (
-                <div key={`row2-dup-${partner.id}-${index}`} className="shrink-0">
-                  {Content}
-                </div>
-              );
-            })}
+            {row2Logos.map((partner, index) => (
+              <div
+                key={`row2-dup-${partner.id}-${index}`}
+                className="relative w-36 h-36 sm:w-48 sm:h-48 shrink-0 shadow-md hover:shadow-xl transition-shadow duration-300"
+                style={{ borderRadius: '40%', overflow: 'hidden' }}
+              >
+                <Image
+                  src={partner.logoUrl}
+                  alt={partner.name}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 144px, 192px"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>
