@@ -1,28 +1,52 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Clock, IndianRupee, ArrowRight } from "lucide-react";
 import type { Package } from "@/lib/types";
 
 /**
- * FeaturedPackages – Shows 4 featured tour packages on the home page.
+ * FeaturedPackages – Shows featured tour packages on the home page in an autoplay carousel.
  * Fetches data from the /api/packages endpoint.
  */
 export default function FeaturedPackages() {
   const [packages, setPackages] = useState<Package[]>([]);
   const [loading, setLoading] = useState(true);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     fetch("/api/packages?featured=true")
       .then((res) => res.json())
       .then((data) => {
-        setPackages(data.slice(0, 4));
+        setPackages(data);
         setLoading(false);
       })
       .catch(() => setLoading(false));
   }, []);
+
+  useEffect(() => {
+    if (packages.length <= 1) return;
+
+    const intervalId = setInterval(() => {
+      if (scrollContainerRef.current) {
+        const container = scrollContainerRef.current;
+        const maxScrollLeft = container.scrollWidth - container.clientWidth;
+        
+        // Loop back to start if at the end
+        if (container.scrollLeft >= maxScrollLeft - 10) {
+          container.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          // Scroll by one card width + gap (24px = gap-6)
+          const card = container.firstElementChild as HTMLElement;
+          const scrollAmount = card ? card.offsetWidth + 24 : 350;
+          container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+      }
+    }, 5000);
+
+    return () => clearInterval(intervalId);
+  }, [packages.length]);
 
   return (
     <section id="featured-packages" className="py-20 md:py-28 bg-surface">
@@ -42,11 +66,11 @@ export default function FeaturedPackages() {
           <div className="w-20 h-1 bg-accent mx-auto mt-6 rounded-full" />
         </div>
 
-        {/* Package cards grid */}
+        {/* Package cards carousel */}
         {loading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="flex gap-6 overflow-hidden">
             {[...Array(4)].map((_, i) => (
-              <div key={i} className="rounded-2xl overflow-hidden">
+              <div key={i} className="min-w-[100%] sm:min-w-[calc(50%-12px)] lg:min-w-[calc(25%-18px)] rounded-2xl overflow-hidden shrink-0">
                 <div className="skeleton h-52 w-full" />
                 <div className="p-5 space-y-3 bg-white">
                   <div className="skeleton h-6 w-3/4" />
@@ -58,11 +82,15 @@ export default function FeaturedPackages() {
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 stagger-children">
+          <div 
+            ref={scrollContainerRef}
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-8 pt-4 -mt-4 px-4 -mx-4 [&::-webkit-scrollbar]:hidden"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
             {packages.map((pkg) => (
               <div
                 key={pkg.id}
-                className="group bg-surface-card rounded-3xl overflow-hidden transition-all duration-500 hover:-translate-y-2 border border-transparent hover:border-accent/20"
+                className="shrink-0 snap-start min-w-[100%] sm:min-w-[calc(50%-12px)] lg:min-w-[calc(25%-18px)] group bg-surface-card rounded-3xl overflow-hidden transition-all duration-500 hover:-translate-y-2 border border-transparent hover:border-accent/20"
                 style={{ boxShadow: "var(--shadow-card)" }}
                 onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-card-hover)")}
                 onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-card)")}
