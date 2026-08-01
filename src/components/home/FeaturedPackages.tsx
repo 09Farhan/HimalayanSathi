@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Clock, IndianRupee, ArrowRight } from "lucide-react";
+import { Clock, IndianRupee, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import type { Package } from "@/lib/types";
 
 /**
@@ -25,6 +25,14 @@ export default function FeaturedPackages() {
       .catch(() => setLoading(false));
   }, []);
 
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const card = scrollContainerRef.current.firstElementChild as HTMLElement;
+      const scrollAmount = card ? card.offsetWidth + 24 : 350;
+      scrollContainerRef.current.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
+    }
+  };
+
   useEffect(() => {
     if (packages.length <= 1) return;
 
@@ -43,7 +51,7 @@ export default function FeaturedPackages() {
           container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
         }
       }
-    }, 5000);
+    }, 3000);
 
     return () => clearInterval(intervalId);
   }, [packages.length]);
@@ -66,6 +74,26 @@ export default function FeaturedPackages() {
           <div className="w-20 h-1 bg-accent mx-auto mt-6 rounded-full" />
         </div>
 
+        {/* Carousel controls */}
+        {!loading && packages.length > 1 && (
+          <div className="flex justify-end gap-3 mb-6 pr-2">
+            <button 
+              onClick={() => scroll('left')} 
+              className="p-3 rounded-full bg-white text-primary shadow-md hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110 active:scale-95" 
+              aria-label="Previous packages"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button 
+              onClick={() => scroll('right')} 
+              className="p-3 rounded-full bg-white text-primary shadow-md hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110 active:scale-95" 
+              aria-label="Next packages"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+        )}
+
         {/* Package cards carousel */}
         {loading ? (
           <div className="flex gap-6 overflow-hidden pb-4">
@@ -84,7 +112,7 @@ export default function FeaturedPackages() {
         ) : (
           <div 
             ref={scrollContainerRef}
-            className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-6 [&::-webkit-scrollbar]:hidden"
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 [&::-webkit-scrollbar]:hidden"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {packages.map((pkg) => (
