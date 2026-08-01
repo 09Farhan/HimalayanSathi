@@ -68,9 +68,9 @@ export default function FeaturedPackages() {
 
         {/* Package cards carousel */}
         {loading ? (
-          <div className="flex gap-6 overflow-hidden">
+          <div className="flex gap-6 overflow-hidden pb-4">
             {[...Array(4)].map((_, i) => (
-              <div key={i} className="min-w-[100%] sm:min-w-[calc(50%-12px)] lg:min-w-[calc(25%-18px)] rounded-2xl overflow-hidden shrink-0">
+              <div key={i} className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] rounded-2xl overflow-hidden shrink-0">
                 <div className="skeleton h-52 w-full" />
                 <div className="p-5 space-y-3 bg-white">
                   <div className="skeleton h-6 w-3/4" />
@@ -84,13 +84,13 @@ export default function FeaturedPackages() {
         ) : (
           <div 
             ref={scrollContainerRef}
-            className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-8 pt-4 -mt-4 px-4 -mx-4 [&::-webkit-scrollbar]:hidden"
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-6 [&::-webkit-scrollbar]:hidden"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {packages.map((pkg) => (
               <div
                 key={pkg.id}
-                className="shrink-0 snap-start min-w-[100%] sm:min-w-[calc(50%-12px)] lg:min-w-[calc(25%-18px)] group bg-surface-card rounded-3xl overflow-hidden transition-all duration-500 hover:-translate-y-2 border border-transparent hover:border-accent/20"
+                className="shrink-0 snap-start w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] group bg-surface-card rounded-3xl overflow-hidden transition-all duration-500 hover:-translate-y-2 border border-transparent hover:border-accent/20"
                 style={{ boxShadow: "var(--shadow-card)" }}
                 onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-card-hover)")}
                 onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-card)")}
