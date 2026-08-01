@@ -67,6 +67,12 @@ export default function TestimonialCarousel({ testimonials }: { testimonials: Te
               "{testimonial.quote}"
             </p>
 
+            {testimonial.image && (
+              <div className="relative w-full h-48 mb-6 rounded-xl overflow-hidden border border-gray-100">
+                <Image src={testimonial.image} alt="Traveller photo" fill className="object-cover" />
+              </div>
+            )}
+
             <div className="flex items-center gap-4 mt-auto">
               <div className="relative w-14 h-14 rounded-full flex items-center justify-center bg-primary-light/10 border-2 border-primary/10 text-primary font-heading font-bold text-xl">
                 {testimonial.name ? testimonial.name.charAt(0).toUpperCase() : "U"}

@@ -18,6 +18,7 @@ export default async function TestimonialsSection() {
       rating: r.rating,
       quote: r.quote,
       avatar: r.avatar || IMAGES.TEAM.MEMBER_2, // default avatar
+      image: r.image,
       time: new Date(r.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long' }),
       location: r.location
     }));
