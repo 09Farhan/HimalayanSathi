@@ -9,7 +9,7 @@
 
 export const IMAGES = {
   // Global & Branding
-  LOGO: "/images/logo.png",
+  LOGO: "/logo-new.png",
   AVATAR_PLACEHOLDER: "/images/avatar-placeholder.png",
   PATTERN_BG: "/images/pattern.svg",
 
