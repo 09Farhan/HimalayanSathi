@@ -20,22 +20,22 @@ export const hotelPartners: HotelPartner[] = [
   {
     id: "muscatel",
     name: "Muscatel Hotels & Resorts",
-    logoUrl: "/assets/hotels/muscatel.jpg", // Replace with your uploaded filename if different
+    logoUrl: "/assets/hotels/hotel1.jpg", 
   },
   {
     id: "orsino",
     name: "Orsino Hotels and Resorts",
-    logoUrl: "/assets/hotels/orsino.jpg",
+    logoUrl: "/assets/hotels/hotel2.jpg",
   },
   {
     id: "divine",
     name: "Divine Hotels & Resorts",
-    logoUrl: "/assets/hotels/divine.jpg",
+    logoUrl: "/assets/hotels/hotel3.jpg",
   },
   {
     id: "marriott",
     name: "Marriott Hotels & Resorts",
-    logoUrl: "/assets/hotels/marriott.jpg",
+    logoUrl: "/assets/hotels/hotel4.jpg",
   },
   // Add more partners here as needed to fill out the band!
 ];
