@@ -20,56 +20,56 @@ export const hotelPartners: HotelPartner[] = [
   {
     id: "divine",
     name: "Divine Hotels & Resorts",
-    logoUrl: "/assets/hotels/hotel1.jpg", 
+    logoUrl: "/assets/hotels/hotel1.jpeg", 
   },
   {
     id: "muscatel",
     name: "Muscatel Hotels and Resorts",
-    logoUrl: "/assets/hotels/hotel2.jpg",
+    logoUrl: "/assets/hotels/hotel2.jpeg",
   },
   {
     id: "orsino",
     name: "Orsino Hotels & Resorts",
-    logoUrl: "/assets/hotels/hotel3.jpg",
+    logoUrl: "/assets/hotels/hotel3.jpeg",
   },
   {
     id: "marriott",
     name: "Marriott Hotels & Resorts",
-    logoUrl: "/assets/hotels/hotel4.jpg",
+    logoUrl: "/assets/hotels/hotel4.jpeg",
   },
   {
     id: "taj",
     name: "Taj Resorts & Spa",
-    logoUrl: "/assets/hotels/hotel5.jpg",
+    logoUrl: "/assets/hotels/hotel5.jpeg",
   },
   {
     id: "marriott2",
     name: "Marriott Hotels & Resorts",
-    logoUrl: "/assets/hotels/hotel6.jpg",
+    logoUrl: "/assets/hotels/hotel6.jpeg",
   },
   {
     id: "mayfair",
     name: "Mayfair Spa Resort & Casino",
-    logoUrl: "/assets/hotels/hotel7.jpg",
+    logoUrl: "/assets/hotels/hotel7.jpeg",
   },
   {
     id: "yashshree",
     name: "Yashshree Foundation",
-    logoUrl: "/assets/hotels/hotel8.jpg",
+    logoUrl: "/assets/hotels/hotel8.jpeg",
   },
   {
     id: "summit",
     name: "Summit Hotels & Resorts",
-    logoUrl: "/assets/hotels/hotel9.jpg",
+    logoUrl: "/assets/hotels/hotel9.jpeg",
   },
   {
     id: "jain",
     name: "Jain Group Hotels",
-    logoUrl: "/assets/hotels/hotel10.jpg",
+    logoUrl: "/assets/hotels/hotel10.jpeg",
   },
   {
     id: "udaan",
     name: "Udaan Hotels & Resorts",
-    logoUrl: "/assets/hotels/hotel11.jpg",
+    logoUrl: "/assets/hotels/hotel11.jpeg",
   },
 ];
