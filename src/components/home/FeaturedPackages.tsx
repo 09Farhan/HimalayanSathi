@@ -21,15 +21,46 @@ export default function FeaturedPackages() {
       .then((data) => {
         setPackages(data);
         setLoading(false);
-      })
       .catch(() => setLoading(false));
   }, []);
 
+  const smoothScrollTo = (container: HTMLElement, targetLeft: number, duration: number) => {
+    const startLeft = container.scrollLeft;
+    const distance = targetLeft - startLeft;
+    let startTime: number | null = null;
+    
+    // Temporarily disable snapping for the animation
+    container.style.scrollSnapType = 'none';
+
+    const animation = (currentTime: number) => {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const progress = Math.min(timeElapsed / duration, 1);
+      
+      // easeInOutCubic for a very smooth glide
+      const easeProgress = progress < 0.5 
+        ? 4 * progress * progress * progress 
+        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+      container.scrollLeft = startLeft + distance * easeProgress;
+
+      if (progress < 1) {
+        requestAnimationFrame(animation);
+      } else {
+        container.style.scrollSnapType = ''; // restore snap
+      }
+    };
+
+    requestAnimationFrame(animation);
+  };
+
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
-      const card = scrollContainerRef.current.firstElementChild as HTMLElement;
+      const container = scrollContainerRef.current;
+      const card = container.firstElementChild as HTMLElement;
       const scrollAmount = card ? card.offsetWidth + 24 : 350;
-      scrollContainerRef.current.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
+      const targetLeft = direction === 'left' ? container.scrollLeft - scrollAmount : container.scrollLeft + scrollAmount;
+      smoothScrollTo(container, targetLeft, 800);
     }
   };
 
@@ -41,14 +72,12 @@ export default function FeaturedPackages() {
         const container = scrollContainerRef.current;
         const maxScrollLeft = container.scrollWidth - container.clientWidth;
         
-        // Loop back to start if at the end
         if (container.scrollLeft >= maxScrollLeft - 10) {
-          container.scrollTo({ left: 0, behavior: 'smooth' });
+          smoothScrollTo(container, 0, 1000); // 1s to scroll back to start
         } else {
-          // Scroll by one card width + gap (24px = gap-6)
           const card = container.firstElementChild as HTMLElement;
           const scrollAmount = card ? card.offsetWidth + 24 : 350;
-          container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+          smoothScrollTo(container, container.scrollLeft + scrollAmount, 800); // 800ms glide
         }
       }
     }, 3000);
@@ -112,7 +141,7 @@ export default function FeaturedPackages() {
         ) : (
           <div 
             ref={scrollContainerRef}
-            className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 [&::-webkit-scrollbar]:hidden"
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-6 [&::-webkit-scrollbar]:hidden"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {packages.map((pkg) => (
