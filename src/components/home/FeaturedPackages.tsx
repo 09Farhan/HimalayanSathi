@@ -21,6 +21,7 @@ export default function FeaturedPackages() {
       .then((data) => {
         setPackages(data);
         setLoading(false);
+      })
       .catch(() => setLoading(false));
   }, []);
 
