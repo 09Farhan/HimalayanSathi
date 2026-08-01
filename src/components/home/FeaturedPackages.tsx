@@ -1,28 +1,36 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Clock, IndianRupee, ArrowRight } from "lucide-react";
+import { Clock, IndianRupee, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import type { Package } from "@/lib/types";
 
 /**
- * FeaturedPackages – Shows 4 featured tour packages on the home page.
+ * FeaturedPackages – Shows featured tour packages on the home page in a carousel.
  * Fetches data from the /api/packages endpoint.
  */
 export default function FeaturedPackages() {
   const [packages, setPackages] = useState<Package[]>([]);
   const [loading, setLoading] = useState(true);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     fetch("/api/packages?featured=true")
       .then((res) => res.json())
       .then((data) => {
-        setPackages(data.slice(0, 4));
+        setPackages(data);
         setLoading(false);
       })
       .catch(() => setLoading(false));
   }, []);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = direction === 'left' ? -350 : 350;
+      scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
 
   return (
     <section id="featured-packages" className="py-20 md:py-28 bg-surface">
@@ -42,11 +50,31 @@ export default function FeaturedPackages() {
           <div className="w-20 h-1 bg-accent mx-auto mt-6 rounded-full" />
         </div>
 
-        {/* Package cards grid */}
+        {/* Carousel controls */}
+        {!loading && packages.length > 1 && (
+          <div className="flex justify-end gap-3 mb-6 pr-2">
+            <button 
+              onClick={() => scroll('left')} 
+              className="p-3 rounded-full bg-white text-primary shadow-md hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110 active:scale-95" 
+              aria-label="Previous packages"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button 
+              onClick={() => scroll('right')} 
+              className="p-3 rounded-full bg-white text-primary shadow-md hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110 active:scale-95" 
+              aria-label="Next packages"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+        )}
+
+        {/* Package cards carousel */}
         {loading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="flex gap-6 overflow-hidden">
             {[...Array(4)].map((_, i) => (
-              <div key={i} className="rounded-2xl overflow-hidden">
+              <div key={i} className="min-w-[100%] sm:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] xl:min-w-[calc(25%-18px)] rounded-2xl overflow-hidden shrink-0">
                 <div className="skeleton h-52 w-full" />
                 <div className="p-5 space-y-3 bg-white">
                   <div className="skeleton h-6 w-3/4" />
@@ -58,11 +86,15 @@ export default function FeaturedPackages() {
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 stagger-children">
+          <div 
+            ref={scrollContainerRef}
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-8 pt-4 -mt-4 px-4 -mx-4 [&::-webkit-scrollbar]:hidden"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
             {packages.map((pkg) => (
               <div
                 key={pkg.id}
-                className="group bg-surface-card rounded-3xl overflow-hidden transition-all duration-500 hover:-translate-y-2 border border-transparent hover:border-accent/20"
+                className="shrink-0 snap-start min-w-[100%] sm:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] xl:min-w-[calc(25%-18px)] group bg-surface-card rounded-3xl overflow-hidden transition-all duration-500 hover:-translate-y-2 border border-transparent hover:border-accent/20"
                 style={{ boxShadow: "var(--shadow-card)" }}
                 onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-card-hover)")}
                 onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "var(--shadow-card)")}
