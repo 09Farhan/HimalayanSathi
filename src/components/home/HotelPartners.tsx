@@ -10,7 +10,7 @@ export interface HotelPartner {
 /**
  * HotelPartners Ticker Component
  * Displays two continuously scrolling rows of hotel partner logos.
- * Features 40% border radius and hover-to-pause animations.
+ * Features 20% border radius.
  */
 export default function HotelPartners() {
   // We duplicate the logos array to ensure the marquee is long enough to loop seamlessly
@@ -37,7 +37,7 @@ export default function HotelPartners() {
               <div
                 key={`row1-${partner.id}-${index}`}
                 className="relative w-36 h-36 sm:w-48 sm:h-48 shrink-0 shadow-md hover:shadow-xl transition-shadow duration-300"
-                style={{ borderRadius: '40%', overflow: 'hidden' }}
+                style={{ borderRadius: '20%', overflow: 'hidden' }}
               >
                 <Image
                   src={partner.logoUrl}
@@ -55,7 +55,7 @@ export default function HotelPartners() {
               <div
                 key={`row1-dup-${partner.id}-${index}`}
                 className="relative w-36 h-36 sm:w-48 sm:h-48 shrink-0 shadow-md hover:shadow-xl transition-shadow duration-300"
-                style={{ borderRadius: '40%', overflow: 'hidden' }}
+                style={{ borderRadius: '20%', overflow: 'hidden' }}
               >
                 <Image
                   src={partner.logoUrl}
@@ -76,7 +76,7 @@ export default function HotelPartners() {
               <div
                 key={`row2-${partner.id}-${index}`}
                 className="relative w-36 h-36 sm:w-48 sm:h-48 shrink-0 shadow-md hover:shadow-xl transition-shadow duration-300"
-                style={{ borderRadius: '40%', overflow: 'hidden' }}
+                style={{ borderRadius: '20%', overflow: 'hidden' }}
               >
                 <Image
                   src={partner.logoUrl}
@@ -94,7 +94,7 @@ export default function HotelPartners() {
               <div
                 key={`row2-dup-${partner.id}-${index}`}
                 className="relative w-36 h-36 sm:w-48 sm:h-48 shrink-0 shadow-md hover:shadow-xl transition-shadow duration-300"
-                style={{ borderRadius: '40%', overflow: 'hidden' }}
+                style={{ borderRadius: '20%', overflow: 'hidden' }}
               >
                 <Image
                   src={partner.logoUrl}

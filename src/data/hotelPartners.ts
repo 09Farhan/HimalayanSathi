@@ -7,7 +7,7 @@
  * 3. `name`: The name of the hotel (used for screen readers and alt text).
  * 4. `logoUrl`: The path to the image, starting with `/assets/hotels/`.
  * 
- * Note: The layout is designed to show 40% rounded borders on all logos automatically.
+ * Note: The layout is designed to show 20% rounded borders on all logos automatically.
  */
 
 export interface HotelPartner {
