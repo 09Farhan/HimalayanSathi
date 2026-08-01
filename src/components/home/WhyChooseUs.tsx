@@ -39,7 +39,7 @@ function useCounter(target: number, duration: number = 2000) {
 const features = [
   {
     icon: Award,
-    title: "20+ Years Expertise",
+    title: `${new Date().getFullYear() - 2018}+ Years Expertise`,
     description:
       "Two decades of crafting perfect Himalayan journeys with unmatched local knowledge and trusted partnerships.",
     color: "text-accent",
@@ -80,7 +80,7 @@ export default function WhyChooseUs({ totalPackages = 50 }: { totalPackages?: nu
 
   const stats = [
     { icon: Mountain, value: totalPackages, suffix: "+", label: "Tour Packages" },
-    { icon: Users, value: 1000, suffix: "+", label: "Happy Travellers" },
+    { icon: Users, value: 20000, suffix: "+", label: "Happy Travellers" },
     { icon: Compass, value: 30, suffix: "+", label: "Destinations Covered" },
     { icon: Car, value: 50, suffix: "+", label: "Vehicles in Fleet" },
   ];

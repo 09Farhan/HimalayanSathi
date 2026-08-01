@@ -131,10 +131,10 @@ export default function HeroSection({ totalPackages = 50 }: { totalPackages?: nu
           }`}
         >
           {[
-            { value: "20+", label: "Years Experience" },
-            { value: "1,000+", label: "Happy Travellers" },
+            { value: `${new Date().getFullYear() - 2018}+`, label: "Years Experience" },
+            { value: "20,000+", label: "Happy Travellers" },
             { value: `${totalPackages}+`, label: "Tour Packages" },
-            { value: "4.8★", label: "Average Rating" },
+            { value: "4.9/5", label: "Average Rating" },
           ].map((stat) => (
             <div key={stat.label} className="glass rounded-2xl px-5 py-4 text-center border-white/20">
               <p className="text-3xl sm:text-4xl font-bold text-accent mb-1">{stat.value}</p>
