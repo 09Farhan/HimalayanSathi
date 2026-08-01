@@ -37,5 +37,24 @@ export const hotelPartners: HotelPartner[] = [
     name: "Marriott Hotels & Resorts",
     logoUrl: "/assets/hotels/hotel4.jpg",
   },
-  // Add more partners here as needed to fill out the band!
+  {
+    id: "yashshree",
+    name: "Yashshree Foundation",
+    logoUrl: "/assets/hotels/hotel5.jpg",
+  },
+  {
+    id: "marriott2",
+    name: "Marriott Hotels & Resorts",
+    logoUrl: "/assets/hotels/hotel6.jpg",
+  },
+  {
+    id: "summit1",
+    name: "Summit Hotels & Resorts",
+    logoUrl: "/assets/hotels/hotel7.jpg",
+  },
+  {
+    id: "mayfair",
+    name: "Mayfair Spa Resort & Casino",
+    logoUrl: "/assets/hotels/hotel8.jpg",
+  },
 ];
