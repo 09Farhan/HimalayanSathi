@@ -52,7 +52,7 @@ export default function Footer() {
             <Link href="/" className="group inline-block w-fit">
               <div className="relative w-48 h-32 md:w-56 md:h-36 bg-white rounded-3xl p-3 shadow-lg shadow-black/10 transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
                 <Image
-                  src={IMAGES.LOGO}
+                  src="/logo-new.png"
                   alt="Himalayan Sathi Logo"
                   fill
                   className="object-contain p-2"
