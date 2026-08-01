@@ -31,6 +31,25 @@ export default function AdminPackagesTab() {
     }
   };
 
+  const handleToggleFeatured = async (id: string, currentStatus: boolean) => {
+    try {
+      const res = await fetch('/api/admin/packages', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, featured: !currentStatus })
+      });
+
+      if (res.ok) {
+        setPackages(packages.map(p => p.id === id ? { ...p, featured: !currentStatus } : p));
+      } else {
+        alert('Failed to update featured status');
+      }
+    } catch (error) {
+      console.error(error);
+      alert('An unexpected error occurred');
+    }
+  };
+
   const handleDelete = async (id: string, title: string) => {
     if (!confirm(`Are you sure you want to delete the package "${title}"? This cannot be undone.`)) return;
 
@@ -145,11 +164,17 @@ export default function AdminPackagesTab() {
                       <div className="text-sm text-gray-500">{pkg.duration}</div>
                     </td>
                     <td className="p-4 text-center">
-                      {pkg.featured && (
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent/20 text-accent-dark">
-                          Featured
-                        </span>
-                      )}
+                      <button 
+                        onClick={() => handleToggleFeatured(pkg.id, pkg.featured)}
+                        className={`inline-flex items-center px-3 py-1.5 rounded-full text-xs font-bold transition-all duration-300 ${
+                          pkg.featured 
+                            ? 'bg-accent/20 text-accent-dark hover:bg-accent/30 shadow-sm' 
+                            : 'bg-gray-100 text-gray-500 hover:bg-gray-200 border border-transparent'
+                        }`}
+                        title={pkg.featured ? "Remove from home page" : "Show on home page"}
+                      >
+                        {pkg.featured ? '★ Featured' : '☆ Set Featured'}
+                      </button>
                     </td>
                     <td className="p-4">
                       <div className="flex items-center justify-end gap-3">
