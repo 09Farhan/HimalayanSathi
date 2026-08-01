@@ -24,31 +24,39 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in-left">
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-6">
-              Our Story
+              About Himalayan Sathi Tours & Travels
             </h2>
             <div className="space-y-4 text-text-secondary leading-relaxed text-lg">
               <p>
-                Himalayan Sathi started its journey in Siliguri over 20 years ago with a simple 
-                yet profound mission: to showcase the breathtaking beauty of the Eastern Himalayas 
-                to the world. What began as a small, passionate team of local guides has blossomed 
-                into a premier travel agency.
+                Welcome to Himalayan Sathi Tours & Travels — your trusted local travel partner for Darjeeling, Sikkim, Bhutan, and Northeast India tour packages.
               </p>
               <p>
-                The word &quot;Sathi&quot; means companion. True to our name, we strive to be more 
-                than just a tour operator. We are your friends in the mountains, dedicated to making 
-                your Himalayan travel accessible, comfortable, and absolutely unforgettable.
+                Our story didn&apos;t begin in an office — it began on the ground, in the hills of Darjeeling. I, Sandeep Mallick, worked as a manager at a property under Mahakal Group of Hotels, handling guests who came from across the country to experience Sikkim and Darjeeling tourism. Day after day, I noticed the same gap: travelers didn&apos;t just want a good hotel room — they wanted someone who understood their entire journey. The right route, the right timing, the hidden spots worth stopping at, and a travel experience that felt personal, not packaged.
               </p>
               <p>
-                Our deep-rooted local expertise and commitment to personalized service have allowed us 
-                to guide thousands of travelers through the hidden gems of Darjeeling, Sikkim, Bhutan, 
-                and Northeast India.
+                That realization became the foundation of Himalayan Sathi Tours & Travels, which my wife, Shilpi Mallick, and I started together — with one simple promise: to give every guest not just a booking, but a sathi (companion) for their Himalayan journey. No middlemen, no generic packages — just honest, on-ground local expertise.
+              </p>
+              <p>
+                Today, Himalayan Sathi is an MSME-registered Destination Management Company (DMC) based in Darjeeling and Siliguri, specializing in:
+              </p>
+              <ul className="list-disc pl-6 space-y-1">
+                <li>Darjeeling tour packages</li>
+                <li>Sikkim tour packages</li>
+                <li>Bhutan tour packages</li>
+                <li>Northeast India travel packages</li>
+              </ul>
+              <p>
+                Every itinerary is planned in-house, every hotel and vehicle personally verified, and every guest treated like family visiting our own home. As a local Himalayan travel expert, we combine deep destination knowledge with genuine hospitality — so your trip feels effortless from planning to return.
+              </p>
+              <p className="font-semibold text-primary">
+                Our vision is simple: the beauty of the Himalayas, delivered with the warmth of a companion.
               </p>
             </div>
           </div>
-          <div className="relative h-[400px] lg:h-[500px] w-full animate-fade-in-right rounded-2xl overflow-hidden shadow-card">
+          <div className="relative h-[400px] lg:h-[600px] w-full animate-fade-in-right rounded-2xl overflow-hidden shadow-card">
             <Image
-              src={IMAGES.ABOUT_HERO}
-              alt="Himalayan Sathi - Sikkim and Darjeeling Tour Operator"
+              src="/images/about/sandeep-shilpi.jpg"
+              alt="Sandeep Mallick and Shilpi Mallick - Founders of Himalayan Sathi Tours & Travels"
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
@@ -132,35 +140,6 @@ export default function AboutPage() {
           </div>
         </div>
       </SectionContainer>
-
-      {/* Team Section */}
-      <section className="bg-surface-muted py-16 md:py-24">
-        <SectionContainer>
-          <div className="text-center mb-12 animate-fade-in-up">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-4">Meet Our Team</h2>
-            <p className="text-text-secondary max-w-2xl mx-auto text-lg">
-              The passionate individuals behind your unforgettable journeys.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 stagger-children">
-            {[
-              { name: "Rajesh Sharma", role: "Founder & Director", desc: "20+ years of exploring the Himalayas.", init: "RS" },
-              { name: "Karma Sherpa", role: "Head of Operations", desc: "Ensures seamless travel experiences.", init: "KS" },
-              { name: "Priya Tamang", role: "Tour Coordinator", desc: "Crafts personalized itineraries.", init: "PT" },
-              { name: "Tenzing Dorji", role: "Senior Guide", desc: "Expert in local history and trails.", init: "TD" }
-            ].map((member, idx) => (
-              <div key={idx} className="bg-surface-card rounded-2xl p-6 text-center shadow-card hover:shadow-card-hover transition-all duration-300 transform hover:-translate-y-2">
-                <div className="w-24 h-24 mx-auto rounded-full gradient-primary flex items-center justify-center mb-4 shadow-md">
-                  <span className="text-2xl font-bold text-white tracking-wider">{member.init}</span>
-                </div>
-                <h3 className="text-xl font-heading font-bold text-primary mb-1">{member.name}</h3>
-                <p className="text-accent font-medium mb-3">{member.role}</p>
-                <p className="text-text-secondary text-sm">{member.desc}</p>
-              </div>
-            ))}
-          </div>
-        </SectionContainer>
-      </section>
     </main>
   );
 }
