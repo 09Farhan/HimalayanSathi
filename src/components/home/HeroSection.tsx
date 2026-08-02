@@ -26,7 +26,7 @@ export default function HeroSection({ totalPackages = 50 }: { totalPackages?: nu
   }, []);
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="hero" className="relative min-h-[85vh] md:min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Slideshow */}
       <div className="absolute inset-0 z-0 bg-primary-dark">
         {IMAGES.HERO_SLIDESHOW.map((imgSrc, index) => (
@@ -41,7 +41,8 @@ export default function HeroSection({ totalPackages = 50 }: { totalPackages?: nu
               alt="Sikkim Darjeeling Bhutan tour packages by Himalayan Sathi"
               fill
               priority={index === 0}
-              className={`object-cover transition-transform duration-[10000ms] ease-linear ${
+              style={{ objectFit: 'cover', objectPosition: 'center' }}
+              className={`object-cover object-center transition-transform duration-[10000ms] ease-linear ${
                 index === currentSlide ? "scale-105" : "scale-100"
               }`}
               sizes="100vw"
