@@ -13,14 +13,22 @@ export const IMAGES = {
   AVATAR_PLACEHOLDER: "/images/avatar-placeholder.png",
   PATTERN_BG: "/images/pattern.svg",
 
-  // Homepage Hero Slideshow
-  // Add or remove strings here to control the number of slides
+  // Homepage Hero Slideshow (Desktop)
   HERO_SLIDESHOW: [
     "/images/hero-banner.jpg",
     "/images/sikkim.jpg",
     "/images/darjeeling.jpg",
     "/images/bhutan.jpg",
     "/images/northeast.jpg",
+  ],
+
+  // Homepage Hero Slideshow (Mobile Portrait)
+  HERO_SLIDESHOW_MOBILE: [
+    "/images/hero/mobile/1.jpg",
+    "/images/hero/mobile/2.jpg",
+    "/images/hero/mobile/3.jpg",
+    "/images/hero/mobile/4.jpg",
+    "/images/hero/mobile/5.jpg",
   ],
 
   // Specific Page Banners

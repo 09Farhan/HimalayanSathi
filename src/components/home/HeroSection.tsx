@@ -36,12 +36,24 @@ export default function HeroSection({ totalPackages = 50 }: { totalPackages?: nu
               index === currentSlide ? "opacity-100" : "opacity-0"
             }`}
           >
+            {/* Desktop Image */}
             <Image
               src={imgSrc}
               alt="Sikkim Darjeeling Bhutan tour packages by Himalayan Sathi"
               fill
               priority={index === 0}
-              className={`object-cover transition-transform duration-[10000ms] ease-linear ${
+              className={`hidden md:block object-cover transition-transform duration-[10000ms] ease-linear ${
+                index === currentSlide ? "scale-105" : "scale-100"
+              }`}
+              sizes="100vw"
+            />
+            {/* Mobile Image */}
+            <Image
+              src={IMAGES.HERO_SLIDESHOW_MOBILE[index] || imgSrc}
+              alt="Sikkim Darjeeling Bhutan tour packages by Himalayan Sathi"
+              fill
+              priority={index === 0}
+              className={`block md:hidden object-cover transition-transform duration-[10000ms] ease-linear ${
                 index === currentSlide ? "scale-105" : "scale-100"
               }`}
               sizes="100vw"
