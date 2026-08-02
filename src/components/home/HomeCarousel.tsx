@@ -44,7 +44,7 @@ export default function HomeCarousel({ images }: { images: GalleryImage[] }) {
         </div>
 
         <div 
-          className="relative rounded-3xl overflow-hidden shadow-2xl bg-surface animate-fade-in-up group"
+          className="relative rounded-3xl overflow-hidden shadow-2xl bg-surface animate-fade-in-up group max-w-4xl mx-auto"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
