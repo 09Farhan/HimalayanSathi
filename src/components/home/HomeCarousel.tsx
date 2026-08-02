@@ -36,10 +36,10 @@ export default function HomeCarousel({ images }: { images: GalleryImage[] }) {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10 md:mb-16">
           <h2 className="text-3xl md:text-5xl font-heading font-bold text-primary mb-4 animate-fade-in-up">
-            Explore <span className="text-accent">More</span>
+            Traveller <span className="text-accent">Stories</span>
           </h2>
           <p className="text-text-secondary max-w-2xl mx-auto text-lg animate-fade-in-up">
-            A glimpse into the magical experiences waiting for you in the Himalayas.
+            See real snaps of the faces who believed in us, in return we gave them priceless experience and memories.
           </p>
         </div>
 
