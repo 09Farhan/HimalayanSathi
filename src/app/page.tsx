@@ -8,6 +8,8 @@ import TestimonialsSection from "@/components/home/TestimonialsSection";
 import ContactStrip from "@/components/home/ContactStrip";
 
 
+import HomeCarousel from "@/components/home/HomeCarousel";
+
 export const metadata: Metadata = {
   title: "Sikkim Darjeeling Bhutan Tour Package | Himalayan Sathi",
   description:
@@ -28,16 +30,21 @@ import { db } from "@/lib/db";
 
 /**
  * Home page – The main landing page for Himalayan Sathi Tours & Travels.
- * Composes hero, featured packages, why-choose-us, gallery, testimonials, and contact strip.
+ * Composes hero, featured packages, gallery, why-choose-us, testimonials, and contact strip.
  */
 export default async function HomePage() {
-  const packages = await db.getPackages();
+  const [packages, galleryImages] = await Promise.all([
+    db.getPackages(),
+    db.getGalleryImages()
+  ]);
+  
   const totalPackages = packages.length;
 
   return (
     <>
       <HeroSection totalPackages={totalPackages} />
       <FeaturedPackages />
+      <HomeCarousel images={galleryImages} />
       <HotelPartners />
       <UnionList />
       <WhyChooseUs totalPackages={totalPackages} />

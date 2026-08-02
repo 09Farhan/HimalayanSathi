@@ -4,10 +4,11 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Lead, Review } from '@/lib/db';
 import Button from '@/components/ui/Button';
-import { Star } from 'lucide-react';
+import { Star, Map, Users, Plane, BookOpen, ImageIcon } from 'lucide-react';
 import AdminPackagesTab from '@/components/admin/AdminPackagesTab';
 import AdminBlogsTab from '@/components/admin/AdminBlogsTab';
 import AdminDestinationsTab from '@/components/admin/AdminDestinationsTab';
+import AdminGalleryTab from '@/components/admin/AdminGalleryTab';
 
 export default function AdminDashboardClient({ 
   initialLeads, 
@@ -18,7 +19,7 @@ export default function AdminDashboardClient({
 }) {
   const [leads, setLeads] = useState<Lead[]>(initialLeads);
   const [reviews, setReviews] = useState<Review[]>(initialReviews || []);
-  const [activeTab, setActiveTab] = useState<'leads' | 'reviews' | 'packages' | 'blogs' | 'destinations'>('leads');
+  const [activeTab, setActiveTab] = useState<'leads' | 'reviews' | 'packages' | 'blogs' | 'destinations' | 'gallery'>('leads');
   const [isAddingReview, setIsAddingReview] = useState(false);
   const [newReview, setNewReview] = useState({ name: '', rating: 5, quote: '' });
   
@@ -147,12 +148,26 @@ export default function AdminDashboardClient({
             Reviews CMS
             {activeTab === 'reviews' && <span className="absolute bottom-0 left-0 w-full h-1 bg-primary rounded-t-full"></span>}
           </button>
+          <button 
+            onClick={() => setActiveTab('gallery')}
+            className={`flex items-center gap-2 px-4 py-3 font-medium text-base whitespace-nowrap transition-colors relative ${activeTab === 'gallery' ? 'text-primary' : 'text-text-secondary hover:text-text-primary'}`}
+          >
+            <ImageIcon className="w-4 h-4" /> Home Gallery
+            {activeTab === 'gallery' && <span className="absolute bottom-0 left-0 w-full h-1 bg-primary rounded-t-full"></span>}
+          </button>
         </div>
 
         {/* Tab Content: PACKAGES */}
         {activeTab === 'packages' && (
           <div className="animate-fade-in-up">
             <AdminPackagesTab />
+          </div>
+        )}
+
+        {/* Tab Content: GALLERY */}
+        {activeTab === 'gallery' && (
+          <div className="animate-fade-in-up">
+            <AdminGalleryTab />
           </div>
         )}
 

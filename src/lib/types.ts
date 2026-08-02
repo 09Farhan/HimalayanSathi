@@ -85,6 +85,15 @@ export interface Testimonial {
   authorUrl?: string;
 }
 
+export interface GalleryImage {
+  id?: string;
+  url: string;
+  alt?: string;
+  order: number;
+  createdAt: string;
+}
+
+
 /** A frequently asked question */
 export interface FAQ {
   id: string;

@@ -452,5 +452,82 @@ export const db = {
       console.error('Failed to delete blog', e);
       return { success: false };
     }
+  },
+
+  // Gallery Image Methods
+  getGalleryImages: async (): Promise<any[]> => {
+    try {
+      const client = await getDbClient();
+      const collection = client.db().collection('gallery');
+      const images = await collection.find({}).sort({ order: 1, createdAt: -1 }).toArray();
+      
+      return images.map(img => ({
+        ...img,
+        id: img._id?.toString(),
+        _id: img._id?.toString()
+      }));
+    } catch (e) {
+      console.error('Failed to get gallery images from MongoDB', e);
+      return [];
+    }
+  },
+
+  insertGalleryImage: async (image: any) => {
+    try {
+      const client = await getDbClient();
+      const collection = client.db().collection('gallery');
+      
+      // Get the highest order to append at the end
+      const highestOrderImg = await collection.find({}).sort({ order: -1 }).limit(1).toArray();
+      const nextOrder = highestOrderImg.length > 0 ? (highestOrderImg[0].order || 0) + 1 : 0;
+
+      const newImage = {
+        ...image,
+        order: nextOrder,
+        createdAt: new Date().toISOString()
+      };
+      
+      const result = await collection.insertOne(newImage);
+      return { success: true, id: result.insertedId.toString(), order: nextOrder };
+    } catch (e) {
+      console.error('Failed to insert gallery image', e);
+      return { success: false, error: 'Failed to save gallery image' };
+    }
+  },
+
+  updateGalleryImagesOrder: async (orderedIds: string[]) => {
+    try {
+      const client = await getDbClient();
+      const collection = client.db().collection('gallery');
+      
+      // Update each image's order based on its index in the array
+      const bulkOps = orderedIds.map((id, index) => ({
+        updateOne: {
+          filter: { _id: new ObjectId(id) },
+          update: { $set: { order: index } }
+        }
+      }));
+
+      if (bulkOps.length > 0) {
+        await collection.bulkWrite(bulkOps);
+      }
+      return { success: true };
+    } catch (e) {
+      console.error('Failed to update gallery order', e);
+      return { success: false };
+    }
+  },
+
+  deleteGalleryImage: async (id: string) => {
+    try {
+      const client = await getDbClient();
+      const collection = client.db().collection('gallery');
+      
+      await collection.deleteOne({ _id: new ObjectId(id) });
+      return { success: true };
+    } catch (e) {
+      console.error('Failed to delete gallery image', e);
+      return { success: false };
+    }
   }
 };
