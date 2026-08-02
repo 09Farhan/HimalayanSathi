@@ -115,9 +115,9 @@ export function LeadCapturePopup() {
             </svg>
           </button>
           
-          <div className="relative w-full aspect-[16/9] sm:aspect-[21/9]">
+          <div className="relative w-full aspect-square">
             <Image 
-              src="/images/popup-banner.png" 
+              src="/images/popup-banner-square.jpg" 
               alt="Himalayan Sathi Special Offer" 
               fill
               className="object-cover"
