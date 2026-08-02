@@ -83,17 +83,17 @@ export default function HeroSection({ totalPackages = 50 }: { totalPackages?: nu
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-36 md:pt-40 pb-24 md:pb-32">
         {/* Badge */}
         <div
-          className={`inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-white/90 text-sm font-medium mb-8 transition-all duration-700 ${
+          className={`inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-white text-sm font-medium mb-8 transition-all duration-700 [text-shadow:0_1px_4px_rgba(0,0,0,0.4)] ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
-          <MapPin className="w-4 h-4 text-accent" />
+          <MapPin className="w-4 h-4 text-accent drop-shadow-md" />
           Based in Siliguri • Serving Sikkim, Darjeeling & Bhutan
         </div>
 
         {/* Main heading */}
         <h1
-          className={`font-heading text-fluid-h1 font-bold text-white mb-6 leading-tight transition-all duration-700 delay-200 ${
+          className={`font-heading text-fluid-h1 font-bold text-white mb-6 leading-tight transition-all duration-700 delay-200 [text-shadow:0_2px_10px_rgba(0,0,0,0.5)] ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
@@ -105,7 +105,7 @@ export default function HeroSection({ totalPackages = 50 }: { totalPackages?: nu
 
         {/* Subtitle */}
         <p
-          className={`text-lg sm:text-xl text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed transition-all duration-700 delay-400 ${
+          className={`text-lg sm:text-xl text-white/90 max-w-2xl mx-auto mb-10 leading-relaxed transition-all duration-700 delay-400 [text-shadow:0_1px_8px_rgba(0,0,0,0.6)] ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
@@ -149,8 +149,8 @@ export default function HeroSection({ totalPackages = 50 }: { totalPackages?: nu
             { value: "4.9/5", label: "Average Rating" },
           ].map((stat) => (
             <div key={stat.label} className="glass rounded-2xl px-5 py-4 text-center border-white/20">
-              <p className="text-3xl sm:text-4xl font-bold text-accent mb-1">{stat.value}</p>
-              <p className="text-xs sm:text-sm font-medium text-white/90">{stat.label}</p>
+              <p className="text-3xl sm:text-4xl font-bold text-accent mb-1 drop-shadow-md">{stat.value}</p>
+              <p className="text-xs sm:text-sm font-medium text-white [text-shadow:0_1px_4px_rgba(0,0,0,0.5)]">{stat.label}</p>
             </div>
           ))}
         </div>
