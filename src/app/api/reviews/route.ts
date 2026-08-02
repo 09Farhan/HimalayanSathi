@@ -16,6 +16,8 @@ export async function POST(request: NextRequest) {
       quote: body.quote,
       location: body.location || '',
       avatar: body.avatar || '',
+      destinationSlug: body.destinationSlug || '',
+      destinationName: body.destinationName || '',
       // FORCED TO PENDING for public submissions
       status: 'pending' as const, 
     };

@@ -24,6 +24,8 @@ export interface Review {
   quote: string;
   location?: string;
   avatar?: string;
+  destinationSlug?: string;
+  destinationName?: string;
   status: 'pending' | 'approved' | 'hidden';
   createdAt: string;
 }

@@ -9,8 +9,14 @@ import ReviewForm from "./ReviewForm";
 export default async function TestimonialsSection() {
   // Fetch approved reviews from our MongoDB CMS
   let approvedReviews: Testimonial[] = [];
+  let destinations: { slug: string, name: string }[] = [];
+  
   try {
-    const dbReviews = await db.getReviews({ status: 'approved' });
+    const [dbReviews, dbDestinations] = await Promise.all([
+      db.getReviews({ status: 'approved' }),
+      db.getDestinations()
+    ]);
+    
     // Map DB reviews to Testimonial interface
     approvedReviews = dbReviews.map(r => ({
       id: r.id!,
@@ -18,11 +24,19 @@ export default async function TestimonialsSection() {
       rating: r.rating,
       quote: r.quote,
       avatar: r.avatar || IMAGES.TEAM.MEMBER_2, // default avatar
+      destinationSlug: r.destinationSlug,
+      destinationName: r.destinationName,
       time: new Date(r.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long' }),
       location: r.location
     }));
+    
+    // Extract lightweight destination info for the dropdown
+    destinations = dbDestinations.map(d => ({
+      slug: d.slug,
+      name: d.name
+    }));
   } catch (error) {
-    console.error("Failed to load reviews from DB", error);
+    console.error("Failed to load reviews or destinations from DB", error);
   }
 
   // Graceful fallback: If MongoDB returns 0 reviews, show the dummy ones so the site never looks broken
@@ -50,7 +64,7 @@ export default async function TestimonialsSection() {
         <TestimonialCarousel testimonials={reviewsToDisplay} />
         
         {/* Public Review Form */}
-        <ReviewForm />
+        <ReviewForm destinations={destinations} />
       </div>
     </section>
   );

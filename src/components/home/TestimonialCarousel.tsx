@@ -2,7 +2,8 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
+import Link from "next/link";
+import { Star, Quote, ChevronLeft, ChevronRight, MapPin } from "lucide-react";
 import type { Testimonial } from "@/lib/types";
 
 export default function TestimonialCarousel({ testimonials }: { testimonials: Testimonial[] }) {
@@ -63,9 +64,29 @@ export default function TestimonialCarousel({ testimonials }: { testimonials: Te
 
             <Quote className="w-10 h-10 text-primary-light/10 mb-4" />
 
-            <p className="text-text-secondary italic mb-8 flex-grow leading-relaxed">
+            <p className="text-text-secondary italic mb-6 flex-grow leading-relaxed">
               "{testimonial.quote}"
             </p>
+
+            {testimonial.destinationSlug && testimonial.destinationName && (
+              <div className="mb-6 p-4 bg-surface-muted rounded-2xl border border-gray-100 flex items-center justify-between gap-2">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center shrink-0">
+                    <MapPin className="w-4 h-4 text-accent" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-text-muted font-bold uppercase tracking-wider">Travelled to</p>
+                    <p className="font-bold text-sm text-primary line-clamp-1">{testimonial.destinationName}</p>
+                  </div>
+                </div>
+                <Link 
+                  href={`/destinations/${testimonial.destinationSlug}`}
+                  className="px-3 py-2 bg-white border border-gray-200 rounded-xl text-xs font-bold text-primary hover:border-accent hover:text-accent transition-colors whitespace-nowrap shadow-sm shrink-0"
+                >
+                  View Tours
+                </Link>
+              </div>
+            )}
 
             <div className="flex items-center gap-4 mt-auto">
               <div className="relative w-14 h-14 rounded-full flex items-center justify-center bg-primary-light/10 border-2 border-primary/10 text-primary font-heading font-bold text-xl">

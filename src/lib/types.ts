@@ -78,6 +78,8 @@ export interface Testimonial {
   rating: number;
   quote: string;
   avatar: string;
+  destinationSlug?: string;
+  destinationName?: string;
   tripType?: string;
   time?: string;
   authorUrl?: string;
