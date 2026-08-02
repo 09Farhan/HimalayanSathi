@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import Button from './Button';
 
 export function LeadCapturePopup() {
@@ -103,10 +104,10 @@ export function LeadCapturePopup() {
       <div className="relative w-full max-w-md bg-surface-card rounded-2xl shadow-2xl overflow-hidden animate-scale-in flex flex-col max-h-[90vh]">
         
         {/* Header with decorative background */}
-        <div className="relative pt-10 pb-6 px-6 sm:px-8 text-center gradient-primary text-white">
+        <div className="relative text-center bg-primary-dark">
           <button 
             onClick={closePopup}
-            className="absolute top-4 right-4 text-white/80 hover:text-white hover:bg-white/20 p-2 rounded-full transition-colors focus-ring"
+            className="absolute top-4 right-4 text-white/80 hover:text-white hover:bg-white/20 p-2 rounded-full transition-colors focus-ring z-10 bg-black/20"
             aria-label="Close"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -114,9 +115,15 @@ export function LeadCapturePopup() {
             </svg>
           </button>
           
-          <div className="text-4xl mb-3 animate-float">🏔️</div>
-          <h2 className="text-2xl font-heading font-bold mb-2">Plan Your Dream Himalayan Trip!</h2>
-          <p className="text-sm text-white/90">Get exclusive offers and personalized itineraries.</p>
+          <div className="relative w-full aspect-[16/9] sm:aspect-[21/9]">
+            <Image 
+              src="/images/popup-banner.png" 
+              alt="Himalayan Sathi Special Offer" 
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
         </div>
 
         {/* Form */}
