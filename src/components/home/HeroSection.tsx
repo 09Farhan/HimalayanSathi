@@ -67,8 +67,8 @@ export default function HeroSection({ totalPackages = 50 }: { totalPackages?: nu
         </div>
       </div>
 
-      {/* Content — add pt-24 to clear the fixed navbar, and pb-24 to clear the scroll indicator */}
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-24 md:pt-28 pb-24 md:pb-32">
+      {/* Content — add padding to clear the fixed navbar and scroll indicator */}
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-36 md:pt-40 pb-24 md:pb-32">
         {/* Badge */}
         <div
           className={`inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-white/90 text-sm font-medium mb-8 transition-all duration-700 ${
