@@ -128,7 +128,7 @@ export function LeadCapturePopup() {
               />
             </div>
           </div>
-          <h2 className="text-2xl font-heading font-bold mb-2">Plan Your Dream Himalayan Trip!</h2>
+          <h2 className="text-2xl font-heading font-bold mb-2">Plan Your Dream Trip!</h2>
           <p className="text-sm text-white/90">Get exclusive offers and personalized itineraries.</p>
         </div>
 
