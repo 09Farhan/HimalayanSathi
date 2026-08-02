@@ -80,7 +80,7 @@ export default function TestimonialCarousel({ testimonials }: { testimonials: Te
                   </div>
                 </div>
                 <Link 
-                  href={`/destinations/${testimonial.destinationSlug}`}
+                  href={`/packages?destination=${testimonial.destinationSlug}`}
                   className="px-3 py-2 bg-white border border-gray-200 rounded-xl text-xs font-bold text-primary hover:border-accent hover:text-accent transition-colors whitespace-nowrap shadow-sm shrink-0"
                 >
                   View Tours

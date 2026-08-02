@@ -1,18 +1,20 @@
 'use client';
 import { IMAGES } from '@/data/images';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Package } from '@/lib/types';
 import PackageCard from '@/components/packages/PackageCard';
 import { Clock, MapPin, IndianRupee, Search, SlidersHorizontal } from 'lucide-react';
 
-export default function PackagesPage() {
+function PackagesContent() {
+  const searchParams = useSearchParams();
   const [packages, setPackages] = useState<Package[]>([]);
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState({
-    destination: 'all',
+    destination: searchParams.get('destination') || 'all',
     duration: 'all',
     type: 'all'
   });
@@ -205,5 +207,13 @@ export default function PackagesPage() {
         )}
       </section>
     </div>
+  );
+}
+
+export default function PackagesPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-surface flex items-center justify-center">Loading packages...</div>}>
+      <PackagesContent />
+    </Suspense>
   );
 }
