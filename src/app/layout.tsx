@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import dynamic from 'next/dynamic';
+import ScrollToTop from "@/components/layout/ScrollToTop";
 
 const LeadCapturePopup = dynamic(
   () => import("@/components/ui/LeadCapturePopup").then(mod => mod.LeadCapturePopup)
@@ -108,6 +109,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <ScrollToTop />
         <LeadCapturePopup />
       </body>
     </html>
