@@ -6,11 +6,7 @@ import UnionList from "@/components/home/UnionList";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import ContactStrip from "@/components/home/ContactStrip";
-import dynamic from 'next/dynamic';
 
-const TravellerGallery = dynamic(() => import("@/components/home/TravellerGallery"), {
-  loading: () => <div className="h-[400px] w-full flex items-center justify-center bg-gray-50"><span className="animate-pulse">Loading gallery...</span></div>
-});
 
 export const metadata: Metadata = {
   title: "Sikkim Darjeeling Bhutan Tour Package | Himalayan Sathi",
@@ -45,7 +41,7 @@ export default async function HomePage() {
       <HotelPartners />
       <UnionList />
       <WhyChooseUs totalPackages={totalPackages} />
-      <TravellerGallery />
+
       <TestimonialsSection />
       <ContactStrip />
     </>
