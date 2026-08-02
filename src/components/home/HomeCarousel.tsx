@@ -44,7 +44,7 @@ export default function HomeCarousel({ images }: { images: GalleryImage[] }) {
         </div>
 
         <div 
-          className="relative rounded-3xl overflow-hidden shadow-2xl bg-gray-900 aspect-[4/3] md:aspect-[16/9] animate-fade-in-up group"
+          className="relative rounded-3xl overflow-hidden shadow-2xl bg-surface animate-fade-in-up group"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -52,15 +52,14 @@ export default function HomeCarousel({ images }: { images: GalleryImage[] }) {
           {images.map((img, index) => (
             <div 
               key={img.id || index}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+              className={`w-full transition-opacity duration-1000 ease-in-out ${index === currentIndex ? 'opacity-100 relative' : 'opacity-0 absolute top-0 left-0 w-full h-full'}`}
             >
-              <Image 
+              {/* Using standard img tag so it can naturally dictate height based on intrinsic aspect ratio */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img 
                 src={img.url}
                 alt={img.alt || `Gallery Image ${index + 1}`}
-                fill
-                priority={index === 0}
-                className="object-contain"
-                sizes="(max-width: 768px) 100vw, 1280px"
+                className="w-full h-auto block"
               />
               {/* Optional Caption Overlay */}
               {img.alt && (
