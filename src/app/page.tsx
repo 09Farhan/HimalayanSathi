@@ -9,6 +9,7 @@ import ContactStrip from "@/components/home/ContactStrip";
 
 
 import HomeCarousel from "@/components/home/HomeCarousel";
+import JourneyPriority from "@/components/home/JourneyPriority";
 
 export const metadata: Metadata = {
   title: "Sikkim Darjeeling Bhutan Tour Package | Himalayan Sathi",
@@ -48,6 +49,7 @@ export default async function HomePage() {
       <HotelPartners />
       <UnionList />
       <WhyChooseUs totalPackages={totalPackages} />
+      <JourneyPriority />
 
       <TestimonialsSection />
       <ContactStrip />
