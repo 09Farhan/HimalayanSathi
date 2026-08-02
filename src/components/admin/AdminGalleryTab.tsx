@@ -10,6 +10,7 @@ export default function AdminGalleryTab() {
   const [images, setImages] = useState<GalleryImage[]>([]);
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
+  const [isPublishing, setIsPublishing] = useState(false);
   const [altText, setAltText] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -28,6 +29,26 @@ export default function AdminGalleryTab() {
       console.error('Failed to fetch gallery', e);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handlePublish = async () => {
+    setIsPublishing(true);
+    try {
+      const res = await fetch('/api/admin/revalidate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ path: '/' })
+      });
+      if (res.ok) {
+        alert('Successfully published! The homepage gallery has been updated.');
+      } else {
+        alert('Failed to publish changes.');
+      }
+    } catch (e) {
+      alert('Network error while publishing.');
+    } finally {
+      setIsPublishing(false);
     }
   };
 
@@ -112,12 +133,29 @@ export default function AdminGalleryTab() {
 
   return (
     <div className="space-y-6 animate-fade-in-up">
+      {/* Header and Publish */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+        <div>
+          <h2 className="text-lg font-bold text-primary flex items-center gap-2">
+            <ImageIcon className="w-5 h-5 text-accent" />
+            Home Gallery Management
+          </h2>
+          <p className="text-sm text-text-secondary mt-1">Upload, delete, and reorder images for the homepage carousel.</p>
+        </div>
+        <Button 
+          onClick={handlePublish} 
+          disabled={isPublishing}
+          className="w-full sm:w-auto shadow-md shadow-accent/20 bg-accent hover:bg-accent/90"
+        >
+          {isPublishing ? 'Publishing...' : 'Save & Publish to Live Site'}
+        </Button>
+      </div>
+
       {/* Upload Section */}
       <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-        <h2 className="text-lg font-bold text-primary mb-4 flex items-center gap-2">
-          <ImageIcon className="w-5 h-5 text-accent" />
-          Add New Image to Homepage Carousel
-        </h2>
+        <h3 className="text-md font-bold text-primary mb-4 flex items-center gap-2">
+          Add New Image
+        </h3>
         
         <div className="flex flex-col md:flex-row gap-4 items-end">
           <div className="flex-1 w-full">

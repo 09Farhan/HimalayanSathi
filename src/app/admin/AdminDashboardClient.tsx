@@ -21,7 +21,6 @@ export default function AdminDashboardClient({
   const [reviews, setReviews] = useState<Review[]>(initialReviews || []);
   const [activeTab, setActiveTab] = useState<'leads' | 'reviews' | 'packages' | 'blogs' | 'destinations' | 'gallery'>('leads');
   const [isAddingReview, setIsAddingReview] = useState(false);
-  const [isPublishing, setIsPublishing] = useState(false);
   const [newReview, setNewReview] = useState({ name: '', rating: 5, quote: '' });
   
   const router = useRouter();
@@ -36,26 +35,6 @@ export default function AdminDashboardClient({
     await fetch('/api/auth/logout', { method: 'POST' });
     router.push('/');
     router.refresh();
-  };
-
-  const handlePublish = async () => {
-    setIsPublishing(true);
-    try {
-      const res = await fetch('/api/admin/revalidate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ path: '/' })
-      });
-      if (res.ok) {
-        alert('Successfully published! The homepage has been updated with your latest changes.');
-      } else {
-        alert('Failed to publish changes.');
-      }
-    } catch (e) {
-      alert('Network error while publishing.');
-    } finally {
-      setIsPublishing(false);
-    }
   };
 
   const handleLeadStatusChange = async (id: string, newStatus: 'new' | 'contacted') => {
@@ -128,13 +107,6 @@ export default function AdminDashboardClient({
             <p className="text-text-secondary mt-1">Manage your business inquiries, reviews, packages, destinations, and blogs</p>
           </div>
           <div className="flex items-center gap-3 w-full md:w-auto">
-            <Button 
-              onClick={handlePublish} 
-              disabled={isPublishing}
-              className="flex-1 md:flex-none shadow-md shadow-accent/20 bg-accent hover:bg-accent/90"
-            >
-              {isPublishing ? 'Publishing...' : 'Publish to Live Site'}
-            </Button>
             <Button variant="outline" size="sm" onClick={handleLogout}>
               Sign Out
             </Button>
