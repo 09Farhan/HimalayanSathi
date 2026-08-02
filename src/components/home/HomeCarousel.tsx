@@ -43,32 +43,32 @@ export default function HomeCarousel({ images }: { images: GalleryImage[] }) {
           </p>
         </div>
 
-        <div 
-          className="relative rounded-3xl overflow-hidden shadow-2xl bg-surface animate-fade-in-up group max-w-4xl mx-auto"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          {/* Images */}
-          {images.map((img, index) => (
-            <div 
-              key={img.id || index}
-              className={`w-full transition-opacity duration-1000 ease-in-out ${index === currentIndex ? 'opacity-100 relative' : 'opacity-0 absolute top-0 left-0 w-full h-full'}`}
-            >
-              {/* Using standard img tag so it can naturally dictate height based on intrinsic aspect ratio */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img 
-                src={img.url}
-                alt={img.alt || `Gallery Image ${index + 1}`}
-                className="w-full h-auto block"
-              />
-              {/* Optional Caption Overlay */}
-              {img.alt && (
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6 pt-16">
-                  <p className="text-white text-lg md:text-xl font-medium">{img.alt}</p>
-                </div>
-              )}
-            </div>
-          ))}
+        <div className="flex justify-center items-center w-full px-4">
+          <div 
+            className="relative rounded-3xl shadow-2xl bg-surface animate-fade-in-up group inline-flex"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            {/* Images */}
+            {images.map((img, index) => (
+              <div 
+                key={img.id || index}
+                className={`transition-opacity duration-1000 ease-in-out ${index === currentIndex ? 'opacity-100 relative' : 'opacity-0 absolute inset-0'}`}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img 
+                  src={img.url}
+                  alt={img.alt || `Gallery Image ${index + 1}`}
+                  className={`rounded-3xl block max-w-[90vw] md:max-w-[75vw] max-h-[60vh] md:max-h-[70vh] w-auto h-auto ${index === currentIndex ? '' : 'w-full h-full object-cover'}`}
+                />
+                {/* Optional Caption Overlay */}
+                {img.alt && (
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6 pt-16 rounded-b-3xl">
+                    <p className="text-white text-lg md:text-xl font-medium">{img.alt}</p>
+                  </div>
+                )}
+              </div>
+            ))}
 
           {/* Controls - Only show if multiple images */}
           {images.length > 1 && (
@@ -104,6 +104,7 @@ export default function HomeCarousel({ images }: { images: GalleryImage[] }) {
               </div>
             </>
           )}
+        </div>
         </div>
       </div>
     </section>
