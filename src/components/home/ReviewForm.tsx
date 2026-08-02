@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Button from '@/components/ui/Button';
 import { Star, MapPin } from 'lucide-react';
 
-export default function ReviewForm({ destinations = [] }: { destinations?: { slug: string, name: string }[] }) {
+export default function ReviewForm() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -21,7 +21,13 @@ export default function ReviewForm({ destinations = [] }: { destinations?: { slu
     e.preventDefault();
     setIsSubmitting(true);
 
-    const destinationName = destinations.find(d => d.slug === formData.destinationSlug)?.name || '';
+    const destinationNames: Record<string, string> = {
+      darjeeling: 'Darjeeling',
+      sikkim: 'Sikkim',
+      bhutan: 'Bhutan',
+      northeast: 'Northeast India'
+    };
+    const destinationName = destinationNames[formData.destinationSlug] || '';
 
     try {
       const res = await fetch('/api/reviews', {
@@ -131,11 +137,10 @@ export default function ReviewForm({ destinations = [] }: { destinations?: { slu
                 className="w-full pl-11 pr-4 py-3 bg-surface-muted border border-transparent rounded-xl focus:bg-white focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all appearance-none cursor-pointer"
               >
                 <option value="">Select a destination...</option>
-                {destinations.map(dest => (
-                  <option key={dest.slug} value={dest.slug}>
-                    {dest.name}
-                  </option>
-                ))}
+                <option value="darjeeling">Darjeeling</option>
+                <option value="sikkim">Sikkim</option>
+                <option value="bhutan">Bhutan</option>
+                <option value="northeast">Northeast India</option>
               </select>
             </div>
           </div>
