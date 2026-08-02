@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Button from './Button';
+import { IMAGES } from '@/data/images';
 
 export function LeadCapturePopup() {
   const [isOpen, setIsOpen] = useState(false);
@@ -104,10 +105,10 @@ export function LeadCapturePopup() {
       <div className="relative w-full max-w-md bg-surface-card rounded-2xl shadow-2xl overflow-hidden animate-scale-in flex flex-col max-h-[90vh]">
         
         {/* Header with decorative background */}
-        <div className="relative text-center bg-primary-dark">
+        <div className="relative pt-10 pb-6 px-6 sm:px-8 text-center gradient-primary text-white">
           <button 
             onClick={closePopup}
-            className="absolute top-4 right-4 text-white/80 hover:text-white hover:bg-white/20 p-2 rounded-full transition-colors focus-ring z-10 bg-black/20"
+            className="absolute top-4 right-4 text-white/80 hover:text-white hover:bg-white/20 p-2 rounded-full transition-colors focus-ring z-10"
             aria-label="Close"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -115,15 +116,20 @@ export function LeadCapturePopup() {
             </svg>
           </button>
           
-          <div className="relative w-full aspect-square">
-            <Image 
-              src="/images/popup-banner-square.jpg" 
-              alt="Himalayan Sathi Special Offer" 
-              fill
-              className="object-cover"
-              priority
-            />
+          <div className="flex justify-center mb-4">
+            <div className="bg-white/95 p-3 rounded-xl inline-block shadow-lg animate-float">
+              <Image 
+                src={IMAGES.LOGO} 
+                alt="Himalayan Sathi Logo" 
+                width={140}
+                height={50}
+                className="object-contain"
+                priority
+              />
+            </div>
           </div>
+          <h2 className="text-2xl font-heading font-bold mb-2">Plan Your Dream Himalayan Trip!</h2>
+          <p className="text-sm text-white/90">Get exclusive offers and personalized itineraries.</p>
         </div>
 
         {/* Form */}
