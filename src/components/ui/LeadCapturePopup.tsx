@@ -6,6 +6,7 @@ import Button from './Button';
 export function LeadCapturePopup() {
   const [isOpen, setIsOpen] = useState(false);
   const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle');
+  const [showCount, setShowCount] = useState(0);
 
   useEffect(() => {
     const dismissedUntil = localStorage.getItem('hs_popup_dismissed');
@@ -21,22 +22,36 @@ export function LeadCapturePopup() {
     }
     
     if (shouldShow) {
-      const timer = setTimeout(() => {
-        setIsOpen(true);
-        document.body.style.overflow = 'hidden'; // Lock scroll
-      }, 5000); // 5 seconds delay
-      
-      return () => clearTimeout(timer);
+      if (showCount === 0) {
+        const timer = setTimeout(() => {
+          setIsOpen(true);
+          setShowCount(1);
+          document.body.style.overflow = 'hidden'; // Lock scroll
+        }, 5000); // 5 seconds delay for first show
+        
+        return () => clearTimeout(timer);
+      } else if (showCount === 1 && !isOpen && status !== 'success') {
+        // First popup was closed without success, show again after 10s
+        const timer = setTimeout(() => {
+          setIsOpen(true);
+          setShowCount(2);
+          document.body.style.overflow = 'hidden'; // Lock scroll
+        }, 10000); // 10 seconds delay for second show
+        
+        return () => clearTimeout(timer);
+      }
     }
-  }, []);
+  }, [showCount, isOpen, status]);
 
   const closePopup = () => {
     setIsOpen(false);
     document.body.style.overflow = 'unset';
     
-    // Set expiry for 24 hours
-    const expiry = new Date().getTime() + 24 * 60 * 60 * 1000;
-    localStorage.setItem('hs_popup_dismissed', expiry.toString());
+    // Set expiry for 24 hours only if it's the second close OR they successfully submitted
+    if (showCount >= 2 || status === 'success') {
+      const expiry = new Date().getTime() + 24 * 60 * 60 * 1000;
+      localStorage.setItem('hs_popup_dismissed', expiry.toString());
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
