@@ -44,7 +44,7 @@ export default function HomeCarousel({ images }: { images: GalleryImage[] }) {
         </div>
 
         <div 
-          className="relative rounded-3xl overflow-hidden shadow-2xl bg-gray-900 animate-fade-in-up group flex items-center justify-center min-h-[400px] max-h-[80vh]"
+          className="relative rounded-3xl overflow-hidden shadow-2xl bg-surface animate-fade-in-up group"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -52,14 +52,14 @@ export default function HomeCarousel({ images }: { images: GalleryImage[] }) {
           {images.map((img, index) => (
             <div 
               key={img.id || index}
-              className={`w-full h-full flex items-center justify-center transition-opacity duration-1000 ease-in-out ${index === currentIndex ? 'opacity-100 relative' : 'opacity-0 absolute top-0 left-0'}`}
+              className={`w-full transition-opacity duration-1000 ease-in-out ${index === currentIndex ? 'opacity-100 relative' : 'opacity-0 absolute top-0 left-0 w-full h-full'}`}
             >
-              {/* Using standard img tag with max-height to ensure it fits in viewport without scrolling */}
+              {/* Using standard img tag so it can naturally dictate height based on intrinsic aspect ratio */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img 
                 src={img.url}
                 alt={img.alt || `Gallery Image ${index + 1}`}
-                className="w-full h-full max-h-[80vh] object-contain block"
+                className="w-full h-auto block"
               />
               {/* Optional Caption Overlay */}
               {img.alt && (
