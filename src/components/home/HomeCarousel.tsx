@@ -44,7 +44,7 @@ export default function HomeCarousel({ images }: { images: GalleryImage[] }) {
         </div>
 
         <div 
-          className="relative rounded-3xl overflow-hidden shadow-2xl bg-gray-100 aspect-[16/9] md:aspect-[21/9] animate-fade-in-up group"
+          className="relative rounded-3xl overflow-hidden shadow-2xl bg-gray-900 aspect-[4/3] md:aspect-[16/9] animate-fade-in-up group"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -59,7 +59,7 @@ export default function HomeCarousel({ images }: { images: GalleryImage[] }) {
                 alt={img.alt || `Gallery Image ${index + 1}`}
                 fill
                 priority={index === 0}
-                className="object-cover"
+                className="object-contain"
                 sizes="(max-width: 768px) 100vw, 1280px"
               />
               {/* Optional Caption Overlay */}
